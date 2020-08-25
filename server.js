@@ -5,10 +5,9 @@ const app = express();
 connectToDB();
 
 app.use(express.json({ extended: false }));
-
 //Routes
-app.use("/api/users", require("./routes/api/users"));
+app.use("/api/register", require("./routes/api/register"));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server started on localhost port ${PORT}`));
