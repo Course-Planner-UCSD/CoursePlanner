@@ -100,3 +100,8 @@
 .myButton:hover {
   background-color: #69b2fa;
 }
+
+html, body, #root, .App {
+  	height: 100%;
+	margin:0px;
+}
