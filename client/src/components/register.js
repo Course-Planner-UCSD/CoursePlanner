@@ -53,19 +53,24 @@ export default class CreateAccount extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div>
+      <div id="myBackground">
+        <div className="header">
+          <h2 className="text" id="headerText">
+            Create Account
+          </h2>
+        </div>
+        <div id="formDiv">
           <form onSubmit={this.onSubmit} id="form">
-            <div className="header">
-              <h2 className="headerText">Create Account</h2>
-            </div>
             <div className="form-group" id="formInput">
+              <div id="labels">
+                <label className="spaceBelow text">Email: </label>
+                <label className="spaceBelow text">Password: </label>
+              </div>
               <div id="inputs">
                 <input
                   type="text"
                   required
                   className="form-control"
-                  placeholder="Email Address"
                   value={this.state.email}
                   onChange={this.onChangeEmail}
                   className="spaceBelow input"
@@ -73,7 +78,6 @@ export default class CreateAccount extends Component {
                 <input
                   type="text"
                   required
-                  placeholder="Password"
                   className="form-control"
                   value={this.state.password}
                   onChange={this.onChangePassword}
@@ -83,7 +87,7 @@ export default class CreateAccount extends Component {
             </div>
             <div className="form-group">
               <button type="submit" className="myButton">
-                Register
+                Create Account
               </button>
             </div>
           </form>
