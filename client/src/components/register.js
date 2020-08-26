@@ -52,84 +52,46 @@ export default class CreateAccount extends Component {
   }
 
   render() {
-    const teststyle = {
-      backgroundColor: "#5ba1e6",
-      padding: "7px",
-      color: "white",
-      textAlign: "center",
-      marginBottom: "20px",
-    };
-    const formItems = {
-      marginBottom: "10px",
-      display: "table-row",
-    };
-    const formStyle = {
-      textAlign: "center",
-      marginLeft: "auto",
-      marginRight: "auto",
-      marginBottom: "20px",
-      display: "table",
-    };
-    const buttonStyle = {
-      backgroundColor: "#5ba1e6",
-      border: "none",
-      fontSize: "16px",
-      fontFamily: "Helvetica",
-      cursor: "pointer",
-      padding: "5px",
-    };
-    const textStyle = {
-      color: "black",
-      fontFamily: "Helvetica",
-    };
-    const textStyleCell = {
-      color: "black",
-      fontFamily: "Helvetica",
-      display: "table-cell",
-      paddingRight: "10px",
-    };
-    const cell = {
-      display: "table-cell",
-    };
     return (
-      <div>
-        <div style={teststyle}>
-          <h2 class="header-text" style={textStyle}>
+      <div id="myBackground">
+        <div className="header">
+          <h2 className="text" id="headerText">
             Create Account
           </h2>
         </div>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group" style={formStyle}>
-            <div id="email" style={formItems}>
-              <label style={textStyleCell}>Email: </label>
-              <input
-                type="text"
-                required
-                className="form-control"
-                value={this.state.email}
-                onChange={this.onChangeEmail}
-                style={cell}
-              />
+        <div id="formDiv">
+          <form onSubmit={this.onSubmit} id="form">
+            <div className="form-group" id="formInput">
+              <div id="labels">
+                <label className="spaceBelow text">Email: </label>
+                <label className="spaceBelow text">Password: </label>
+              </div>
+              <div id="inputs">
+                <input
+                  type="text"
+                  required
+                  className="form-control"
+                  value={this.state.email}
+                  onChange={this.onChangeEmail}
+                  className="spaceBelow input"
+                />
+                <input
+                  type="text"
+                  required
+                  className="form-control"
+                  value={this.state.password}
+                  onChange={this.onChangePassword}
+                  className="spaceBelow input"
+                />
+              </div>
             </div>
-            <br />
-            <div id="password" style={formItems}>
-              <label style={textStyleCell}>Password: </label>
-              <input
-                type="text"
-                required
-                className="form-control"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                style={cell}
-              />
+            <div className="form-group">
+              <button type="submit" className="myButton">
+                Create Account
+              </button>
             </div>
-          </div>
-          <div className="form-group" style={{ textAlign: "center" }}>
-            <button type="submit" style={buttonStyle}>
-              Create Account
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }
