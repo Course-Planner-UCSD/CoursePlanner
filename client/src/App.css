@@ -33,8 +33,16 @@
   font-size: 20px;
 }
 
+.problemText {
+	color: red;
+   	font-family: "Helvetica";
+   	font-size: 12px;
+    width:100%;
+}
+
 #headerText {
   font-size: 32px;
+  margin-top: 0px;
 }
 
 .header {
@@ -45,23 +53,23 @@
 }
 
 #form {
-  border: 4px solid #5ba1e6;
-  padding: 25px;
+  width: 30%;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 0px;
+  padding-left: 0px;
   border-radius: 10px;
   display: inline-flex;
   flex-direction: column;
   background-color: white;
   align-items: center;
   margin: 40px;
+  box-shadow: 2px 2px 6px 5px rgba(0, 0, 0, 0.35), 0px 0px 6px 5px rgba(0, 0, 0, 0.15);
 }
 
 #formDiv {
   display: flex;
   justify-content: center;
-}
-
-#formInput {
-  display: flex;
 }
 
 #labels {
@@ -71,19 +79,26 @@
   align-items: flex-end;
 }
 
-#inputs {
+#formInput {
   display: flex;
   flex-direction: column;
-  margin-right: 5px;
+  width:80%;
 }
 
 .input {
   font-size: 16px;
   font-family: "Helvetica";
+  border: 1px solid black;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.input:focus {
+	box-shadow: 2px 2px 3px 1px rgba(91, 161, 230, 0.35), -1px -1px 3px 1px rgba(91, 161, 230, 0.25);
 }
 
 .spaceBelow {
-  margin-bottom: 10px;
+  margin-bottom: 24px;
 }
 
 .myButton {
@@ -99,6 +114,7 @@
 
 .myButton:hover {
   background-color: #69b2fa;
+  box-shadow: 2px 2px 6px 3px rgba(0, 0, 0, 0.35), 0px 0px 6px 3px rgba(0, 0, 0, 0.15);
 }
 
 html, body, #root, .App {
