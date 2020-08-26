@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import "./App.css";
-import CreateAccount from "./components/register";
+import CreateAccount from "./components/layout/Register";
 function App() {
   return (
     <Fragment>

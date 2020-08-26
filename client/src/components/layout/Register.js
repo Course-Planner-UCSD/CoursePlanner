@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
-import "../App.css";
+import "../../App.css";
 
 export default class CreateAccount extends Component {
   constructor(props) {
