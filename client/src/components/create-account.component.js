@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Button} from 'react-bootstrap';
 import axios from 'axios';
 import '../App.css';
 
@@ -58,21 +59,36 @@ export default class CreateAccount extends Component {
 			marginBottom: "20px",
 	    };
 		const formItems = {
-			marginBottom: "10px"
+			marginBottom: "10px",
+			display: "table-row"
 		}
 		const formStyle = {
-			textAlign: "center"
+			textAlign: "center",
+			marginLeft: "auto",
+			marginRight: "auto",
+			marginBottom: "20px",
+			display: "table"
 		}
 		const buttonStyle = {
 			backgroundColor: "#5ba1e6",
 			border: "none",
 			fontSize: "16px",
 			fontFamily:"Helvetica",
-			cursor: "pointer"
+			cursor: "pointer",
+			padding: "5px"
 		}
 		const textStyle = {
 			color: "black",
-			fontFamily:"Helvetica"
+			fontFamily:"Helvetica",
+		}
+		const textStyleCell = {
+			color: "black",
+			fontFamily:"Helvetica",
+			display: "table-cell",
+			paddingRight: "10px"
+		}
+		const cell = {
+			display: "table-cell"
 		}
 		return (
 			<div>
@@ -82,26 +98,27 @@ export default class CreateAccount extends Component {
 				<form onSubmit={this.onSubmit}>
 					<div className="form-group" style={formStyle}>
 						<div id="email" style={formItems}>
-						<label style={textStyle}>Email: </label>
+						<label style={textStyleCell}>Email: </label>
 						<input type="text"
 							required
 							className="form-control"
 							value={this.state.email}
 							onChange={this.onChangeEmail}
-							/>
+							style={cell}/>
 						</div>
 						<br/>
 						<div id="password" style={formItems}>
-						<label style={textStyle}>Password: </label>
+						<label style={textStyleCell}>Password: </label>
 						<input type="text"
 							required
 							className="form-control"
 							value={this.state.password}
 							onChange={this.onChangePassword}
+							style={cell}
 							/>
 						</div>
 					</div>
-					<div className="form-group" style={formStyle}>
+					<div className="form-group" style={{textAlign: "center"}}>
 						<button type="submit" style={buttonStyle}>Create Account</button>
 					</div>
 				</form>
