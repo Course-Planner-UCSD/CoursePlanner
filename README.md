@@ -4,6 +4,9 @@ To work on this project run npm install to install all dependencies
 
 Commands to run the project:
 
-npm run server
-  
-(more will be coming as we add front end)
+npm run server (this runs the server only)
+
+npm run client (this only runs front end)
+
+npm run dev (runs both)
+
