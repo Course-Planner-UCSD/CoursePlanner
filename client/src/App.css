@@ -24,7 +24,7 @@
 
 #myBackground {
   background-image: linear-gradient(white, #5ba1e6);
-  height: 100%;
+  height: 100vh;
 }
 
 .text {
