@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 
 import "./App.css";
 import CreateAccount from "./components/register";
-
 function App() {
   return (
     <Fragment>
