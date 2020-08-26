@@ -32,18 +32,18 @@ router.post(
         });
       }
 
-      let currentUser = new UserModel({
+      let user = new UserModel({
         email,
         password,
       });
 
       const salt = await bcrypt.genSalt(15);
-      currentUser.password = await bcrypt.hash(password, salt);
-      await currentUser.save();
+      user.password = await bcrypt.hash(password, salt);
+      await user.save();
 
       const userID = {
-        currentUser: {
-          id: currentUser.id,
+        user: {
+          id: user.id,
         },
       };
 
@@ -51,7 +51,7 @@ router.post(
       jwt.sign(
         userID,
         config.get("jwtSecret"),
-        { expiresIn: 3600000 },
+        { expiresIn: 36000000 },
         (err, token) => {
           if (err) {
             throw err;
