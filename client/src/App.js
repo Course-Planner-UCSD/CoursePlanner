@@ -6,7 +6,6 @@ import CreateAccount from "./components/create-account.component";
 function App() {
   return (
     <Fragment>
-      <div>Course Planner</div>
 	<CreateAccount/>
     </Fragment>
   );
