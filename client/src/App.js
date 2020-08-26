@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 
 import "./App.css";
-import CreateAccount from "./components/create-account.component";
+import CreateAccount from "./components/register";
 
 function App() {
   return (
     <Fragment>
       <div>Course Planner</div>
-	<CreateAccount/>
+      <CreateAccount />
     </Fragment>
   );
 }
