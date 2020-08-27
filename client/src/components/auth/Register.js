@@ -21,26 +21,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
 const Register = (/*{ setAlert, register, isAuthenticated }*/) => {
-  /*
-  constructor(props) {
-    super(props);
-
-    //Allows us to use this in these methods to refer to the class CreateExercises
-    
-
-    this.state = {
-      email: "",
-      password: "",
-      passwordConfirm: "",
-      name: "",
-      triedEmail: false,
-      triedName: false,
-      triedPW: false,
-      triedConfirmPW: false,
-      showPassword: false,
-      showConfirmPassword: false,
-    };
-  }*/
   const [formData, setFormData] = useState({
     email: "",
     password: "",
