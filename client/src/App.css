@@ -1,30 +1,6 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-#myBackground {
-  background-image: linear-gradient(white, #5ba1e6);
-  height: 100vh;
+html, body, #root, .App {
+  	height: 100%;
+	margin:0px;
 }
 
 .text {
@@ -33,91 +9,92 @@
   font-size: 20px;
 }
 
-.problemText {
-	color: red;
-   	font-family: "Helvetica";
-   	font-size: 12px;
-    width:100%;
+#headerText {
+	font-size: 26px;
+}
+
+#myBackground {
+  background-image: linear-gradient(white, #5ba1e6);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#testCard {
+	display: flex;
+	width: 30%;
+	flex-direction: column;
+	padding: 2%;
+	position: relative;
+	top: 3%;
+}
+
+#form-inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #headerText {
   font-size: 32px;
   margin-top: 0px;
-}
-
-.header {
-  background-color: #5ba1e6;
-  padding: 2px;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-#form {
-  width: 30%;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  padding-right: 0px;
-  padding-left: 0px;
-  border-radius: 10px;
-  display: inline-flex;
-  flex-direction: column;
-  background-color: white;
-  align-items: center;
-  margin: 40px;
-  box-shadow: 2px 2px 6px 5px rgba(0, 0, 0, 0.35), 0px 0px 6px 5px rgba(0, 0, 0, 0.15);
+#register {
+	font-size: 18px;
 }
 
-#formDiv {
-  display: flex;
-  justify-content: center;
+.shaking {
+	animation: myEffect 0.5s infinite; 
 }
 
-#labels {
-  display: flex;
-  flex-direction: column;
-  margin-right: 5px;
-  align-items: flex-end;
+#testButton {
+	position: fixed;
+	right: 1%;
 }
 
-#formInput {
-  display: flex;
-  flex-direction: column;
-  width:80%;
+#pwWarning {
+	color: red;
 }
 
-.input {
-  font-size: 16px;
-  font-family: "Helvetica";
-  border: 1px solid black;
-  border-radius: 2px;
-  width: 100%;
+#confirmPWWarning {
+	color: red;
 }
 
-.input:focus {
-	box-shadow: 2px 2px 3px 1px rgba(91, 161, 230, 0.35), -1px -1px 3px 1px rgba(91, 161, 230, 0.25);
-}
-
-.spaceBelow {
-  margin-bottom: 24px;
-}
-
-.myButton {
-  background-color: #5ba1e6;
-  border: none;
-  font-size: 20px;
-  font-family: "Helvetica";
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 4px;
-  margin: 15px;
-}
-
-.myButton:hover {
-  background-color: #69b2fa;
-  box-shadow: 2px 2px 6px 3px rgba(0, 0, 0, 0.35), 0px 0px 6px 3px rgba(0, 0, 0, 0.15);
-}
-
-html, body, #root, .App {
-  	height: 100%;
-	margin:0px;
-}
+@keyframes myEffect { 
+	0% { 
+	    transform: translateX(0px); 
+	}
+	10% {
+		transform: translateX(-4px); 
+	}
+    20% { 
+        transform: translateX(-7px); 
+    }
+	30% { 
+        transform: translateX(-3px); 
+    }
+    40% { 
+        transform: translateX(0px); 
+    }
+	50% { 
+        transform: translateX(3px); 
+    }  
+    60% { 
+        transform: translateX(4px); 
+    } 
+	70% { 
+        transform: translateX(1px); 
+    }   
+    80% { 
+        transform: translateX(-3px); 
+    } 
+	90% { 
+        transform: translateX(-1px); 
+    }
+    100% { 
+        transform: translateX(0px); 
+    } 
+} 
