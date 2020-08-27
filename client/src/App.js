@@ -1,18 +1,23 @@
 import React, { Fragment } from "react";
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+//import store from "./store";
 import "./App.css";
 
-import CreateAccount from "./components/auth/Register";
-import MyNavBar from "./components/auth/navBar";
+import Register from "./components/auth/Register";
+import MyNavBar from "./components/layout/navBar";
 
-
-function App() {
+const App = () => {
   return (
-    <Fragment>
-	  <MyNavBar/>
-      <CreateAccount/>
-    </Fragment>
+    //<Provider store={store}>
+    <Router>
+      <Fragment>
+        <MyNavBar />
+        <Route exact path="/" component={Register} />
+      </Fragment>
+    </Router>
+    //</Provider>
   );
-}
+};
 
 export default App;

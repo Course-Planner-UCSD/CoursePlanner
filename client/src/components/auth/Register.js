@@ -1,4 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+//import { setAlert } from "../../actions/alert";
+//import { register } from "../../actions/auth";
+import PropTypes from "prop-types";
 import "../../App.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -15,25 +20,13 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
-export default class CreateAccount extends Component {
+const Register = (/*{ setAlert, register, isAuthenticated }*/) => {
+  /*
   constructor(props) {
     super(props);
 
     //Allows us to use this in these methods to refer to the class CreateExercises
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangePasswordConfirm = this.onChangePasswordConfirm.bind(this);
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.checkEmail = this.checkEmail.bind(this);
-    this.nameTried = this.nameTried.bind(this);
-    this.emailTried = this.emailTried.bind(this);
-    this.pwTried = this.pwTried.bind(this);
-    this.confirmPWTried = this.confirmPWTried.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
-    this.handleClickShowConfirmPassword = this.handleClickShowConfirmPassword.bind(
-      this
-    );
+    
 
     this.state = {
       email: "",
@@ -47,58 +40,74 @@ export default class CreateAccount extends Component {
       showPassword: false,
       showConfirmPassword: false,
     };
-  }
+  }*/
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    name: "",
+    triedEmail: false,
+    triedName: false,
+    triedPW: false,
+    triedConfirmPW: false,
+    showPassword: false,
+    showConfirmPassword: false,
+  });
+  const {
+    email,
+    password,
+    passwordConfirm,
+    name,
+    triedEmail,
+    triedName,
+    triedPW,
+    triedConfirmPW,
+    showPassword,
+    showConfirmPassword,
+  } = formData;
 
-  componentDidMount() {
+  useEffect(() => {
     var button = document.getElementById("register");
-    button.addEventListener("animationend", this.animationOver, false);
-  }
+    button.addEventListener("animationend", animationOver, false);
+  });
 
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value,
-    });
-  }
+  const onChangeEmail = (e) => {
+    setFormData({ ...formData, email: e.target.value });
+  };
 
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value,
-    });
-  }
+  const onChangePassword = (e) => {
+    setFormData({ ...formData, password: e.target.value });
+  };
 
-  onChangePasswordConfirm(e) {
-    this.setState({
-      passwordConfirm: e.target.value,
-    });
-  }
+  const onChangePasswordConfirm = (e) => {
+    setFormData({ ...formData, passwordConfirm: e.target.value });
+  };
 
-  onChangeName(e) {
-    this.setState({
-      name: e.target.value,
-    });
-  }
+  const onChangeName = (e) => {
+    setFormData({ ...formData, name: e.target.value });
+  };
 
-  checkName() {
-    return this.state.triedName && this.state.name.length === 0;
-  }
+  const checkName = () => {
+    return triedName && name.length === 0;
+  };
 
-  checkEmail() {
-    if (!this.state.triedEmail) {
+  const checkEmail = () => {
+    if (!triedEmail) {
       return false;
     }
-    var email = this.state.email;
+
     if (email.indexOf("@") <= 0 || email.indexOf("@") >= email.length - 1) {
       return true;
     } else {
       return false;
     }
-  }
+  };
 
-  checkPassword() {
-    if (!this.state.triedPW) {
+  const checkPassword = () => {
+    if (!triedPW) {
       return false;
     }
-    var currPW = this.state.password;
+    var currPW = password;
     var capLetter = false;
     var lowerLetter = false;
     var number = false;
@@ -123,73 +132,70 @@ export default class CreateAccount extends Component {
         return false;
       }
     }
-  }
+  };
 
-  checkConfirmPassword() {
-    if (!this.state.triedConfirmPW) {
+  const checkConfirmPassword = () => {
+    if (!triedConfirmPW) {
       return false;
     }
-    if (this.state.password !== this.state.passwordConfirm) {
+    if (password !== passwordConfirm) {
       return true;
     } else {
       return false;
     }
-  }
+  };
 
-  nameTried() {
-    //this.state.triedName = true;
-    this.setState({ triedName: true });
-  }
+  const nameTried = () => {
+    //triedName = true;
+    setFormData({ ...formData, triedName: true });
+  };
 
-  emailTried() {
-    //this.state.triedName = true;
-    this.setState({ triedEmail: true });
-  }
+  const emailTried = () => {
+    //triedName = true;
+    setFormData({ ...formData, triedEmail: true });
+  };
 
-  pwTried() {
-    //this.state.triedName = true;
-    this.setState({ triedPW: true });
-  }
+  const pwTried = () => {
+    //triedName = true;
+    setFormData({ ...formData, triedPW: true });
+  };
 
-  confirmPWTried() {
-    this.setState({ triedConfirmPW: true });
-  }
+  const confirmPWTried = () => {
+    setFormData({ ...formData, triedConfirmPW: true });
+  };
 
-  animationOver() {
+  const animationOver = () => {
     var button = document.getElementById("register");
     button.classList.remove("shaking");
-  }
+  };
 
-  handleClickShowPassword() {
-    this.setState({
-      showPassword: !this.state.showPassword,
-    });
-  }
+  const handleClickShowPassword = () => {
+    setFormData({ ...formData, showPassword: !showPassword });
+  };
 
-  handleClickShowConfirmPassword() {
-    this.setState({
-      showConfirmPassword: !this.state.showConfirmPassword,
-    });
-  }
+  const handleClickShowConfirmPassword = () => {
+    setFormData({ ...formData, showConfirmPassword: !showConfirmPassword });
+  };
 
-  onSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault(); //prevents default html form submit behavior
 
     var button = document.getElementById("register");
 
     if (
-      !this.state.triedName ||
-      this.checkName() ||
-      !this.state.triedEmail ||
-      this.checkEmail() ||
-      !this.state.triedPW ||
-      this.checkPassword() ||
-      !this.state.triedConfirmPW ||
-      this.checkConfirmPassword()
+      !triedName ||
+      checkName() ||
+      !triedEmail ||
+      checkEmail() ||
+      !triedPW ||
+      checkPassword() ||
+      !triedConfirmPW ||
+      checkConfirmPassword()
     ) {
       button.classList.add("shaking");
 
-      this.setState({
+      setFormData({
+        ...formData,
         triedName: true,
         triedEmail: true,
         triedPW: true,
@@ -197,12 +203,13 @@ export default class CreateAccount extends Component {
       });
     } else {
       const user = {
-        email: this.state.email,
-        password: this.state.password,
-        name: this.state.name,
+        email: email,
+        password: password,
+        name: name,
       };
 
-      this.setState({
+      setFormData({
+        ...formData,
         email: "",
         password: "",
         passwordConfirm: "",
@@ -224,141 +231,130 @@ export default class CreateAccount extends Component {
 
       window.location.reload();
     }
-  }
+  };
 
-  render() {
-    return (
-      <ThemeProvider theme={myTheme}>
-        <div id="myBackground">
-          <Card id="testCard">
-            <h2 className="text" id="headerText">
-              Create Account
-            </h2>
-            <form noValidate autoComplete="off" onSubmit={this.onSubmit}>
-              <div id="form-inputs">
-                <Box pb={15} width="100%">
-                  <TextField
-                    id="nameInput"
-                    required
-                    error={this.checkName()}
-                    helperText={this.checkName() ? "Please enter a name" : ""}
-                    label="Name"
-                    variant="outlined"
-                    value={this.state.name}
-                    onChange={this.onChangeName}
-                    fullWidth={true}
-                    onBlur={this.nameTried}
-                  />
-                </Box>
-                <Box pb={15} width="100%">
-                  <TextField
-                    id="emailInput"
-                    required
-                    error={this.checkEmail()}
-                    helperText={
-                      this.checkEmail() ? "Please enter a valid email" : ""
-                    }
-                    label="Email"
-                    variant="outlined"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    fullWidth={true}
-                    onBlur={this.emailTried}
+  return (
+    <ThemeProvider theme={myTheme}>
+      <div id="myBackground">
+        <Card id="testCard">
+          <h2 className="text" id="headerText">
+            Create Account
+          </h2>
+          <form noValidate autoComplete="off" onSubmit={onSubmit}>
+            <div id="form-inputs">
+              <Box pb={15} width="100%">
+                <TextField
+                  id="nameInput"
+                  required
+                  error={checkName()}
+                  helperText={checkName() ? "Please enter a name" : ""}
+                  label="Name"
+                  variant="outlined"
+                  value={name}
+                  onChange={onChangeName}
+                  fullWidth={true}
+                  onBlur={nameTried}
+                />
+              </Box>
+              <Box pb={15} width="100%">
+                <TextField
+                  id="emailInput"
+                  required
+                  error={checkEmail()}
+                  helperText={checkEmail() ? "Please enter a valid email" : ""}
+                  label="Email"
+                  variant="outlined"
+                  value={email}
+                  onChange={onChangeEmail}
+                  fullWidth={true}
+                  onBlur={emailTried}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        edge="end"
+                      >
+                        {<Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </Box>
+              <Box pb={15} width="100%">
+                <FormControl variant="outlined" fullWidth={true}>
+                  <InputLabel error={checkPassword()}>Password *</InputLabel>
+                  <OutlinedInput
+                    id="pwInput"
+                    type={showPassword ? "text" : "password"}
+                    error={checkPassword()}
+                    onChange={onChangePassword}
+                    onBlur={pwTried}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
-                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
                           edge="end"
                         >
-                          {<Visibility />}
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                       </InputAdornment>
                     }
+                    labelWidth={85}
                   />
-                </Box>
-                <Box pb={15} width="100%">
-                  <FormControl variant="outlined" fullWidth={true}>
-                    <InputLabel error={this.checkPassword()}>
-                      Password *
-                    </InputLabel>
-                    <OutlinedInput
-                      id="pwInput"
-                      type={this.state.showPassword ? "text" : "password"}
-                      error={this.checkPassword()}
-                      onChange={this.onChangePassword}
-                      onBlur={this.pwTried}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            onClick={this.handleClickShowPassword}
-                            edge="end"
-                          >
-                            {this.state.showPassword ? (
-                              <Visibility />
-                            ) : (
-                              <VisibilityOff />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      labelWidth={85}
-                    />
-                    <FormHelperText id="pwWarning">
-                      {this.checkPassword()
-                        ? "Please enter a valid password. A valid password is over 8 characters long and has at least one capital letter, at least one lower case letter, and at least one number."
-                        : ""}
-                    </FormHelperText>
-                  </FormControl>
-                </Box>
-                <Box pb={15} width="100%">
-                  <FormControl variant="outlined" fullWidth={true}>
-                    <InputLabel error={this.checkConfirmPassword()}>
-                      Confirm Password *
-                    </InputLabel>
-                    <OutlinedInput
-                      id="confirmPWInput"
-                      type={
-                        this.state.showConfirmPassword ? "text" : "password"
-                      }
-                      error={this.checkConfirmPassword()}
-                      onChange={this.onChangePasswordConfirm}
-                      onBlur={this.confirmPWTried}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            onClick={this.handleClickShowConfirmPassword}
-                            edge="end"
-                          >
-                            {this.state.showConfirmPassword ? (
-                              <Visibility />
-                            ) : (
-                              <VisibilityOff />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      labelWidth={145}
-                    />
-                    <FormHelperText id="confirmPWWarning">
-                      {this.checkConfirmPassword()
-                        ? "Please enter the same password for both fields."
-                        : ""}
-                    </FormHelperText>
-                  </FormControl>
-                </Box>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  id="register"
-                >
-                  Register
-                </Button>
-              </div>
-            </form>
-          </Card>
-        </div>
-      </ThemeProvider>
-    );
-  }
-}
+                  <FormHelperText id="pwWarning">
+                    {checkPassword()
+                      ? "Please enter a valid password. A valid password is over 8 characters long and has at least one capital letter, at least one lower case letter, and at least one number."
+                      : ""}
+                  </FormHelperText>
+                </FormControl>
+              </Box>
+              <Box pb={15} width="100%">
+                <FormControl variant="outlined" fullWidth={true}>
+                  <InputLabel error={checkConfirmPassword()}>
+                    Confirm Password *
+                  </InputLabel>
+                  <OutlinedInput
+                    id="confirmPWInput"
+                    type={showConfirmPassword ? "text" : "password"}
+                    error={checkConfirmPassword()}
+                    onChange={onChangePasswordConfirm}
+                    onBlur={confirmPWTried}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handleClickShowConfirmPassword}
+                          edge="end"
+                        >
+                          {showConfirmPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={145}
+                  />
+                  <FormHelperText id="confirmPWWarning">
+                    {checkConfirmPassword()
+                      ? "Please enter the same password for both fields."
+                      : ""}
+                  </FormHelperText>
+                </FormControl>
+              </Box>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                id="register"
+              >
+                Register
+              </Button>
+            </div>
+          </form>
+        </Card>
+      </div>
+    </ThemeProvider>
+  );
+};
+export default Register;
