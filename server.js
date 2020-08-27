@@ -7,6 +7,8 @@ connectToDB();
 app.use(express.json({ extended: false }));
 //Routes
 app.use("/api/register", require("./routes/api/register"));
+app.use("/api/authentication", require("./routes/api/authentication"));
+app.use("/api/userData", require("./routes/api/userData"));
 
 const PORT = process.env.PORT || 5000;
 
