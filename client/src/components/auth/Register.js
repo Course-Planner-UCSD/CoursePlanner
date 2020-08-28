@@ -1,8 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-//import { setAlert } from "../../actions/alert";
-//import { register } from "../../actions/auth";
+import { register } from "../../actions/register";
 import PropTypes from "prop-types";
 import "../../App.css";
 import Button from "@material-ui/core/Button";
@@ -20,7 +19,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
-const Register = (/*{ setAlert, register, isAuthenticated }*/) => {
+const Register = (/*{ register, isAuthenticated }*/) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -222,20 +221,6 @@ const Register = (/*{ setAlert, register, isAuthenticated }*/) => {
           </h2>
           <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div id="form-inputs">
-              <Box pb={15} width="100%">
-                <TextField
-                  id="nameInput"
-                  required
-                  error={checkName()}
-                  helperText={checkName() ? "Please enter a name" : ""}
-                  label="Name"
-                  variant="outlined"
-                  value={name}
-                  onChange={onChangeName}
-                  fullWidth={true}
-                  onBlur={nameTried}
-                />
-              </Box>
               <Box pb={15} width="100%">
                 <TextField
                   id="emailInput"
