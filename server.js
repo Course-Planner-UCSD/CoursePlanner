@@ -13,3 +13,10 @@ app.use("/api/userData", require("./routes/api/userData"));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on localhost port ${PORT}`));
+
+//removes process on exit properly
+process.once("SIGUSR2", function () {
+  gracefulShutdown(function () {
+    process.kill(process.pid, "SIGUSR2");
+  });
+});
