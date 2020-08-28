@@ -1,6 +1,6 @@
 import axios from "axios";
 import { REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
-import loadUser from "./loadUser";
+import { loadUser } from "./loadUser";
 
 export const register = ({ email, password }) => async (dispatch) => {
   const config = {

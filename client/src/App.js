@@ -13,7 +13,9 @@ const App = () => {
       <Router>
         <Fragment>
           <MyNavBar />
-          <Route exact path="/" component={Register} />
+          <Switch>
+            <Route exact path="/" component={Register} />
+          </Switch>
         </Fragment>
       </Router>
     </Provider>
