@@ -25,7 +25,6 @@ export default class MyNavBar extends Component {
   setNavBar(event, newValue) {
     this.setState({ navBarValue: newValue });
   }
-
   render() {
     return (
       <ThemeProvider theme={myTheme}>
@@ -37,7 +36,7 @@ export default class MyNavBar extends Component {
               onChange={this.setNavBar}
               aria-label="disabled tabs example"
             >
-              <Tab label="Course Planner" disabled />
+              <Tab label="Course Planner" />
               <Tab label="View Saved" />
             </Tabs>
             <Button color="inherit" id="testButton">
