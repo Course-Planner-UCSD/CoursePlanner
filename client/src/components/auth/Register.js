@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions/register";
 import PropTypes from "prop-types";
@@ -24,9 +24,7 @@ const Register = ({ register, userAuth }) => {
     email: "",
     password: "",
     passwordConfirm: "",
-    name: "",
     triedEmail: false,
-    triedName: false,
     triedPW: false,
     triedConfirmPW: false,
     showPassword: false,
@@ -36,9 +34,7 @@ const Register = ({ register, userAuth }) => {
     email,
     password,
     passwordConfirm,
-    name,
     triedEmail,
-    triedName,
     triedPW,
     triedConfirmPW,
     showPassword,
@@ -46,8 +42,8 @@ const Register = ({ register, userAuth }) => {
   } = formData;
 
   useEffect(() => {
-    var button = document.getElementById("register");
-    //button.addEventListener("animationend", animationOver, false);
+    //var button = document.getElementById("register");
+    //button.addEventListener("animationend", animationOver, false)
   });
 
   const onChangeEmail = (e) => {
@@ -60,14 +56,6 @@ const Register = ({ register, userAuth }) => {
 
   const onChangePasswordConfirm = (e) => {
     setFormData({ ...formData, passwordConfirm: e.target.value });
-  };
-
-  const onChangeName = (e) => {
-    setFormData({ ...formData, name: e.target.value });
-  };
-
-  const checkName = () => {
-    return triedName && name.length === 0;
   };
 
   const checkEmail = () => {
@@ -124,11 +112,6 @@ const Register = ({ register, userAuth }) => {
     }
   };
 
-  const nameTried = () => {
-    //triedName = true;
-    setFormData({ ...formData, triedName: true });
-  };
-
   const emailTried = () => {
     //triedName = true;
     setFormData({ ...formData, triedEmail: true });
@@ -143,10 +126,11 @@ const Register = ({ register, userAuth }) => {
     setFormData({ ...formData, triedConfirmPW: true });
   };
 
+  /*
   const animationOver = () => {
     var button = document.getElementById("register");
     button.classList.remove("shaking");
-  };
+  };*/
 
   const handleClickShowPassword = () => {
     setFormData({ ...formData, showPassword: !showPassword });
@@ -179,28 +163,7 @@ const Register = ({ register, userAuth }) => {
         triedConfirmPW: true,
       });
     } else {
-      /*
-      setFormData({
-        ...formData,
-        email: "",
-        password: "",
-        passwordConfirm: "",
-        name: "",
-        triedEmail: false,
-        triedName: false,
-        triedPW: false,
-        triedConfirmPW: false,
-        showPassword: false,
-        showConfirmPassword: false,
-      });*/
-
-      //pwInput.value = "";
-      //confirmPWInput.value = "";
-
-      //console.log(user);
-
-      //Send post request to the database
-
+      //Send register command to register action
       register({ email, password });
     }
   };

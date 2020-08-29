@@ -10,7 +10,7 @@ export const register = ({ email, password }) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ email, password });
-
+  //sends post request to register user and dispatches to authReducer
   await axios
     .post("api/register", body, config)
     .then((response) => {
