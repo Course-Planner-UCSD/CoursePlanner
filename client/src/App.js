@@ -1,18 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-//import store from "./store";
 import "./App.css";
-import store from "./store";
 import Register from "./components/auth/Register";
-import MyNavBar from "./components/layout/navBar";
+import Navbar from "./components/layout/navBar";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import rootReducer from "./reducers";
+import { loadUserData } from "./actions/loadUser";
+
+const originalState = {};
+
+const thunkMiddleware = [thunk];
+
+const store = createStore(
+  rootReducer,
+  originalState,
+  composeWithDevTools(applyMiddleware(...thunkMiddleware))
+);
 
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUserData());
+  });
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
-          <MyNavBar />
+          <Navbar />
           <Switch>
             <Route exact path="/" component={Register} />
           </Switch>

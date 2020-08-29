@@ -1,6 +1,6 @@
 import axios from "axios";
-import { REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
-import { loadUser } from "./loadUser";
+import { REGISTER_SUCCESS, AUTH_ERROR } from "../other/types";
+import { loadUserData } from "./loadUser";
 
 export const register = ({ email, password }) => async (dispatch) => {
   const config = {
@@ -10,21 +10,23 @@ export const register = ({ email, password }) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ email, password });
-  try {
-    const response = await axios.post("/api/users", body, config);
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: response.data,
-    });
 
-    dispatch(loadUser());
-  } catch (err) {
-    const errors = err.response.data.errors;
-    dispatch({
-      type: REGISTER_FAIL,
+  await axios
+    .post("api/register", body, config)
+    .then((response) => {
+      console.log(response);
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: response.data,
+      });
+      dispatch(loadUserData());
+    })
+    .catch((err) => {
+      dispatch({
+        type: AUTH_ERROR,
+      });
+      if (err.response.data.errors) {
+        console.log(err.response.data.errors);
+      }
     });
-    if (errors) {
-      console.log(errors);
-    }
-  }
 };

@@ -14,14 +14,12 @@ router.post("/", async (req, res) => {
         errors: [{ msg: "There is already an account for that email address" }],
       });
     }
-
-    const salt = await bcrypt.genSalt(10);
-    let encryptedPassword = await bcrypt.hash(password, salt);
-
     let user = new UserModel({
       email,
-      encryptedPassword,
+      password,
     });
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
 
     await user.save();
 

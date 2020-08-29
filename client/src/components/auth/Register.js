@@ -19,7 +19,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
-const Register = (/*{ register, isAuthenticated }*/) => {
+const Register = ({ register, userAuth }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -47,7 +47,7 @@ const Register = (/*{ register, isAuthenticated }*/) => {
 
   useEffect(() => {
     var button = document.getElementById("register");
-    button.addEventListener("animationend", animationOver, false);
+    //button.addEventListener("animationend", animationOver, false);
   });
 
   const onChangeEmail = (e) => {
@@ -162,8 +162,6 @@ const Register = (/*{ register, isAuthenticated }*/) => {
     var button = document.getElementById("register");
 
     if (
-      !triedName ||
-      checkName() ||
       !triedEmail ||
       checkEmail() ||
       !triedPW ||
@@ -181,12 +179,7 @@ const Register = (/*{ register, isAuthenticated }*/) => {
         triedConfirmPW: true,
       });
     } else {
-      const user = {
-        email: email,
-        password: password,
-        name: name,
-      };
-
+      /*
       setFormData({
         ...formData,
         email: "",
@@ -199,18 +192,22 @@ const Register = (/*{ register, isAuthenticated }*/) => {
         triedConfirmPW: false,
         showPassword: false,
         showConfirmPassword: false,
-      });
+      });*/
 
       //pwInput.value = "";
       //confirmPWInput.value = "";
 
-      console.log(user);
+      //console.log(user);
 
       //Send post request to the database
 
-      window.location.reload();
+      register({ email, password });
     }
   };
+
+  if (userAuth) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <ThemeProvider theme={myTheme}>
@@ -322,4 +319,14 @@ const Register = (/*{ register, isAuthenticated }*/) => {
     </ThemeProvider>
   );
 };
-export default Register;
+
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
+  userAuth: PropTypes.bool,
+};
+
+const stateToProps = (state) => ({
+  userAuth: state.authReducer.userAuth,
+});
+
+export default connect(stateToProps, { register })(Register);
