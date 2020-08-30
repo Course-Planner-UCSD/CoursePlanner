@@ -141,7 +141,8 @@ const Register = ({ register, userAuth }) => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault(); //prevents default html form submit behavior
+    //prevents default html form submit behavior
+    e.preventDefault();
 
     var button = document.getElementById("register");
 

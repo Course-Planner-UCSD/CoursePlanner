@@ -14,7 +14,6 @@ export const register = ({ email, password }) => async (dispatch) => {
   await axios
     .post("api/register", body, config)
     .then((response) => {
-      console.log(response);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: response.data,

@@ -35,6 +35,7 @@ function authReducer(state = originalState, action) {
         ...state,
         userAuth: null,
         token: null,
+        user: null,
       };
     default:
       return state;
