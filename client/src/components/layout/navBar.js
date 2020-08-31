@@ -45,13 +45,10 @@ const navBar = ({ userAuth, logout }) => {
             //onChange={setNavBar}
             aria-label="disabled tabs example"
           >
-            {userAuth == null ? (
+            {userAuth === false ? (
               <Fragment>
                 <Link to="/">
                   <Tab label="Course Planner" />
-                </Link>
-                <Link to="/login">
-                  <Tab label="Login" />
                 </Link>
               </Fragment>
             ) : (

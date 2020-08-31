@@ -7,7 +7,7 @@ import {
 } from "../other/types";
 
 const originalState = {
-  userAuth: null,
+  userAuth: false,
   user: null,
   token: localStorage.getItem("token"),
 };
@@ -33,7 +33,7 @@ function authReducer(state = originalState, action) {
       localStorage.removeItem("token");
       return {
         ...state,
-        userAuth: null,
+        userAuth: false,
         token: null,
         user: null,
       };

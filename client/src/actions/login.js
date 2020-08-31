@@ -14,7 +14,6 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
   await axios
     .post("api/authentication", body, config)
     .then((response) => {
-      console.log("dispatch");
       dispatch({
         type: LOGIN_SUCCESS,
         payload: response.data,

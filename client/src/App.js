@@ -11,6 +11,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 import { loadUserData } from "./actions/loadUser";
 import Dashboard from "./components/pages/dashboard";
+import Landing from "./components/pages/landing";
 
 const originalState = {};
 
@@ -33,7 +34,8 @@ const App = () => {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Register} />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
