@@ -13,16 +13,6 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/logout";
 const navBar = ({ userAuth, logout }) => {
   /*
-  constructor(props) {
-    super(props);
-
-    this.setNavBar = this.setNavBar.bind(this);
-
-    this.state = {
-      navBarValue: 0,
-    };
-  }*/
-  /*
   const [values, setValues] = useState({
     navBarValue: 0,
   });
