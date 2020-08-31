@@ -15,18 +15,14 @@ router.post("/", async (req, res) => {
     //Check if user exists and prints error if they don't
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res
-        .status(400)
-        .json({ errors: [{ message: "Invalid Credentials" }] });
+      return res.status(400).send("Username or Password does not match");
     }
     //checks if encrypted password and entered password match
     await bcrypt
       .compare(password, user.password)
       .then((match) => {
         if (!match) {
-          return res
-            .status(400)
-            .json({ errors: [{ message: "Invalid Credentials" }] });
+          return res.status(400).send("Username or Password does not match");
         }
 
         const userID = {
@@ -45,6 +41,7 @@ router.post("/", async (req, res) => {
               throw err;
             }
             res.json({ token });
+            console.log("Logged In User");
           }
         );
       })

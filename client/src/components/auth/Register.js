@@ -158,7 +158,6 @@ const Register = ({ register, userAuth }) => {
 
       setFormData({
         ...formData,
-        triedName: true,
         triedEmail: true,
         triedPW: true,
         triedConfirmPW: true,

@@ -59,7 +59,7 @@ const navBar = ({ userAuth, logout }) => {
                 <Link to="/dashboard">
                   <Tab label="Course Planner" />
                 </Link>
-                <Link to="/">
+                <Link to="/login">
                   <Tab onClick={logoutAction} label="Logout" />
                 </Link>
               </Fragment>
