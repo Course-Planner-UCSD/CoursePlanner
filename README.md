@@ -8,5 +8,4 @@ npm run server (this runs the server only)
 
 npm run client (this only runs front end)
 
-npm run dev (runs both)
-
+npm run dev (runs both client and server)
