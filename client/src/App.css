@@ -1,6 +1,9 @@
-html, body, #root, .App {
-  	height: 100%;
-	margin:0px;
+html,
+body,
+#root,
+.App {
+  height: 100%;
+  margin: 0px;
 }
 
 .text {
@@ -10,7 +13,7 @@ html, body, #root, .App {
 }
 
 #headerText {
-	font-size: 26px;
+  font-size: 26px;
 }
 
 #myBackground {
@@ -22,18 +25,18 @@ html, body, #root, .App {
 }
 
 #testCard {
-	display: flex;
-	width: 30%;
-	flex-direction: column;
-	padding: 2%;
-	position: relative;
-	top: 3%;
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  padding: 2%;
+  position: relative;
+  top: 3%;
 }
 
 #form-inputs {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #headerText {
@@ -43,58 +46,58 @@ html, body, #root, .App {
 }
 
 #register {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .shaking {
-	animation: myEffect 0.5s infinite; 
+  animation: myEffect 0.5s infinite;
 }
 
 #testButton {
-	position: fixed;
-	right: 1%;
+  position: fixed;
+  right: 1%;
 }
 
 #pwWarning {
-	color: red;
+  color: red;
 }
 
 #confirmPWWarning {
-	color: red;
+  color: red;
 }
 
-@keyframes myEffect { 
-	0% { 
-	    transform: translateX(0px); 
-	}
-	10% {
-		transform: translateX(-4px); 
-	}
-    20% { 
-        transform: translateX(-7px); 
-    }
-	30% { 
-        transform: translateX(-3px); 
-    }
-    40% { 
-        transform: translateX(0px); 
-    }
-	50% { 
-        transform: translateX(3px); 
-    }  
-    60% { 
-        transform: translateX(4px); 
-    } 
-	70% { 
-        transform: translateX(1px); 
-    }   
-    80% { 
-        transform: translateX(-3px); 
-    } 
-	90% { 
-        transform: translateX(-1px); 
-    }
-    100% { 
-        transform: translateX(0px); 
-    } 
-} 
+@keyframes myEffect {
+  0% {
+    transform: translateX(0px);
+  }
+  10% {
+    transform: translateX(-4px);
+  }
+  20% {
+    transform: translateX(-7px);
+  }
+  30% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+  70% {
+    transform: translateX(1px);
+  }
+  80% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

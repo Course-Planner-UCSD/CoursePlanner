@@ -11,11 +11,11 @@ mongoose.set("useFindAndModify", false);
 //connect to Database
 const connectToDB = async () => {
   try {
-    await mongoose.connect(db);
-    console.log("Connected to MongoDB");
+    await mongoose.connect(db).then(() => {
+      console.log("Connected to MongoDB");
+    });
   } catch (err) {
     console.error(err.message);
-    process.exit(1);
   }
 };
 

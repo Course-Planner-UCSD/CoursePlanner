@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { register } from "../../actions/register";
+import { loginUser } from "../../actions/login";
 import PropTypes from "prop-types";
 import "../../App.css";
 import Button from "@material-ui/core/Button";
@@ -19,27 +19,15 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
-const Register = ({ register, userAuth }) => {
+const Login = ({ loginUser, userAuth }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    passwordConfirm: "",
     triedEmail: false,
     triedPW: false,
-    triedConfirmPW: false,
     showPassword: false,
-    showConfirmPassword: false,
   });
-  const {
-    email,
-    password,
-    passwordConfirm,
-    triedEmail,
-    triedPW,
-    triedConfirmPW,
-    showPassword,
-    showConfirmPassword,
-  } = formData;
+  const { email, password, triedEmail, triedPW, showPassword } = formData;
 
   useEffect(() => {
     //var button = document.getElementById("register");
@@ -52,10 +40,6 @@ const Register = ({ register, userAuth }) => {
 
   const onChangePassword = (e) => {
     setFormData({ ...formData, password: e.target.value });
-  };
-
-  const onChangePasswordConfirm = (e) => {
-    setFormData({ ...formData, passwordConfirm: e.target.value });
   };
 
   const checkEmail = () => {
@@ -71,45 +55,7 @@ const Register = ({ register, userAuth }) => {
   };
 
   const checkPassword = () => {
-    if (!triedPW) {
-      return false;
-    }
-    var currPW = password;
-    var capLetter = false;
-    var lowerLetter = false;
-    var number = false;
-
-    if (currPW.length < 8) {
-      return true;
-    } else {
-      for (var i = 0; i < currPW.length; i++) {
-        if (currPW.charAt(i) >= "A" && currPW.charAt(i) <= "Z") {
-          capLetter = true;
-        }
-        if (currPW.charAt(i) >= "a" && currPW.charAt(i) <= "z") {
-          lowerLetter = true;
-        }
-        if (currPW.charAt(i) >= "0" && currPW.charAt(i) <= "9") {
-          number = true;
-        }
-      }
-      if (!capLetter || !lowerLetter || !number) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  };
-
-  const checkConfirmPassword = () => {
-    if (!triedConfirmPW) {
-      return false;
-    }
-    if (password !== passwordConfirm) {
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   };
 
   const emailTried = () => {
@@ -122,10 +68,6 @@ const Register = ({ register, userAuth }) => {
     setFormData({ ...formData, triedPW: true });
   };
 
-  const confirmPWTried = () => {
-    setFormData({ ...formData, triedConfirmPW: true });
-  };
-
   /*
   const animationOver = () => {
     var button = document.getElementById("register");
@@ -136,35 +78,23 @@ const Register = ({ register, userAuth }) => {
     setFormData({ ...formData, showPassword: !showPassword });
   };
 
-  const handleClickShowConfirmPassword = () => {
-    setFormData({ ...formData, showConfirmPassword: !showConfirmPassword });
-  };
-
   const onSubmit = (e) => {
     //prevents default html form submit behavior
     e.preventDefault();
 
-    var button = document.getElementById("register");
+    //var button = document.getElementById("register");
 
-    if (
-      !triedEmail ||
-      checkEmail() ||
-      !triedPW ||
-      checkPassword() ||
-      !triedConfirmPW ||
-      checkConfirmPassword()
-    ) {
-      button.classList.add("shaking");
+    if (!triedEmail || checkEmail() || !triedPW || checkPassword()) {
+      //button.classList.add("shaking");
 
       setFormData({
         ...formData,
         triedEmail: true,
         triedPW: true,
-        triedConfirmPW: true,
       });
     } else {
-      //Send register command to register action
-      register({ email, password });
+      //Send login command to login action
+      loginUser({ email, password });
     }
   };
 
@@ -177,7 +107,7 @@ const Register = ({ register, userAuth }) => {
       <div id="myBackground">
         <Card id="testCard">
           <h2 className="text" id="headerText">
-            Create Account
+            Login
           </h2>
           <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div id="form-inputs">
@@ -227,43 +157,7 @@ const Register = ({ register, userAuth }) => {
                     labelWidth={85}
                   />
                   <FormHelperText id="pwWarning">
-                    {checkPassword()
-                      ? "Please enter a valid password. A valid password is over 8 characters long and has at least one capital letter, at least one lower case letter, and at least one number."
-                      : ""}
-                  </FormHelperText>
-                </FormControl>
-              </Box>
-              <Box pb={15} width="100%">
-                <FormControl variant="outlined" fullWidth={true}>
-                  <InputLabel error={checkConfirmPassword()}>
-                    Confirm Password *
-                  </InputLabel>
-                  <OutlinedInput
-                    id="confirmPWInput"
-                    type={showConfirmPassword ? "text" : "password"}
-                    error={checkConfirmPassword()}
-                    onChange={onChangePasswordConfirm}
-                    onBlur={confirmPWTried}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={handleClickShowConfirmPassword}
-                          edge="end"
-                        >
-                          {showConfirmPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={145}
-                  />
-                  <FormHelperText id="confirmPWWarning">
-                    {checkConfirmPassword()
-                      ? "Please enter the same password for both fields."
-                      : ""}
+                    {checkPassword() ? "Please enter a password" : ""}
                   </FormHelperText>
                 </FormControl>
               </Box>
@@ -271,9 +165,9 @@ const Register = ({ register, userAuth }) => {
                 variant="contained"
                 color="primary"
                 type="submit"
-                id="register"
+                id="login"
               >
-                Register
+                Login
               </Button>
             </div>
           </form>
@@ -283,8 +177,8 @@ const Register = ({ register, userAuth }) => {
   );
 };
 
-Register.propTypes = {
-  register: PropTypes.func.isRequired,
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
   userAuth: PropTypes.bool,
 };
 
@@ -292,4 +186,4 @@ const stateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
 });
 
-export default connect(stateToProps, { register })(Register);
+export default connect(stateToProps, { loginUser })(Login);

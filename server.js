@@ -12,4 +12,17 @@ app.use("/api/userData", require("./routes/api/userData"));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server started on localhost port ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`Server started on localhost port ${PORT}`)
+);
+
+//removes process on exit properly
+process.on("SIGTERM", shutDown);
+process.on("SIGINT", shutDown);
+
+function shutDown() {
+  console.log("Shutting down server...");
+  server.close(() => {
+    process.exit(0);
+  });
+}
