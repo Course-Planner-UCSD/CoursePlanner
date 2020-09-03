@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const CoursePlanSchema = new mongoose.Schema({
   ownerID: String,
+  planID: String,
   firstYear: {
     quarters: [
       {
