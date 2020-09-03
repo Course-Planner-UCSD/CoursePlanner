@@ -5,9 +5,9 @@ const coursePlanModel = require("../../dbModels/CoursePlan");
 
 //GET all plans that a user has made by their userID
 //Private route so token is required
-router.get("/allPlansByID/:userID", auth, async (req, res) => {
+router.get("/allPlansByID", auth, async (req, res) => {
   try {
-    const { userID } = req.params;
+    const userID = req.user.id;
     if (!userID) {
       res.status(400).send("Missing userID");
     }
@@ -27,9 +27,9 @@ router.get("/allPlansByID/:userID", auth, async (req, res) => {
 //POST to create a plan with a userID and returns planID
 //Private route so token is required
 
-router.post("/createPlan/:userID", auth, async (req, res) => {
+router.put("/createPlan", auth, async (req, res) => {
   try {
-    const { userID } = req.params;
+    const userID = req.user.id;
     if (!userID) {
       res.status(400).send("Missing userID");
     }
@@ -57,9 +57,32 @@ router.post("/updatePlan/:planID", auth, async (req, res) => {
     if (!planID) {
       res.status(400).send("Missing Plan ID");
     }
+    //checking if user is authorized to see plan
     await coursePlanModel
-      .findOneAndUpdate({ _id: planID }, req.body, { returnNewDocument: true })
-      .then((newDoc) => res.send(newDoc))
+      .findOne({ _id: planID })
+      .select("ownerID")
+      .then((result) => {
+        if (result.ownerID != req.user.id) {
+          res.status(400).send("You are not authorized");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("There was a problem with the server");
+      });
+    //updating plan
+    await coursePlanModel
+      .findOneAndUpdate({ _id: planID }, req.body)
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("There was a problem with the server");
+      });
+    //finding and returning updated plan
+    await coursePlanModel
+      .findOne({ _id: planID })
+      .then((result) => {
+        res.send(result);
+      })
       .catch((err) => {
         console.error(err);
         res.status(500).send("There was a problem with the server");
@@ -78,6 +101,18 @@ router.get("/getPlan/:planID", auth, async (req, res) => {
     if (!planID) {
       res.status(400).send("Missing Plan ID");
     }
+    await coursePlanModel
+      .findOne({ _id: planID })
+      .select("ownerID")
+      .then((result) => {
+        if (result.ownerID != req.user.id) {
+          res.status(400).send("You are not authorized");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("There was a problem with the server");
+      });
 
     await coursePlanModel
       .find({ _id: planID })
@@ -101,6 +136,18 @@ router.delete("/deletePlan/:planID", auth, async (req, res) => {
     if (!planID) {
       res.status(400).send("Missing Plan ID");
     }
+    await coursePlanModel
+      .findOne({ _id: planID })
+      .select("ownerID")
+      .then((result) => {
+        if (result.ownerID != req.user.id) {
+          res.status(400).send("You are not authorized");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("There was a problem with the server");
+      });
 
     await coursePlanModel
       .deleteOne({ _id: planID })
