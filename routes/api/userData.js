@@ -11,6 +11,7 @@ router.get("/", auth, async (req, res) => {
     await userModel
       .findById(req.user.id)
       .select("email")
+      .select("-_id")
       .then((userData) => res.json(userData))
       .catch((err) => console.log(err));
   } catch (err) {

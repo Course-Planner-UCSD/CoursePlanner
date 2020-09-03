@@ -8,9 +8,6 @@ const coursePlanModel = require("../../dbModels/CoursePlan");
 router.get("/allPlansByID", auth, async (req, res) => {
   try {
     const userID = req.user.id;
-    if (!userID) {
-      res.status(400).send("Missing userID");
-    }
     await coursePlanModel
       .find({ ownerID: userID })
       .select("_id")
@@ -30,9 +27,6 @@ router.get("/allPlansByID", auth, async (req, res) => {
 router.put("/createPlan", auth, async (req, res) => {
   try {
     const userID = req.user.id;
-    if (!userID) {
-      res.status(400).send("Missing userID");
-    }
     let plan = new coursePlanModel({
       ownerID: userID,
     });
@@ -63,7 +57,7 @@ router.post("/updatePlan/:planID", auth, async (req, res) => {
       .select("ownerID")
       .then((result) => {
         if (result.ownerID != req.user.id) {
-          res.status(400).send("You are not authorized");
+          res.status(401).send("You are not authorized");
         }
       })
       .catch((err) => {
@@ -106,7 +100,7 @@ router.get("/getPlan/:planID", auth, async (req, res) => {
       .select("ownerID")
       .then((result) => {
         if (result.ownerID != req.user.id) {
-          res.status(400).send("You are not authorized");
+          res.status(401).send("You are not authorized");
         }
       })
       .catch((err) => {
@@ -141,7 +135,7 @@ router.delete("/deletePlan/:planID", auth, async (req, res) => {
       .select("ownerID")
       .then((result) => {
         if (result.ownerID != req.user.id) {
-          res.status(400).send("You are not authorized");
+          res.status(401).send("You are not authorized");
         }
       })
       .catch((err) => {
