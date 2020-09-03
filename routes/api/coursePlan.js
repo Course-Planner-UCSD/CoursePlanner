@@ -58,8 +58,8 @@ router.post("/updatePlan/:planID", auth, async (req, res) => {
       res.status(400).send("Missing Plan ID");
     }
     await coursePlanModel
-      .findOneAndUpdate({ _id: planID }, req.body)
-      .then(res.send("Updated Course Plan"))
+      .findOneAndUpdate({ _id: planID }, req.body, { returnNewDocument: true })
+      .then((newDoc) => res.send(newDoc))
       .catch((err) => {
         console.error(err);
         res.status(500).send("There was a problem with the server");
@@ -94,5 +94,30 @@ router.get("/getPlan/:planID", auth, async (req, res) => {
 //DELETE route to delete plan
 //Private route so token is required
 //in progress
+
+router.delete("/deletePlan/:planID", auth, async (req, res) => {
+  try {
+    const { planID } = req.params;
+    if (!planID) {
+      res.status(400).send("Missing Plan ID");
+    }
+
+    await coursePlanModel
+      .deleteOne({ _id: planID })
+      .then((result) => {
+        if (result.deletedCount == 1) {
+          res.send("Deleted course plan");
+        } else {
+          res.status(400).send("Course Plan not found");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("There was a problem with the server");
+      });
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 module.exports = router;
