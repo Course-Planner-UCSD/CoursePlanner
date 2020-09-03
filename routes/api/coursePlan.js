@@ -24,7 +24,7 @@ router.get("/allPlansByID/:userID", auth, async (req, res) => {
   }
 });
 
-//POST to create a plan with a userID
+//POST to create a plan with a userID and returns planID
 //Private route so token is required
 
 router.post("/createPlan/:userID", auth, async (req, res) => {
@@ -38,7 +38,7 @@ router.post("/createPlan/:userID", auth, async (req, res) => {
     });
     await plan
       .save()
-      .then(res.send("Created course plan"))
+      .then(res.send(plan._id))
       .catch((err) => {
         console.error(err);
         res.status(500).send("There is a problem with the server");
