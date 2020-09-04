@@ -103,7 +103,13 @@ body,
 }
 
 #badLoginAlert {
-	width: 30%;
-	margin-top:10px;
-	display: none;
+  width: 30%;
+  margin-top: 10px;
+  display: none;
+}
+
+.table {
+  width: 75%;
+  margin: auto;
+  margin-top: 50px;
 }

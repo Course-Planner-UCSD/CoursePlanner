@@ -29,14 +29,7 @@ const Login = ({ loginUser, userAuth }) => {
     showPassword: false,
     badLogin: false,
   });
-  const {
-    email,
-    password,
-    triedEmail,
-    triedPW,
-    showPassword,
-    badLogin,
-  } = formData;
+  const { email, password, triedEmail, showPassword } = formData;
 
   useEffect(() => {
     var button = document.getElementById("login");
