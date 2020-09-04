@@ -42,9 +42,9 @@ const Register = ({ register, userAuth }) => {
   } = formData;
 
   useEffect(() => {
-    //var button = document.getElementById("register");
-    //button.addEventListener("animationend", animationOver, false)
-  });
+    var button = document.getElementById("register");
+    button.addEventListener("animationend", animationOver, false)
+  }, []);
 
   const onChangeEmail = (e) => {
     setFormData({ ...formData, email: e.target.value });
@@ -126,11 +126,11 @@ const Register = ({ register, userAuth }) => {
     setFormData({ ...formData, triedConfirmPW: true });
   };
 
-  /*
+  
   const animationOver = () => {
     var button = document.getElementById("register");
     button.classList.remove("shaking");
-  };*/
+  };
 
   const handleClickShowPassword = () => {
     setFormData({ ...formData, showPassword: !showPassword });
