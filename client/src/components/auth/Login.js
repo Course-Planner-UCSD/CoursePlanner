@@ -27,13 +27,20 @@ const Login = ({ loginUser, userAuth }) => {
     triedEmail: false,
     triedPW: false,
     showPassword: false,
-	badLogin: false
+    badLogin: false,
   });
-  const { email, password, triedEmail, triedPW, showPassword, badLogin } = formData;
+  const {
+    email,
+    password,
+    triedEmail,
+    triedPW,
+    showPassword,
+    badLogin,
+  } = formData;
 
   useEffect(() => {
     var button = document.getElementById("login");
-    button.addEventListener("animationend", animationOver, false)
+    button.addEventListener("animationend", animationOver, false);
   }, []);
 
   const onChangeEmail = (e) => {
@@ -70,7 +77,6 @@ const Login = ({ loginUser, userAuth }) => {
     setFormData({ ...formData, triedPW: true });
   };
 
-  
   const animationOver = () => {
     var button = document.getElementById("login");
     button.classList.remove("shaking");
@@ -84,25 +90,23 @@ const Login = ({ loginUser, userAuth }) => {
     //prevents default html form submit behavior
     e.preventDefault();
 
-      //Send login command to login action
-      loginUser({ email, password }).then(() => {
-		if (!userAuth) {
-			//alert:
-			try {
-				document.getElementById("badLoginAlert").style.display = 'flex';
-			}
-			catch {
-				//Alert isn't on the page right now
-			}
-			//animation:
-			try {
-				document.getElementById("login").classList.add("shaking");
-			}
-			catch {
-				//button isn't on the page right now
-			}
-		}
-	  })
+    //Send login command to login action
+    loginUser({ email, password }).then(() => {
+      if (!userAuth) {
+        //alert:
+        try {
+          document.getElementById("badLoginAlert").style.display = "flex";
+        } catch {
+          //Alert isn't on the page right now
+        }
+        //animation:
+        try {
+          document.getElementById("login").classList.add("shaking");
+        } catch {
+          //button isn't on the page right now
+        }
+      }
+    });
   };
 
   if (userAuth) {
@@ -112,7 +116,15 @@ const Login = ({ loginUser, userAuth }) => {
   return (
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
-		<Alert onClose={() => {document.getElementById("badLoginAlert").style.display='none';}} severity="error" id="badLoginAlert">Bad username/password</Alert>
+        <Alert
+          onClose={() => {
+            document.getElementById("badLoginAlert").style.display = "none";
+          }}
+          severity="error"
+          id="badLoginAlert"
+        >
+          Incorrect username or password
+        </Alert>
         <Card id="testCard">
           <h2 className="text" id="headerText">
             Login
