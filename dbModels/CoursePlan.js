@@ -4,6 +4,14 @@ const CoursePlanSchema = new mongoose.Schema({
   ownerID: String,
   planID: String,
   name: String,
+  createdDate: {
+    type: Date,
+    default: Date.now,
+  },
+  modifiedDate: {
+    type: Date,
+    default: Date.now,
+  },
   firstYear: {
     quarters: [
       {
