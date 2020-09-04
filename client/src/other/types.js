@@ -3,3 +3,4 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOADED_USER = "LOADED_USER";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT = "LOGOUT";
+export const VIEW_PLAN = "VIEW_PLAN";
