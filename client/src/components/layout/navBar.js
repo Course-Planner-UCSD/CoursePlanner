@@ -23,6 +23,9 @@ const navBar = ({ userAuth, logout }) => {
           <Tabs
             indicatorColor="primary"
             textColor="primary"
+
+			id="navBarTabs"
+          
             aria-label="disabled tabs example"
           >
             {userAuth === false ? (
@@ -32,7 +35,7 @@ const navBar = ({ userAuth, logout }) => {
                 </Link>
               </div>
             ) : (
-              <div>
+              <div id="loggedInHeader">
                 <Link to="/dashboard">
                   <Tab label="Course Planner" />
                 </Link>

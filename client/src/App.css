@@ -102,6 +102,16 @@ body,
   }
 }
 
+#navBarTabs {
+	width: 100%;
+}
+
+#loggedInHeader {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
 #badLoginAlert {
   width: 30%;
   margin-top: 10px;
