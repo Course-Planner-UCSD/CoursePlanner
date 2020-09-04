@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../App.css";
@@ -12,15 +12,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/logout";
 const navBar = ({ userAuth, logout }) => {
-  /*
-  const [values, setValues] = useState({
-    navBarValue: 0,
-  });
-
-  const setNavBar = (newValue) => {
-    setValues({ ...values, navBarValue: newValue });
-  };
-  */
   const logoutAction = () => {
     logout({ msg: "logout" });
   };
@@ -36,20 +27,20 @@ const navBar = ({ userAuth, logout }) => {
             aria-label="disabled tabs example"
           >
             {userAuth === false ? (
-              <Fragment>
+              <div>
                 <Link to="/">
                   <Tab label="Course Planner" />
                 </Link>
-              </Fragment>
+              </div>
             ) : (
-              <Fragment>
+              <div>
                 <Link to="/dashboard">
                   <Tab label="Course Planner" />
                 </Link>
                 <Link to="/login">
                   <Tab onClick={logoutAction} label="Logout" />
                 </Link>
-              </Fragment>
+              </div>
             )}
           </Tabs>
         </Toolbar>
