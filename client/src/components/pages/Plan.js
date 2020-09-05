@@ -3,12 +3,19 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect, useParams } from "react-router-dom";
 import axios from "axios";
+import MaterialTable from "material-table";
+import moment from "moment";
+import "../../App.css";
 
 const Plan = ({ userAuth, token }) => {
   let { planID } = useParams();
 
   const [data, setData] = useState({
     planData: {},
+    columns: [{ title: "Courses", field: "course" }],
+    firstYear: {
+      quarters: [{}],
+    },
   });
   useLayoutEffect(() => {
     getPlanData();
@@ -24,7 +31,11 @@ const Plan = ({ userAuth, token }) => {
     await axios
       .get(url, config)
       .then((result) => {
-        setData({ planData: result.data[0] });
+        var test = result.data[0];
+        test.firstYear.quarters[0].courses.forEach((element) => {
+          delete element._id;
+        });
+        setData({ planData: test });
       })
       .catch((err) => console.error(err));
   };
@@ -33,10 +44,13 @@ const Plan = ({ userAuth, token }) => {
     return <Redirect to="/" />;
   }
 
+  //add button here to console log the planData quarters and courses arrays
   return (
     <Fragment>
-      <h1>Plan ID: {planID}</h1>
-      <h1>Plan Name: {data.planData.name}</h1>
+      <h1>{data.planData.name}</h1>
+      <div className="plan">
+        <MaterialTable title="Fall" columns={data.columns} />
+      </div>
     </Fragment>
   );
 };
