@@ -9,6 +9,7 @@ import {
 const originalState = {
   userAuth: false,
   user: null,
+
   token: localStorage.getItem("token"),
 };
 

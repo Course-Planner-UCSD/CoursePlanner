@@ -23,8 +23,9 @@ const navBar = ({ userAuth, logout }) => {
           <Tabs
             indicatorColor="primary"
             textColor="primary"
+
 			id="navBarTabs"
-            //onChange={setNavBar}
+          
             aria-label="disabled tabs example"
           >
             {userAuth === false ? (
