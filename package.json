@@ -12,7 +12,7 @@
   "author": "Advay Sharma, Melody Ruth, Nishant Balaji",
   "license": "MIT",
   "dependencies": {
-    "@material-ui/icons": "^4.9.1",
+	
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.2",
     "config": "^3.3.1",
