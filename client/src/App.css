@@ -18,7 +18,9 @@ body,
 
 #myBackground {
   background-image: linear-gradient(white, #5ba1e6);
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
+  padding-bottom:20px;
   display: flex;
   flex-direction: column;
   align-items: center;
