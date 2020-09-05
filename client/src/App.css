@@ -103,13 +103,13 @@ body,
 }
 
 #navBarTabs {
-	width: 100%;
+  width: 100%;
 }
 
 #loggedInHeader {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 #badLoginAlert {
@@ -118,8 +118,20 @@ body,
   display: none;
 }
 
-.table {
+.dashboard {
   width: 75%;
   margin: auto;
   margin-top: 50px;
+}
+
+.plan {
+  width: 25%;
+  margin-left: 2%;
+  margin-right: 2%;
+  float: left;
+}
+
+.links {
+  text-decoration: none;
+  color: black;
 }

@@ -5,17 +5,17 @@ import { Redirect } from "react-router-dom";
 import MaterialTable from "material-table";
 import axios from "axios";
 import moment from "moment";
+import "../../App.css";
 
 const Dashboard = ({ userAuth, token }) => {
   const [tableData, setTableData] = useState({
     columns: [
-      { title: "Name", field: "name" },
+      { title: "Name", field: "name", defaultSort: "asc" },
       { title: "Date Created", field: "createdDate", editable: "never" },
       {
         title: "Date Modified",
         field: "modifiedDate",
         editable: "never",
-        defaultSort: "desc",
       },
     ],
     viewPlan: false,
@@ -139,7 +139,7 @@ const Dashboard = ({ userAuth, token }) => {
 
   return (
     <div id="myBackground">
-      <div className="table">
+      <div className="dashboard">
         <MaterialTable
           title="Course Plans"
           columns={tableData.columns}

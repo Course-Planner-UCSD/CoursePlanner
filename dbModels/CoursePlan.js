@@ -16,13 +16,11 @@ const CoursePlanSchema = new mongoose.Schema({
     quarters: [
       {
         season: String,
-        course1: String,
-        course2: String,
-        course3: String,
-        course4: String,
-        course5: String,
-        course6: String,
-        course7: String,
+        courses: [
+          {
+            course: String,
+          },
+        ],
       },
     ],
   },
@@ -30,13 +28,11 @@ const CoursePlanSchema = new mongoose.Schema({
     quarters: [
       {
         season: String,
-        course1: String,
-        course2: String,
-        course3: String,
-        course4: String,
-        course5: String,
-        course6: String,
-        course7: String,
+        courses: [
+          {
+            course: String,
+          },
+        ],
       },
     ],
   },
@@ -44,13 +40,11 @@ const CoursePlanSchema = new mongoose.Schema({
     quarters: [
       {
         season: String,
-        course1: String,
-        course2: String,
-        course3: String,
-        course4: String,
-        course5: String,
-        course6: String,
-        course7: String,
+        courses: [
+          {
+            course: String,
+          },
+        ],
       },
     ],
   },
@@ -58,13 +52,11 @@ const CoursePlanSchema = new mongoose.Schema({
     quarters: [
       {
         season: String,
-        course1: String,
-        course2: String,
-        course3: String,
-        course4: String,
-        course5: String,
-        course6: String,
-        course7: String,
+        courses: [
+          {
+            course: String,
+          },
+        ],
       },
     ],
   },
@@ -72,13 +64,11 @@ const CoursePlanSchema = new mongoose.Schema({
     quarters: [
       {
         season: String,
-        course1: String,
-        course2: String,
-        course3: String,
-        course4: String,
-        course5: String,
-        course6: String,
-        course7: String,
+        courses: [
+          {
+            course: String,
+          },
+        ],
       },
     ],
   },

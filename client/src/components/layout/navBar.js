@@ -16,26 +16,28 @@ const navBar = ({ userAuth, logout }) => {
 
   return (
     <ThemeProvider theme={myTheme}>
-	  <AppBar position="static" id="testAppBar" bgcolor="primary.main">
-		<Toolbar>
-		  {userAuth === false ? (
-              <div>
-                <Link to="/">
-                  <Button color="inherit">Course Planner</Button>
-                </Link>
-              </div>
-            ) : (
-              <div id="loggedInHeader">
-                <Link to="/dashboard">
-                  <Button color="inherit">Course Planner</Button>
-                </Link>
-                <Link to="/login">
-				  <Button color="inherit" onClick={logoutAction}>Logout</Button>
-                </Link>
-              </div>
-            )}
-		</Toolbar>
-	  </AppBar>
+      <AppBar position="static" id="testAppBar" bgcolor="primary.main">
+        <Toolbar>
+          {userAuth === false ? (
+            <div>
+              <Link to="/" className="links">
+                <Button color="inherit">Course Planner</Button>
+              </Link>
+            </div>
+          ) : (
+            <div id="loggedInHeader">
+              <Link to="/dashboard" className="links">
+                <Button color="inherit">Course Planner</Button>
+              </Link>
+              <Link to="/login" className="links">
+                <Button color="inherit" onClick={logoutAction}>
+                  Logout
+                </Button>
+              </Link>
+            </div>
+          )}
+        </Toolbar>
+      </AppBar>
     </ThemeProvider>
   );
 };
