@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import "../../App.css";
 import { ThemeProvider } from "@material-ui/styles";
 import myTheme from "./myTheme.component";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import AppBar from "@material-ui/core/AppBar";
-//import Button from "@material-ui/core/Button";
+import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/logout";
@@ -18,35 +16,26 @@ const navBar = ({ userAuth, logout }) => {
 
   return (
     <ThemeProvider theme={myTheme}>
-      <AppBar position="static">
-        <Toolbar>
-          <Tabs
-            indicatorColor="primary"
-            textColor="primary"
-
-			id="navBarTabs"
-          
-            aria-label="disabled tabs example"
-          >
-            {userAuth === false ? (
+	  <AppBar position="static" id="testAppBar" bgcolor="primary.main">
+		<Toolbar>
+		  {userAuth === false ? (
               <div>
                 <Link to="/">
-                  <Tab label="Course Planner" />
+                  <Button color="inherit">Course Planner</Button>
                 </Link>
               </div>
             ) : (
               <div id="loggedInHeader">
                 <Link to="/dashboard">
-                  <Tab label="Course Planner" />
+                  <Button color="inherit">Course Planner</Button>
                 </Link>
                 <Link to="/login">
-                  <Tab onClick={logoutAction} label="Logout" />
+				  <Button color="inherit" onClick={logoutAction}>Logout</Button>
                 </Link>
               </div>
             )}
-          </Tabs>
-        </Toolbar>
-      </AppBar>
+		</Toolbar>
+	  </AppBar>
     </ThemeProvider>
   );
 };
