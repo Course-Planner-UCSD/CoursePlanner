@@ -27,7 +27,7 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     //DO NOT try to get anything from planData here since the app will crash
     var finalIndex = 0;
     planData.forEach((currentPlan, index) => {
-      if (currentPlan._id == planID) {
+      if (currentPlan._id === planID) {
         finalIndex = index;
       }
     });
@@ -41,6 +41,9 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
   };
   const updateTable = async (updates, year, quarterNum) => {
     var i = 0;
+    while (updates[i] === undefined) {
+      i++;
+    }
     const config = {
       headers: {
         "x-auth-token": token,
@@ -51,6 +54,18 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
 
     if (year === "firstYear") {
       currentPlanData = planData[data.planIndex].firstYear;
+    }
+    if (year === "secondYear") {
+      currentPlanData = planData[data.planIndex].secondYear;
+    }
+    if (year === "thirdYear") {
+      currentPlanData = planData[data.planIndex].thirdYear;
+    }
+    if (year === "fourthYear") {
+      currentPlanData = planData[data.planIndex].fourthYear;
+    }
+    if (year === "fifthYear") {
+      currentPlanData = planData[data.planIndex].fifthYear;
     }
     while (updates[i] != null) {
       for (
@@ -69,9 +84,39 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
       }
       i++;
     }
-    var firstYear = currentPlanData;
+
     var currentTime = moment().toISOString();
-    var body = JSON.stringify({ firstYear, modifiedDate: currentTime });
+    var body;
+    if (year === "firstYear") {
+      body = JSON.stringify({
+        firstYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "secondYear") {
+      body = JSON.stringify({
+        secondYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "thirdYear") {
+      body = JSON.stringify({
+        thirdYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fourthYear") {
+      body = JSON.stringify({
+        fourthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fifthYear") {
+      body = JSON.stringify({
+        fifthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
 
     var url = "/api/coursePlan/updatePlan/" + planID;
     await axios
@@ -94,17 +139,18 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     <Fragment>
       {data.planIndex != null ? (
         <Fragment>
-          <h1>{planData[data.planIndex].name}</h1>
-          <h2>
-            Date Last Modified:
-            {data.lastOpened == null
-              ? " " +
-                moment(planData[data.planIndex].modifiedDate).format(
-                  "MMMM Do, h:mm a"
-                )
-              : " " + data.lastOpened}
-          </h2>
           <div className="plan">
+            <h1>{planData[data.planIndex].name}</h1>
+            <h2>
+              Date Last Modified:
+              {data.lastOpened == null
+                ? " " +
+                  moment(planData[data.planIndex].modifiedDate).format(
+                    "MMMM Do, h:mm a"
+                  )
+                : " " + data.lastOpened}
+            </h2>
+
             <MaterialTable
               title="Fall"
               columns={data.columns}
@@ -140,6 +186,8 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
                 rowStyle: {
                   fontSize: 18,
                 },
+                paging: false,
+                padding: "dense",
               }}
             />
           </div>

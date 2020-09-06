@@ -177,6 +177,10 @@ const Dashboard = ({ userAuth, token, plan }) => {
             },
             tableLayout: "auto",
             draggable: false,
+            pageSize: 10,
+            pageSizeOptions: [5, 10],
+            showEmptyDataSourceMessage: false,
+            paginationType: "default",
           }}
           actions={[
             {
@@ -186,8 +190,20 @@ const Dashboard = ({ userAuth, token, plan }) => {
             },
           ]}
           editable={{
-            onRowDelete: (oldData) => deletePlan(oldData),
-            onRowAdd: (newData) => addPlan(newData),
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  deletePlan(oldData);
+                  resolve();
+                }, 1000);
+              }),
+            onRowAdd: (newData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  addPlan(newData);
+                  resolve();
+                }, 1000);
+              }),
           }}
         />
       </div>
