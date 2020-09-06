@@ -20,7 +20,7 @@ body,
   background-image: linear-gradient(white, #5ba1e6);
   height: auto;
   min-height: 100vh;
-  padding-bottom:20px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,9 +127,9 @@ body,
 }
 
 .plan {
-  width: 25%;
-  margin-left: 2%;
-  margin-right: 2%;
+  width: 20%;
+  margin-left: 5%;
+  margin-right: 5%;
   float: left;
 }
 

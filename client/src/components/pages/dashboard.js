@@ -19,6 +19,11 @@ const Dashboard = ({ userAuth, token, plan }) => {
         field: "modifiedDate",
         editable: "never",
       },
+      {
+        title: "Date Last Opened",
+        field: "lastOpened",
+        editable: "never",
+      },
     ],
     viewPlan: false,
     redirectURL: "",
@@ -29,6 +34,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
     if (userAuth) {
       loadTableData();
     }
+    plan();
   }, [userAuth]);
 
   const loadTableData = async () => {
@@ -60,6 +66,9 @@ const Dashboard = ({ userAuth, token, plan }) => {
           "MMMM Do, h:mm a"
         ),
         modifiedDate: moment(planData.data[0].modifiedDate).format(
+          "MMMM Do, h:mm a"
+        ),
+        lastOpened: moment(planData.data[0].lastOpened).format(
           "MMMM Do, h:mm a"
         ),
         planID: planData.data[0]._id,
@@ -132,7 +141,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
     };
     var url = "/api/coursePlan/updatePlan/" + rowData.planID;
     var currentTime = moment().toISOString();
-    var body = JSON.stringify({ modifiedDate: currentTime });
+    var body = JSON.stringify({ lastOpened: currentTime });
 
     await axios.post(url, body, config).catch((err) => console.error(err));
     var newURL = "/plan/" + rowData.planID;

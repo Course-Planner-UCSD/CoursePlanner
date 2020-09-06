@@ -12,6 +12,10 @@ const CoursePlanSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  lastOpened: {
+    type: Date,
+    default: Date.now,
+  },
   firstYear: {
     quarters: [
       {

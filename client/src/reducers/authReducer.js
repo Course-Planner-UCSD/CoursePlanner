@@ -5,7 +5,7 @@ import {
   AUTH_ERROR,
   LOGOUT,
   VIEW_PLAN,
-  REMOVE_PLAN,
+  UPDATE_PLAN,
 } from "../other/types";
 
 const originalState = {
@@ -37,6 +37,7 @@ function authReducer(state = originalState, action) {
       return {
         ...state,
         userAuth: false,
+        planData: [],
         token: null,
         user: null,
       };
@@ -45,10 +46,10 @@ function authReducer(state = originalState, action) {
         ...state,
         planData: action.payload,
       };
-    case REMOVE_PLAN:
+    case UPDATE_PLAN:
       return {
         ...state,
-        planData: null,
+        planData: action.payload,
       };
     default:
       return state;
