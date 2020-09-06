@@ -35,6 +35,7 @@ const Plan = ({ userAuth, token, planData }) => {
     return <Redirect to="/" />;
   }
 
+  //add button here to console log the planData quarters and courses arrays
   return (
     <Fragment>
       {data.planIndex != null ? (
