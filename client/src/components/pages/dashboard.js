@@ -6,8 +6,10 @@ import MaterialTable from "material-table";
 import axios from "axios";
 import moment from "moment";
 import "../../App.css";
+import { plan } from "../../actions/plan";
+var newPlan = require("../../other/newPlan.json");
 
-const Dashboard = ({ userAuth, token }) => {
+const Dashboard = ({ userAuth, token, plan }) => {
   const [tableData, setTableData] = useState({
     columns: [
       { title: "Name", field: "name", defaultSort: "asc" },
@@ -20,6 +22,7 @@ const Dashboard = ({ userAuth, token }) => {
     ],
     viewPlan: false,
     redirectURL: "",
+    viewPlanID: "",
   });
 
   useLayoutEffect(() => {
@@ -79,6 +82,7 @@ const Dashboard = ({ userAuth, token }) => {
     };
     var url = "/api/coursePlan/deletePlan/" + rowData.planID;
     await axios.delete(url, config).catch((err) => console.error(err));
+    plan();
     loadTableData();
   };
 
@@ -105,12 +109,18 @@ const Dashboard = ({ userAuth, token }) => {
     };
 
     const body = JSON.stringify({ name: newData.name });
-    console.log(newPlanID);
+
     var updateURL = "/api/coursePlan/updatePlan/" + newPlanID;
+
+    await axios
+      .post(updateURL, newPlan, updateConfig)
+      .catch((err) => console.error(err));
+
     await axios
       .post(updateURL, body, updateConfig)
       .then(loadTableData())
       .catch((err) => console.error(err));
+    plan();
   };
 
   const viewPlan = async (rowData) => {
@@ -126,7 +136,12 @@ const Dashboard = ({ userAuth, token }) => {
 
     await axios.post(url, body, config).catch((err) => console.error(err));
     var newURL = "/plan/" + rowData.planID;
-    setTableData({ ...tableData, viewPlan: true, redirectURL: newURL });
+    setTableData({
+      ...tableData,
+      viewPlan: true,
+      redirectURL: newURL,
+      viewPlanID: rowData.planID,
+    });
   };
 
   if (!userAuth) {
@@ -173,6 +188,7 @@ const Dashboard = ({ userAuth, token }) => {
 Dashboard.propTypes = {
   token: PropTypes.string,
   userAuth: PropTypes.bool,
+  plan: PropTypes.func.isRequired,
 };
 
 const stateToProps = (state) => ({
@@ -180,4 +196,4 @@ const stateToProps = (state) => ({
   token: state.authReducer.token,
 });
 
-export default connect(stateToProps)(Dashboard);
+export default connect(stateToProps, { plan })(Dashboard);

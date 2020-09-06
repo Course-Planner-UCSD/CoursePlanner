@@ -1,0 +1,302 @@
+{
+  "firstYear": {
+    "quarters": [
+      {
+        "season": "fall",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "winter",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "spring",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "summer",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      }
+    ]
+  },
+  "secondYear": {
+    "quarters": [
+      {
+        "season": "fall",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "winter",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "spring",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "summer",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      }
+    ]
+  },
+  "thirdYear": {
+    "quarters": [
+      {
+        "season": "fall",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "winter",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "spring",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "summer",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      }
+    ]
+  },
+  "fourthYear": {
+    "quarters": [
+      {
+        "season": "fall",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "winter",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "spring",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "summer",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      }
+    ]
+  },
+  "fifthYear": {
+    "quarters": [
+      {
+        "season": "fall",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "winter",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "spring",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      },
+      {
+        "season": "summer",
+        "courses": [
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          },
+          {
+            "course": ""
+          }
+        ]
+      }
+    ]
+  }
+}

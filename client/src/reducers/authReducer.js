@@ -4,12 +4,14 @@ import {
   LOADED_USER,
   AUTH_ERROR,
   LOGOUT,
+  VIEW_PLAN,
+  REMOVE_PLAN,
 } from "../other/types";
 
 const originalState = {
   userAuth: false,
   user: null,
-
+  planData: [],
   token: localStorage.getItem("token"),
 };
 
@@ -37,6 +39,16 @@ function authReducer(state = originalState, action) {
         userAuth: false,
         token: null,
         user: null,
+      };
+    case VIEW_PLAN:
+      return {
+        ...state,
+        planData: action.payload,
+      };
+    case REMOVE_PLAN:
+      return {
+        ...state,
+        planData: null,
       };
     default:
       return state;
