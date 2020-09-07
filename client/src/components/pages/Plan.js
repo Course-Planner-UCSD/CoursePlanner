@@ -224,19 +224,20 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
               }}
             />
           </div>
-          <Button
-            variant="contained"
-            color="primary"
-            className="save"
-            onClick={saveNotes}
-          >
-            Save Notes
-          </Button>
           <ReactQuill
             value={data.text}
             className="textbox"
             onChange={textboxChange}
           />
+		  <Button
+            variant="contained"
+            color="primary"
+            className="save"
+            onClick={saveNotes}
+			id="saveNotesButton"
+          >
+            Save Notes
+          </Button>
         </Fragment>
       ) : (
         <Fragment></Fragment>
