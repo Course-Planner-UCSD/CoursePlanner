@@ -6,7 +6,6 @@ import MaterialTable from "material-table";
 import axios from "axios";
 import { updatePlan } from "../../actions/plan";
 import moment from "moment";
-import "../../App.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Button from "@material-ui/core/Button";

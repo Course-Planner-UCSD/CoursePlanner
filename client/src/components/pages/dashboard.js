@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 import MaterialTable from "material-table";
 import axios from "axios";
 import moment from "moment";
-import "../../App.css";
 import { plan } from "../../actions/plan";
 var newPlan = require("../../other/newPlan.json");
 
