@@ -31,10 +31,7 @@ npm run dev (runs both client and server)
 - [ ] talk to acm people about hosting website with user data @everyone
 
 ## Known Issues:
-
-- [ ] table formatting
-
-- [x] redirect to main page when user is not authorized is not working
+Look at issues tab
 
 <br>
 <br>
