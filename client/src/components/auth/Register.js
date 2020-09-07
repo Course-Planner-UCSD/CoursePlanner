@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions/register";
 import PropTypes from "prop-types";
-import "../../App.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
@@ -43,7 +42,7 @@ const Register = ({ register, userAuth }) => {
 
   useEffect(() => {
     var button = document.getElementById("register");
-    button.addEventListener("animationend", animationOver, false)
+    button.addEventListener("animationend", animationOver, false);
   }, []);
 
   const onChangeEmail = (e) => {
@@ -126,7 +125,6 @@ const Register = ({ register, userAuth }) => {
     setFormData({ ...formData, triedConfirmPW: true });
   };
 
-  
   const animationOver = () => {
     var button = document.getElementById("register");
     button.classList.remove("shaking");
@@ -193,16 +191,6 @@ const Register = ({ register, userAuth }) => {
                   onChange={onChangeEmail}
                   fullWidth={true}
                   onBlur={emailTried}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        edge="end"
-                      >
-                        {<Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
                 />
               </Box>
               <Box pb={15} width="100%">
