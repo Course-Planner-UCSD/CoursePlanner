@@ -13,6 +13,7 @@ import rootReducer from "./reducers";
 import { loadUserData } from "./actions/loadUser";
 import Dashboard from "./components/pages/dashboard";
 import Landing from "./components/pages/landing";
+import { plan } from "./actions/plan";
 
 const originalState = {};
 
@@ -28,6 +29,7 @@ const App = () => {
   useEffect(() => {
     if (localStorage.token) {
       store.dispatch(loadUserData());
+      store.dispatch(plan());
     }
   });
   return (

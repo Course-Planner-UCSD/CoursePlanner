@@ -5,27 +5,36 @@ import { Redirect } from "react-router-dom";
 import MaterialTable from "material-table";
 import axios from "axios";
 import moment from "moment";
+import "../../App.css";
+import { plan } from "../../actions/plan";
+var newPlan = require("../../other/newPlan.json");
 
-const Dashboard = ({ userAuth, token }) => {
+const Dashboard = ({ userAuth, token, plan }) => {
   const [tableData, setTableData] = useState({
     columns: [
-      { title: "Name", field: "name" },
+      { title: "Name", field: "name", defaultSort: "asc" },
       { title: "Date Created", field: "createdDate", editable: "never" },
       {
         title: "Date Modified",
         field: "modifiedDate",
         editable: "never",
-        defaultSort: "desc",
+      },
+      {
+        title: "Date Last Opened",
+        field: "lastOpened",
+        editable: "never",
       },
     ],
     viewPlan: false,
     redirectURL: "",
+    viewPlanID: "",
   });
 
   useLayoutEffect(() => {
     if (userAuth) {
       loadTableData();
     }
+    plan();
   }, [userAuth]);
 
   const loadTableData = async () => {
@@ -59,6 +68,9 @@ const Dashboard = ({ userAuth, token }) => {
         modifiedDate: moment(planData.data[0].modifiedDate).format(
           "MMMM Do, h:mm a"
         ),
+        lastOpened: moment(planData.data[0].lastOpened).format(
+          "MMMM Do, h:mm a"
+        ),
         planID: planData.data[0]._id,
       });
     }
@@ -79,6 +91,7 @@ const Dashboard = ({ userAuth, token }) => {
     };
     var url = "/api/coursePlan/deletePlan/" + rowData.planID;
     await axios.delete(url, config).catch((err) => console.error(err));
+    plan();
     loadTableData();
   };
 
@@ -105,12 +118,18 @@ const Dashboard = ({ userAuth, token }) => {
     };
 
     const body = JSON.stringify({ name: newData.name });
-    console.log(newPlanID);
+
     var updateURL = "/api/coursePlan/updatePlan/" + newPlanID;
+
+    await axios
+      .post(updateURL, newPlan, updateConfig)
+      .catch((err) => console.error(err));
+
     await axios
       .post(updateURL, body, updateConfig)
       .then(loadTableData())
       .catch((err) => console.error(err));
+    plan();
   };
 
   const viewPlan = async (rowData) => {
@@ -122,11 +141,16 @@ const Dashboard = ({ userAuth, token }) => {
     };
     var url = "/api/coursePlan/updatePlan/" + rowData.planID;
     var currentTime = moment().toISOString();
-    var body = JSON.stringify({ modifiedDate: currentTime });
+    var body = JSON.stringify({ lastOpened: currentTime });
 
     await axios.post(url, body, config).catch((err) => console.error(err));
     var newURL = "/plan/" + rowData.planID;
-    setTableData({ ...tableData, viewPlan: true, redirectURL: newURL });
+    setTableData({
+      ...tableData,
+      viewPlan: true,
+      redirectURL: newURL,
+      viewPlanID: rowData.planID,
+    });
   };
 
   if (!userAuth) {
@@ -139,7 +163,7 @@ const Dashboard = ({ userAuth, token }) => {
 
   return (
     <div id="myBackground">
-      <div className="table">
+      <div className="dashboard">
         <MaterialTable
           title="Course Plans"
           columns={tableData.columns}
@@ -153,6 +177,10 @@ const Dashboard = ({ userAuth, token }) => {
             },
             tableLayout: "auto",
             draggable: false,
+            pageSize: 10,
+            pageSizeOptions: [5, 10],
+            showEmptyDataSourceMessage: false,
+            paginationType: "default",
           }}
           actions={[
             {
@@ -162,8 +190,20 @@ const Dashboard = ({ userAuth, token }) => {
             },
           ]}
           editable={{
-            onRowDelete: (oldData) => deletePlan(oldData),
-            onRowAdd: (newData) => addPlan(newData),
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  deletePlan(oldData);
+                  resolve();
+                }, 1000);
+              }),
+            onRowAdd: (newData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  addPlan(newData);
+                  resolve();
+                }, 1000);
+              }),
           }}
         />
       </div>
@@ -173,6 +213,7 @@ const Dashboard = ({ userAuth, token }) => {
 Dashboard.propTypes = {
   token: PropTypes.string,
   userAuth: PropTypes.bool,
+  plan: PropTypes.func.isRequired,
 };
 
 const stateToProps = (state) => ({
@@ -180,4 +221,4 @@ const stateToProps = (state) => ({
   token: state.authReducer.token,
 });
 
-export default connect(stateToProps)(Dashboard);
+export default connect(stateToProps, { plan })(Dashboard);
