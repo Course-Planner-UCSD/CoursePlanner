@@ -36,15 +36,15 @@ npm run dev (runs both client and server)
 
 - [x] redirect to main page when user is not authorized is not working
 
-
-
-
-
-
-
-
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ## Course Planner
