@@ -13,30 +13,31 @@ import Button from "@material-ui/core/Button";
 
 const Plan = ({ userAuth, token, planData, updatePlan }) => {
   let { planID } = useParams();
-  var mount;
-  //TO DO: add units to db
+
   const [data, setData] = useState({
     columns: [
       { title: "Courses", field: "course" },
       { title: "Units", field: "units" },
     ],
-    lastOpened: null,
+    lastModified: null,
     planIndex: null,
     text: "",
   });
+
   useLayoutEffect(() => {
-    mount = false;
-    if (!mount) {
-      determinePlanIndex();
+    var mount = false;
+    if (!mount && userAuth) {
+      initialState();
     }
 
     return () => {
       mount = true;
     };
-  }, [planData]);
+  }, [planData, userAuth]);
 
-  const determinePlanIndex = () => {
+  const initialState = () => {
     //DO NOT try to get anything from planData here since the app will crash
+    //Set everything in the state once in this setData function only
     var finalIndex = 0;
     planData.forEach((currentPlan, index) => {
       if (currentPlan._id === planID) {
@@ -48,9 +49,10 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
       ...data,
       planIndex: finalIndex,
       text: planData[finalIndex].notes,
+      lastModified: moment(planData[finalIndex].modifiedDate).format(
+        "MMMM Do, h:mm a"
+      ),
     });
-
-    return finalIndex;
   };
   const updateTable = async (updates, year, quarterNum) => {
     var i = 0;
@@ -138,10 +140,10 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
       .then((result) => {
         updatePlan(result.data, planData, data.planIndex);
       });
-    var newOpen = moment(planData[data.planIndex].modifiedDate).format(
+    var newModified = moment(planData[data.planIndex].modifiedDate).format(
       "MMMM Do, h:mm a"
     );
-    setData({ ...data, lastOpened: newOpen });
+    setData({ ...data, lastModified: newModified });
   };
 
   const textboxChange = (value) => {
@@ -170,7 +172,7 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
   if (!userAuth) {
     return <Redirect to="/" />;
   }
-  //for all initial rendering use planData and then use local state (data in this case) to render text dynamically
+
   return (
     <Fragment>
       {data.planIndex != null ? (
@@ -179,12 +181,7 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
             <h1>{planData[data.planIndex].name}</h1>
             <h2>
               Date Last Modified:
-              {data.lastOpened == null
-                ? " " +
-                  moment(planData[data.planIndex].modifiedDate).format(
-                    "MMMM Do, h:mm a"
-                  )
-                : " " + data.lastOpened}
+              {" " + data.lastModified}
             </h2>
 
             <MaterialTable

@@ -136,16 +136,6 @@ const Login = ({ loginUser, userAuth }) => {
                   onChange={onChangeEmail}
                   fullWidth={true}
                   onBlur={emailTried}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        edge="end"
-                      >
-                        {<Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
                 />
               </Box>
               <Box pb={15} width="100%">
