@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect, useParams } from "react-router-dom";
@@ -7,9 +7,13 @@ import axios from "axios";
 import { updatePlan } from "../../actions/plan";
 import moment from "moment";
 import "../../App.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import Button from "@material-ui/core/Button";
 
 const Plan = ({ userAuth, token, planData, updatePlan }) => {
   let { planID } = useParams();
+  var mount;
   //TO DO: add units to db
   const [data, setData] = useState({
     columns: [
@@ -18,9 +22,17 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     ],
     lastOpened: null,
     planIndex: null,
+    text: "",
   });
-  useEffect(() => {
-    determinePlanIndex();
+  useLayoutEffect(() => {
+    mount = false;
+    if (!mount) {
+      determinePlanIndex();
+    }
+
+    return () => {
+      mount = true;
+    };
   }, [planData]);
 
   const determinePlanIndex = () => {
@@ -35,6 +47,7 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     setData({
       ...data,
       planIndex: finalIndex,
+      text: planData[finalIndex].notes,
     });
 
     return finalIndex;
@@ -131,6 +144,29 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     setData({ ...data, lastOpened: newOpen });
   };
 
+  const textboxChange = (value) => {
+    setData({ ...data, text: value });
+  };
+
+  const saveNotes = async () => {
+    var url = "/api/coursePlan/updatePlan/" + planID;
+    const config = {
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+
+    var body = JSON.stringify({ notes: data.text });
+
+    await axios
+      .post(url, body, config)
+      .catch((err) => console.error(err))
+      .then((result) => {
+        updatePlan(result.data, planData, data.planIndex);
+      });
+  };
+
   if (!userAuth) {
     return <Redirect to="/" />;
   }
@@ -188,9 +224,23 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
                 },
                 paging: false,
                 padding: "dense",
+                paginationType: "normal",
               }}
             />
           </div>
+          <Button
+            variant="contained"
+            color="primary"
+            className="save"
+            onClick={saveNotes}
+          >
+            Save Notes
+          </Button>
+          <ReactQuill
+            value={data.text}
+            className="textbox"
+            onChange={textboxChange}
+          />
         </Fragment>
       ) : (
         <Fragment></Fragment>

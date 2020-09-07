@@ -4,6 +4,7 @@ const CoursePlanSchema = new mongoose.Schema({
   ownerID: String,
   planID: String,
   name: String,
+  notes: String,
   createdDate: {
     type: Date,
     default: Date.now,
