@@ -180,7 +180,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
             pageSize: 10,
             pageSizeOptions: [5, 10],
             showEmptyDataSourceMessage: false,
-            paginationType: "default",
+            paginationType: "normal",
           }}
           actions={[
             {
