@@ -167,8 +167,6 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
       });
   };
 
-  const getInitialText = () => {};
-
   if (!userAuth) {
     return <Redirect to="/" />;
   }
