@@ -9,6 +9,9 @@ import moment from "moment";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Button from "@material-ui/core/Button";
+import { ThemeProvider } from "@material-ui/styles";
+import myTheme from "../layout/myTheme.component";
+import Card from "@material-ui/core/Card";
 
 const Plan = ({ userAuth, token, planData, updatePlan }) => {
   let { planID } = useParams();
@@ -173,75 +176,83 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
   }
 
   return (
-    <Fragment>
-      {data.planIndex != null ? (
-        <Fragment>
-          <div className="plan">
-            <h1>{planData[data.planIndex].name}</h1>
-            <h2>
-              Date Last Modified:
-              {" " + data.lastModified}
-            </h2>
-
-            <MaterialTable
-              title="Fall"
-              columns={data.columns}
-              data={(query) =>
-                new Promise((resolve, reject) => {
-                  var newData =
-                    planData[data.planIndex].firstYear.quarters[0].courses;
-                  var newDatalength =
-                    planData[data.planIndex].firstYear.quarters[0].courses
-                      .length;
-                  resolve({
-                    data: newData,
-                    page: query.page,
-                    totalCount: newDatalength,
-                  });
-                })
-              }
-              editable={{
-                onBulkUpdate: (updates) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      updateTable(updates, "firstYear", 0);
-                      resolve();
-                    }, 1000);
-                  }),
-              }}
-              options={{
-                search: false,
-                tableLayout: "auto",
-                headerStyle: {
-                  fontSize: 20,
-                },
-                rowStyle: {
-                  fontSize: 18,
-                },
-                paging: false,
-                padding: "dense",
-                paginationType: "normal",
-              }}
-            />
-          </div>
-          <Button
-            variant="contained"
-            color="primary"
-            className="save"
-            onClick={saveNotes}
-          >
-            Save Notes
-          </Button>
-          <ReactQuill
-            value={data.text}
-            className="textbox"
-            onChange={textboxChange}
-          />
-        </Fragment>
-      ) : (
-        <Fragment></Fragment>
-      )}
-    </Fragment>
+	<ThemeProvider theme={myTheme}>
+	  <div id="myBackground">
+	    <Fragment>
+	      {data.planIndex != null ? (
+	        <Fragment>
+	          <div className="plan">
+	            <h1>{planData[data.planIndex].name}</h1>
+	            <h2>
+	              Date Last Modified:
+	              {" " + data.lastModified}
+	            </h2>
+	
+	            <MaterialTable
+	              title="Fall"
+	              columns={data.columns}
+	              data={(query) =>
+	                new Promise((resolve, reject) => {
+	                  var newData =
+	                    planData[data.planIndex].firstYear.quarters[0].courses;
+	                  var newDatalength =
+	                    planData[data.planIndex].firstYear.quarters[0].courses
+	                      .length;
+	                  resolve({
+	                    data: newData,
+	                    page: query.page,
+	                    totalCount: newDatalength,
+	                  });
+	                })
+	              }
+	              editable={{
+	                onBulkUpdate: (updates) =>
+	                  new Promise((resolve, reject) => {
+	                    setTimeout(() => {
+	                      updateTable(updates, "firstYear", 0);
+	                      resolve();
+	                    }, 1000);
+	                  }),
+	              }}
+	              options={{
+	                search: false,
+	                tableLayout: "auto",
+	                headerStyle: {
+	                  fontSize: 20,
+	                },
+	                rowStyle: {
+	                  fontSize: 18,
+	                },
+	                paging: false,
+	                padding: "dense",
+	                paginationType: "normal",
+	              }}
+	            />
+	          </div>
+			  <Card id="notes">
+			  <h2 class="text" id="notesText">Notes</h2>
+	          <ReactQuill
+	            value={data.text}
+	            className="textbox"
+	            onChange={textboxChange}
+	          />
+			  <Button
+	            variant="contained"
+	            color="primary"
+	            className="save"
+	            onClick={saveNotes}
+				id="saveNotesButton"
+	          >
+	            Save Notes
+	          </Button>
+			  </Card>
+	        </Fragment>
+	      ) : (
+	        <Fragment></Fragment>
+	      )}
+	    </Fragment>
+	  </div>
+	</ThemeProvider>
   );
 };
 Plan.propTypes = {

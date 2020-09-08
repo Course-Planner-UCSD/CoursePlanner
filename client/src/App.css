@@ -21,6 +21,11 @@ body,
   height: auto;
   min-height: 100vh;
   padding-bottom: 20px;
+}
+
+#mainContainer {
+  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,9 +142,24 @@ body,
 }
 
 .textbox {
-  width: 75%;
-  padding-top: 100px;
-  margin: auto;
   height: 300px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
+}
+
+#saveNotesButton {
+	margin-bottom: 2%;
+	margin-top: 1%;
+}
+
+#notes {
+	margin-left: 5%;
+	margin-top: 50px;
+	margin-bottom: 2%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	width: 78%;
+}
+
+#notesText {
+	font-size:27px;
 }

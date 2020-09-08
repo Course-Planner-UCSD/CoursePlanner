@@ -173,6 +173,7 @@ const Register = ({ register, userAuth }) => {
   return (
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
+	  <div id="mainContainer">
         <Card id="testCard">
           <h2 className="text" id="headerText">
             Create Account
@@ -267,6 +268,7 @@ const Register = ({ register, userAuth }) => {
           </form>
         </Card>
       </div>
+	</div>
     </ThemeProvider>
   );
 };

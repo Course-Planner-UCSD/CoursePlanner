@@ -108,6 +108,7 @@ const Login = ({ loginUser, userAuth }) => {
   return (
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
+	  <div id="mainContainer">
         <Alert
           onClose={() => {
             document.getElementById("badLoginAlert").style.display = "none";
@@ -175,6 +176,7 @@ const Login = ({ loginUser, userAuth }) => {
           </form>
         </Card>
       </div>
+	</div>
     </ThemeProvider>
   );
 };
