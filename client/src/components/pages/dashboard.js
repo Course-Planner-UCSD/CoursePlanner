@@ -105,7 +105,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
     var url = "/api/coursePlan/createPlan";
     var newPlanID;
     await axios
-      .put(url, config)
+      .get(url, config)
       .then((result) => {
         newPlanID = result.data;
       })

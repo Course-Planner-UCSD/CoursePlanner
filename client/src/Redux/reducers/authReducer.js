@@ -34,7 +34,6 @@ function authReducer(state = originalState, action) {
       return {
         ...state,
         userAuth: false,
-        planData: [],
         token: null,
         user: null,
       };

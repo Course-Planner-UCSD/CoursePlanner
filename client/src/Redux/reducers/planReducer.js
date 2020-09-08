@@ -1,4 +1,4 @@
-import { VIEW_PLAN, UPDATE_PLAN } from "../../other/types";
+import { VIEW_PLAN, UPDATE_PLAN, LOGOUT } from "../../other/types";
 
 const originalState = {
   planData: [],
@@ -6,6 +6,11 @@ const originalState = {
 
 function planReducer(state = originalState, action) {
   switch (action.type) {
+    case LOGOUT:
+      return {
+        ...state,
+        planData: [],
+      };
     case VIEW_PLAN:
       return {
         ...state,
