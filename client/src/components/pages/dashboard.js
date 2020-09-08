@@ -6,6 +6,9 @@ import MaterialTable from "material-table";
 import axios from "axios";
 import moment from "moment";
 import { plan } from "../../actions/plan";
+import { ThemeProvider } from "@material-ui/styles";
+import myTheme from "../layout/myTheme.component";
+
 var newPlan = require("../../other/newPlan.json");
 
 const Dashboard = ({ userAuth, token, plan }) => {
@@ -161,6 +164,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
   }
 
   return (
+	<ThemeProvider theme={myTheme}>
     <div id="myBackground">
       <div className="dashboard">
         <MaterialTable
@@ -207,6 +211,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
         />
       </div>
     </div>
+	</ThemeProvider>
   );
 };
 Dashboard.propTypes = {

@@ -15,7 +15,7 @@ const myTheme = createMuiTheme({
     contrastThreshold: 3,
     tonalOffset: 0.2,
   },
-  spacing: 1,
+  spacing: 8,
 });
 
 export default myTheme;
