@@ -8,7 +8,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import PropTypes from "prop-types";
-import { logout } from "../../actions/logout";
+import { logout } from "../../Redux/actions/logout";
 const navBar = ({ userAuth, logout }) => {
   const logoutAction = () => {
     logout({ msg: "logout" });

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOADED_USER, AUTH_ERROR } from "../other/types";
+import { LOADED_USER, AUTH_ERROR } from "../../other/types";
 
 export const loadUserData = () => async (dispatch) => {
   //set the send token to the local storage token

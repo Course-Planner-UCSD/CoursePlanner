@@ -9,11 +9,11 @@ import Plan from "./components/pages/Plan";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers";
-import { loadUserData } from "./actions/loadUser";
+import rootReducer from "./Redux/reducers";
+import { loadUserData } from "./Redux/actions/loadUser";
 import Dashboard from "./components/pages/dashboard";
 import Landing from "./components/pages/landing";
-import { plan } from "./actions/plan";
+import { plan } from "./Redux/actions/plan";
 
 const originalState = {};
 
