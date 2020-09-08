@@ -180,7 +180,7 @@ const Register = ({ register, userAuth }) => {
           </h2>
           <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <div id="form-inputs">
-              <Box pb={15} width="100%">
+              <Box pb={1.87} width="100%">
                 <TextField
                   id="emailInput"
                   required
@@ -194,7 +194,7 @@ const Register = ({ register, userAuth }) => {
                   onBlur={emailTried}
                 />
               </Box>
-              <Box pb={15} width="100%">
+              <Box pb={1.87} width="100%">
                 <FormControl variant="outlined" fullWidth={true}>
                   <InputLabel error={checkPassword()}>Password *</InputLabel>
                   <OutlinedInput
@@ -222,7 +222,7 @@ const Register = ({ register, userAuth }) => {
                   </FormHelperText>
                 </FormControl>
               </Box>
-              <Box pb={15} width="100%">
+              <Box pb={1.87} width="100%">
                 <FormControl variant="outlined" fullWidth={true}>
                   <InputLabel error={checkConfirmPassword()}>
                     Confirm Password *
