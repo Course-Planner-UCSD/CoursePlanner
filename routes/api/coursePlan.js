@@ -24,21 +24,19 @@ router.get("/allPlansByID", auth, async (req, res) => {
 //POST to create a plan with a userID and returns planID
 //Private route so token is required
 
-router.put("/createPlan", auth, async (req, res) => {
+router.get("/createPlan", auth, async (req, res) => {
   try {
     const userID = req.user.id;
     let plan = new coursePlanModel({
       ownerID: userID,
     });
-    await plan
-      .save()
-      .then(res.send(plan._id))
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send("There is a problem with the server");
-      });
+    var newPlan = await plan.save().catch((err) => {
+      console.error(err);
+    });
+    res.send(newPlan._id);
   } catch (error) {
     console.error(error);
+    res.status(500).send("There is a problem with the server");
   }
 });
 

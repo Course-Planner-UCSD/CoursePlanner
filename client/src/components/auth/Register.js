@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { register } from "../../actions/register";
+import { register } from "../../Redux/actions/register";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -173,102 +173,104 @@ const Register = ({ register, userAuth }) => {
   return (
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
-	  <div id="mainContainer">
-        <Card id="testCard">
-          <h2 className="text" id="headerText">
-            Create Account
-          </h2>
-          <form noValidate autoComplete="off" onSubmit={onSubmit}>
-            <div id="form-inputs">
-              <Box pb={1.87} width="100%">
-                <TextField
-                  id="emailInput"
-                  required
-                  error={checkEmail()}
-                  helperText={checkEmail() ? "Please enter a valid email" : ""}
-                  label="Email"
-                  variant="outlined"
-                  value={email}
-                  onChange={onChangeEmail}
-                  fullWidth={true}
-                  onBlur={emailTried}
-                />
-              </Box>
-              <Box pb={1.87} width="100%">
-                <FormControl variant="outlined" fullWidth={true}>
-                  <InputLabel error={checkPassword()}>Password *</InputLabel>
-                  <OutlinedInput
-                    id="pwInput"
-                    type={showPassword ? "text" : "password"}
-                    error={checkPassword()}
-                    onChange={onChangePassword}
-                    onBlur={pwTried}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
+        <div id="mainContainer">
+          <Card id="testCard">
+            <h2 className="text" id="headerText">
+              Create Account
+            </h2>
+            <form noValidate autoComplete="off" onSubmit={onSubmit}>
+              <div id="form-inputs">
+                <Box pb={1.87} width="100%">
+                  <TextField
+                    id="emailInput"
+                    required
+                    error={checkEmail()}
+                    helperText={
+                      checkEmail() ? "Please enter a valid email" : ""
                     }
-                    labelWidth={85}
+                    label="Email"
+                    variant="outlined"
+                    value={email}
+                    onChange={onChangeEmail}
+                    fullWidth={true}
+                    onBlur={emailTried}
                   />
-                  <FormHelperText id="pwWarning">
-                    {checkPassword()
-                      ? "Please enter a valid password. A valid password is over 8 characters long and has at least one capital letter, at least one lower case letter, and at least one number."
-                      : ""}
-                  </FormHelperText>
-                </FormControl>
-              </Box>
-              <Box pb={1.87} width="100%">
-                <FormControl variant="outlined" fullWidth={true}>
-                  <InputLabel error={checkConfirmPassword()}>
-                    Confirm Password *
-                  </InputLabel>
-                  <OutlinedInput
-                    id="confirmPWInput"
-                    type={showConfirmPassword ? "text" : "password"}
-                    error={checkConfirmPassword()}
-                    onChange={onChangePasswordConfirm}
-                    onBlur={confirmPWTried}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={handleClickShowConfirmPassword}
-                          edge="end"
-                        >
-                          {showConfirmPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    labelWidth={145}
-                  />
-                  <FormHelperText id="confirmPWWarning">
-                    {checkConfirmPassword()
-                      ? "Please enter the same password for both fields."
-                      : ""}
-                  </FormHelperText>
-                </FormControl>
-              </Box>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                id="register"
-              >
-                Register
-              </Button>
-            </div>
-          </form>
-        </Card>
+                </Box>
+                <Box pb={1.87} width="100%">
+                  <FormControl variant="outlined" fullWidth={true}>
+                    <InputLabel error={checkPassword()}>Password *</InputLabel>
+                    <OutlinedInput
+                      id="pwInput"
+                      type={showPassword ? "text" : "password"}
+                      error={checkPassword()}
+                      onChange={onChangePassword}
+                      onBlur={pwTried}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={85}
+                    />
+                    <FormHelperText id="pwWarning">
+                      {checkPassword()
+                        ? "Please enter a valid password. A valid password is over 8 characters long and has at least one capital letter, at least one lower case letter, and at least one number."
+                        : ""}
+                    </FormHelperText>
+                  </FormControl>
+                </Box>
+                <Box pb={1.87} width="100%">
+                  <FormControl variant="outlined" fullWidth={true}>
+                    <InputLabel error={checkConfirmPassword()}>
+                      Confirm Password *
+                    </InputLabel>
+                    <OutlinedInput
+                      id="confirmPWInput"
+                      type={showConfirmPassword ? "text" : "password"}
+                      error={checkConfirmPassword()}
+                      onChange={onChangePasswordConfirm}
+                      onBlur={confirmPWTried}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={handleClickShowConfirmPassword}
+                            edge="end"
+                          >
+                            {showConfirmPassword ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={145}
+                    />
+                    <FormHelperText id="confirmPWWarning">
+                      {checkConfirmPassword()
+                        ? "Please enter the same password for both fields."
+                        : ""}
+                    </FormHelperText>
+                  </FormControl>
+                </Box>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  id="register"
+                >
+                  Register
+                </Button>
+              </div>
+            </form>
+          </Card>
+        </div>
       </div>
-	</div>
     </ThemeProvider>
   );
 };

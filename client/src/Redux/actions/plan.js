@@ -1,5 +1,5 @@
 import axios from "axios";
-import { VIEW_PLAN, UPDATE_PLAN } from "../other/types";
+import { VIEW_PLAN, UPDATE_PLAN } from "../../other/types";
 
 export const plan = () => async (dispatch) => {
   var token = localStorage.getItem("token");
