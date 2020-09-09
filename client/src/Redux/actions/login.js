@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_SUCCESS, AUTH_ERROR } from "../other/types";
+import { LOGIN_SUCCESS, AUTH_ERROR } from "../../other/types";
 import { loadUserData } from "./loadUser";
 
 export const loginUser = ({ email, password }) => async (dispatch) => {

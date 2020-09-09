@@ -5,10 +5,9 @@ import { Redirect } from "react-router-dom";
 import MaterialTable from "material-table";
 import axios from "axios";
 import moment from "moment";
-import { plan } from "../../actions/plan";
+import { plan } from "../../Redux/actions/plan";
 import { ThemeProvider } from "@material-ui/styles";
 import myTheme from "../layout/myTheme.component";
-
 var newPlan = require("../../other/newPlan.json");
 
 const Dashboard = ({ userAuth, token, plan }) => {
@@ -106,7 +105,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
     var url = "/api/coursePlan/createPlan";
     var newPlanID;
     await axios
-      .put(url, config)
+      .get(url, config)
       .then((result) => {
         newPlanID = result.data;
       })
@@ -164,54 +163,54 @@ const Dashboard = ({ userAuth, token, plan }) => {
   }
 
   return (
-	<ThemeProvider theme={myTheme}>
-    <div id="myBackground">
-      <div className="dashboard">
-        <MaterialTable
-          title="Course Plans"
-          columns={tableData.columns}
-          data={tableData.data}
-          options={{
-            headerStyle: {
-              fontSize: 22,
-            },
-            rowStyle: {
-              fontSize: 20,
-            },
-            tableLayout: "auto",
-            draggable: false,
-            pageSize: 10,
-            pageSizeOptions: [5, 10],
-            showEmptyDataSourceMessage: false,
-            paginationType: "normal",
-          }}
-          actions={[
-            {
-              icon: "edit",
-              tooltip: "View and Edit course plan",
-              onClick: (event, rowData) => viewPlan(rowData),
-            },
-          ]}
-          editable={{
-            onRowDelete: (oldData) =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  deletePlan(oldData);
-                  resolve();
-                }, 1000);
-              }),
-            onRowAdd: (newData) =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  addPlan(newData);
-                  resolve();
-                }, 1000);
-              }),
-          }}
-        />
+    <ThemeProvider theme={myTheme}>
+      <div id="myBackground">
+        <div className="dashboard">
+          <MaterialTable
+            title="Course Plans"
+            columns={tableData.columns}
+            data={tableData.data}
+            options={{
+              headerStyle: {
+                fontSize: 22,
+              },
+              rowStyle: {
+                fontSize: 20,
+              },
+              tableLayout: "auto",
+              draggable: false,
+              pageSize: 10,
+              pageSizeOptions: [5, 10],
+              showEmptyDataSourceMessage: false,
+              paginationType: "normal",
+            }}
+            actions={[
+              {
+                icon: "edit",
+                tooltip: "View and Edit course plan",
+                onClick: (event, rowData) => viewPlan(rowData),
+              },
+            ]}
+            editable={{
+              onRowDelete: (oldData) =>
+                new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    deletePlan(oldData);
+                    resolve();
+                  }, 1000);
+                }),
+              onRowAdd: (newData) =>
+                new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                    addPlan(newData);
+                    resolve();
+                  }, 1000);
+                }),
+            }}
+          />
+        </div>
       </div>
-    </div>
-	</ThemeProvider>
+    </ThemeProvider>
   );
 };
 Dashboard.propTypes = {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/login";
+import { loginUser } from "../../Redux/actions/login";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -108,75 +108,77 @@ const Login = ({ loginUser, userAuth }) => {
   return (
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
-	  <div id="mainContainer">
-        <Alert
-          onClose={() => {
-            document.getElementById("badLoginAlert").style.display = "none";
-          }}
-          severity="error"
-          id="badLoginAlert"
-        >
-          Incorrect username or password
-        </Alert>
-        <Card id="testCard">
-          <h2 className="text" id="headerText">
-            Login
-          </h2>
-          <form noValidate autoComplete="off" onSubmit={onSubmit}>
-            <div id="form-inputs">
-              <Box pb={1.87} width="100%">
-                <TextField
-                  id="emailInput"
-                  required
-                  error={checkEmail()}
-                  helperText={checkEmail() ? "Please enter a valid email" : ""}
-                  label="Email"
-                  variant="outlined"
-                  value={email}
-                  onChange={onChangeEmail}
-                  fullWidth={true}
-                  onBlur={emailTried}
-                />
-              </Box>
-              <Box pb={1.87} width="100%">
-                <FormControl variant="outlined" fullWidth={true}>
-                  <InputLabel error={checkPassword()}>Password *</InputLabel>
-                  <OutlinedInput
-                    id="pwInput"
-                    type={showPassword ? "text" : "password"}
-                    error={checkPassword()}
-                    onChange={onChangePassword}
-                    onBlur={pwTried}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={handleClickShowPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
+        <div id="mainContainer">
+          <Alert
+            onClose={() => {
+              document.getElementById("badLoginAlert").style.display = "none";
+            }}
+            severity="error"
+            id="badLoginAlert"
+          >
+            Incorrect username or password
+          </Alert>
+          <Card id="testCard">
+            <h2 className="text" id="headerText">
+              Login
+            </h2>
+            <form noValidate autoComplete="off" onSubmit={onSubmit}>
+              <div id="form-inputs">
+                <Box pb={1.87} width="100%">
+                  <TextField
+                    id="emailInput"
+                    required
+                    error={checkEmail()}
+                    helperText={
+                      checkEmail() ? "Please enter a valid email" : ""
                     }
-                    labelWidth={85}
+                    label="Email"
+                    variant="outlined"
+                    value={email}
+                    onChange={onChangeEmail}
+                    fullWidth={true}
+                    onBlur={emailTried}
                   />
-                  <FormHelperText id="pwWarning">
-                    {checkPassword() ? "Please enter a password" : ""}
-                  </FormHelperText>
-                </FormControl>
-              </Box>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                id="login"
-              >
-                Login
-              </Button>
-            </div>
-          </form>
-        </Card>
+                </Box>
+                <Box pb={1.87} width="100%">
+                  <FormControl variant="outlined" fullWidth={true}>
+                    <InputLabel error={checkPassword()}>Password *</InputLabel>
+                    <OutlinedInput
+                      id="pwInput"
+                      type={showPassword ? "text" : "password"}
+                      error={checkPassword()}
+                      onChange={onChangePassword}
+                      onBlur={pwTried}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={85}
+                    />
+                    <FormHelperText id="pwWarning">
+                      {checkPassword() ? "Please enter a password" : ""}
+                    </FormHelperText>
+                  </FormControl>
+                </Box>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  id="login"
+                >
+                  Login
+                </Button>
+              </div>
+            </form>
+          </Card>
+        </div>
       </div>
-	</div>
     </ThemeProvider>
   );
 };
