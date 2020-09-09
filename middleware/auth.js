@@ -19,7 +19,7 @@ function auth(req, res, next) {
 
     next();
   } catch (err) {
-    res.status(401).json({ msg: "Not authorized" });
+    res.status(401).send("Not Authorized");
   }
 }
 module.exports = auth;

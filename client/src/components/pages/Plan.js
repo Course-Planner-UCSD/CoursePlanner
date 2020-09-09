@@ -57,10 +57,8 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     });
   };
   const updateTable = async (updates, year, quarterNum) => {
-    var i = 0;
-    while (updates[i] === undefined) {
-      i++;
-    }
+    console.log(updates);
+
     const config = {
       headers: {
         "x-auth-token": token,
@@ -84,22 +82,14 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     if (year === "fifthYear") {
       currentPlanData = planData[data.planIndex].fifthYear;
     }
-    while (updates[i] != null) {
-      for (
-        var j = 0;
-        j < currentPlanData.quarters[quarterNum].courses.length;
-        j++
-      ) {
-        if (
-          currentPlanData.quarters[quarterNum].courses[j].course ===
-          updates[i].oldData.course
-        ) {
-          currentPlanData.quarters[quarterNum].courses[j].course =
-            updates[i].newData.course;
-          break;
-        }
+
+    for (var i = 0; i < 8; i++) {
+      if (updates[i] !== undefined) {
+        currentPlanData.quarters[quarterNum].courses[i].course =
+          updates[i].newData.course;
+        currentPlanData.quarters[quarterNum].courses[i].units =
+          updates[i].newData.units;
       }
-      i++;
     }
 
     var currentTime = moment().toISOString();
@@ -181,13 +171,14 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
         <Fragment>
           {data.planIndex != null ? (
             <Fragment>
-              <div className="plan">
+              <div className="planHeader">
                 <h1>{planData[data.planIndex].name}</h1>
-                <h2>
+                <h3>
                   Date Last Modified:
                   {" " + data.lastModified}
-                </h2>
-
+                </h3>
+              </div>
+              <div className="plan">
                 <MaterialTable
                   title="Fall"
                   columns={data.columns}

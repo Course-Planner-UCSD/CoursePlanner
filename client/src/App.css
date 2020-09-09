@@ -132,7 +132,11 @@ body,
 }
 
 .plan {
-  width: 20%;
+  width: 33%;
+  margin-left: 5%;
+}
+
+.planHeader {
   margin-left: 5%;
 }
 
@@ -147,19 +151,19 @@ body,
 }
 
 #saveNotesButton {
-	margin-bottom: 2%;
-	margin-top: 1%;
+  margin-bottom: 2%;
+  margin-top: 1%;
 }
 
 #notes {
-	margin-left: 5%;
-	margin-top: 50px;
-	margin-bottom: 2%;
-	padding-left: 1.5%;
-	padding-right: 1.5%;
-	width: 78%;
+  margin-left: 5%;
+  margin-top: 50px;
+  margin-bottom: 2%;
+  margin-right: 5%;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
 }
 
 #notesText {
-	font-size:27px;
+  font-size: 27px;
 }

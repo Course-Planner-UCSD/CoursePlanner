@@ -24,6 +24,7 @@ const CoursePlanSchema = new mongoose.Schema({
         courses: [
           {
             course: String,
+            units: Number,
           },
         ],
       },
@@ -36,6 +37,7 @@ const CoursePlanSchema = new mongoose.Schema({
         courses: [
           {
             course: String,
+            units: Number,
           },
         ],
       },
@@ -48,6 +50,7 @@ const CoursePlanSchema = new mongoose.Schema({
         courses: [
           {
             course: String,
+            units: Number,
           },
         ],
       },
@@ -60,6 +63,7 @@ const CoursePlanSchema = new mongoose.Schema({
         courses: [
           {
             course: String,
+            units: Number,
           },
         ],
       },
@@ -72,6 +76,7 @@ const CoursePlanSchema = new mongoose.Schema({
         courses: [
           {
             course: String,
+            units: Number,
           },
         ],
       },
