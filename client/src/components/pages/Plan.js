@@ -56,8 +56,15 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
       ),
     });
   };
-  const updateTable = async (updates, year, quarterNum) => {
-    console.log(updates);
+
+  const updateTableCellEdit = async (
+    newValue,
+    rowData,
+    columnDef,
+    year,
+    quarterNum
+  ) => {
+    const courseNum = rowData.tableData.id;
 
     const config = {
       headers: {
@@ -83,13 +90,12 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
       currentPlanData = planData[data.planIndex].fifthYear;
     }
 
-    for (var i = 0; i < 8; i++) {
-      if (updates[i] !== undefined) {
-        currentPlanData.quarters[quarterNum].courses[i].course =
-          updates[i].newData.course;
-        currentPlanData.quarters[quarterNum].courses[i].units =
-          updates[i].newData.units;
-      }
+    if (columnDef.field === "course") {
+      currentPlanData.quarters[quarterNum].courses[courseNum].course = newValue;
+    }
+
+    if (columnDef.field === "units") {
+      currentPlanData.quarters[quarterNum].courses[courseNum].units = newValue;
     }
 
     var currentTime = moment().toISOString();
@@ -174,7 +180,7 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
               <div className="planHeader">
                 <h1>{planData[data.planIndex].name}</h1>
                 <h3>
-                  Date Last Modified:
+                  Modified On:
                   {" " + data.lastModified}
                 </h3>
               </div>
@@ -182,32 +188,68 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
                 <MaterialTable
                   title="Fall"
                   columns={data.columns}
-                  data={(query) =>
-                    new Promise((resolve, reject) => {
-                      var newData =
-                        planData[data.planIndex].firstYear.quarters[0].courses;
-                      var newDatalength =
-                        planData[data.planIndex].firstYear.quarters[0].courses
-                          .length;
-                      resolve({
-                        data: newData,
-                        page: query.page,
-                        totalCount: newDatalength,
-                      });
-                    })
-                  }
-                  editable={{
-                    onBulkUpdate: (updates) =>
+                  data={planData[data.planIndex].firstYear.quarters[0].courses}
+                  cellEditable={{
+                    onCellEditApproved: (
+                      newValue,
+                      oldValue,
+                      rowData,
+                      columnDef
+                    ) =>
                       new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                          updateTable(updates, "firstYear", 0);
-                          resolve();
-                        }, 1000);
+                        updateTableCellEdit(
+                          newValue,
+                          rowData,
+                          columnDef,
+                          "firstYear",
+                          0
+                        );
+                        resolve();
                       }),
                   }}
                   options={{
                     search: false,
                     tableLayout: "auto",
+                    draggable: false,
+                    headerStyle: {
+                      fontSize: 20,
+                    },
+                    rowStyle: {
+                      fontSize: 18,
+                    },
+                    paging: false,
+                    padding: "dense",
+                    paginationType: "normal",
+                  }}
+                />
+              </div>
+              <div className="plan">
+                <MaterialTable
+                  title="Winter"
+                  columns={data.columns}
+                  data={planData[data.planIndex].firstYear.quarters[1].courses}
+                  cellEditable={{
+                    onCellEditApproved: (
+                      newValue,
+                      oldValue,
+                      rowData,
+                      columnDef
+                    ) =>
+                      new Promise((resolve, reject) => {
+                        updateTableCellEdit(
+                          newValue,
+                          rowData,
+                          columnDef,
+                          "firstYear",
+                          1
+                        );
+                        resolve();
+                      }),
+                  }}
+                  options={{
+                    search: false,
+                    tableLayout: "auto",
+                    draggable: false,
                     headerStyle: {
                       fontSize: 20,
                     },

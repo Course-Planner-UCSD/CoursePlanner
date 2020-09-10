@@ -132,8 +132,9 @@ body,
 }
 
 .plan {
-  width: 33%;
+  width: 20%;
   margin-left: 5%;
+  padding-bottom: 2.5%;
 }
 
 .planHeader {
