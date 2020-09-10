@@ -3,7 +3,7 @@
   "firstYear": {
     "quarters": [
       {
-        "season": "fall",
+        "season": "Fall",
         "courses": [
           {
             "course": "-",
@@ -24,7 +24,7 @@
         ]
       },
       {
-        "season": "winter",
+        "season": "Winter",
         "courses": [
           {
             "course": "-",
@@ -45,7 +45,7 @@
         ]
       },
       {
-        "season": "spring",
+        "season": "Spring",
         "courses": [
           {
             "course": "-",
@@ -66,7 +66,7 @@
         ]
       },
       {
-        "season": "summer",
+        "season": "Summer",
         "courses": [
           {
             "course": "-",
@@ -91,7 +91,7 @@
   "secondYear": {
     "quarters": [
       {
-        "season": "fall",
+        "season": "Fall",
         "courses": [
           {
             "course": "-",
@@ -112,7 +112,7 @@
         ]
       },
       {
-        "season": "winter",
+        "season": "Winter",
         "courses": [
           {
             "course": "-",
@@ -133,7 +133,7 @@
         ]
       },
       {
-        "season": "spring",
+        "season": "Spring",
         "courses": [
           {
             "course": "-",
@@ -154,7 +154,7 @@
         ]
       },
       {
-        "season": "summer",
+        "season": "Summer",
         "courses": [
           {
             "course": "-",
@@ -179,7 +179,7 @@
   "thirdYear": {
     "quarters": [
       {
-        "season": "fall",
+        "season": "Fall",
         "courses": [
           {
             "course": "-",
@@ -200,7 +200,7 @@
         ]
       },
       {
-        "season": "winter",
+        "season": "Winter",
         "courses": [
           {
             "course": "-",
@@ -221,7 +221,7 @@
         ]
       },
       {
-        "season": "spring",
+        "season": "Spring",
         "courses": [
           {
             "course": "-",
@@ -242,7 +242,7 @@
         ]
       },
       {
-        "season": "summer",
+        "season": "Summer",
         "courses": [
           {
             "course": "-",
@@ -267,7 +267,7 @@
   "fourthYear": {
     "quarters": [
       {
-        "season": "fall",
+        "season": "Fall",
         "courses": [
           {
             "course": "-",
@@ -288,7 +288,7 @@
         ]
       },
       {
-        "season": "winter",
+        "season": "Winter",
         "courses": [
           {
             "course": "-",
@@ -309,7 +309,7 @@
         ]
       },
       {
-        "season": "spring",
+        "season": "Spring",
         "courses": [
           {
             "course": "-",
@@ -330,7 +330,7 @@
         ]
       },
       {
-        "season": "summer",
+        "season": "Summer",
         "courses": [
           {
             "course": "-",
@@ -355,7 +355,7 @@
   "fifthYear": {
     "quarters": [
       {
-        "season": "fall",
+        "season": "Fall",
         "courses": [
           {
             "course": "-",
@@ -376,7 +376,7 @@
         ]
       },
       {
-        "season": "winter",
+        "season": "Winter",
         "courses": [
           {
             "course": "-",
@@ -397,7 +397,7 @@
         ]
       },
       {
-        "season": "spring",
+        "season": "Spring",
         "courses": [
           {
             "course": "-",
@@ -418,7 +418,7 @@
         ]
       },
       {
-        "season": "summer",
+        "season": "Summer",
         "courses": [
           {
             "course": "-",
