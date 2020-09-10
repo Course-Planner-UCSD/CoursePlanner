@@ -133,8 +133,16 @@ body,
 
 .plan {
   width: 20%;
+  margin-left: 3.333%;
+  padding-bottom: 2.5%;
+  float: left;
+}
+
+.planLeft {
+  width: 20%;
   margin-left: 5%;
   padding-bottom: 2.5%;
+  float: left;
 }
 
 .planHeader {
@@ -163,6 +171,7 @@ body,
   margin-right: 5%;
   padding-left: 1.5%;
   padding-right: 1.5%;
+  clear: both;
 }
 
 #notesText {

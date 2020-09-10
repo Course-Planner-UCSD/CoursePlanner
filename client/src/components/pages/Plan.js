@@ -184,7 +184,7 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
                   {" " + data.lastModified}
                 </h3>
               </div>
-              <div className="plan">
+              <div className="planLeft">
                 <MaterialTable
                   title="Fall"
                   columns={data.columns}
@@ -197,14 +197,16 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
                       columnDef
                     ) =>
                       new Promise((resolve, reject) => {
-                        updateTableCellEdit(
-                          newValue,
-                          rowData,
-                          columnDef,
-                          "firstYear",
-                          0
-                        );
-                        resolve();
+                        setTimeout(() => {
+                          updateTableCellEdit(
+                            newValue,
+                            rowData,
+                            columnDef,
+                            "firstYear",
+                            0
+                          );
+                          resolve();
+                        }, 3000);
                       }),
                   }}
                   options={{
@@ -236,14 +238,16 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
                       columnDef
                     ) =>
                       new Promise((resolve, reject) => {
-                        updateTableCellEdit(
-                          newValue,
-                          rowData,
-                          columnDef,
-                          "firstYear",
-                          1
-                        );
-                        resolve();
+                        setTimeout(() => {
+                          updateTableCellEdit(
+                            newValue,
+                            rowData,
+                            columnDef,
+                            "firstYear",
+                            1
+                          );
+                          resolve();
+                        }, 3000);
                       }),
                   }}
                   options={{
@@ -262,25 +266,105 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
                   }}
                 />
               </div>
-              <Card id="notes">
-                <h2 className="text" id="notesText">
-                  Notes
-                </h2>
-                <ReactQuill
-                  value={data.text}
-                  className="textbox"
-                  onChange={textboxChange}
+              <div className="plan">
+                <MaterialTable
+                  title="Spring"
+                  columns={data.columns}
+                  data={planData[data.planIndex].firstYear.quarters[2].courses}
+                  cellEditable={{
+                    onCellEditApproved: (
+                      newValue,
+                      oldValue,
+                      rowData,
+                      columnDef
+                    ) =>
+                      new Promise((resolve, reject) => {
+                        updateTableCellEdit(
+                          newValue,
+                          rowData,
+                          columnDef,
+                          "firstYear",
+                          2
+                        );
+                        setTimeout(resolve(), 3000);
+                      }),
+                  }}
+                  options={{
+                    search: false,
+                    tableLayout: "auto",
+                    draggable: false,
+                    headerStyle: {
+                      fontSize: 20,
+                    },
+                    rowStyle: {
+                      fontSize: 18,
+                    },
+                    paging: false,
+                    padding: "dense",
+                    paginationType: "normal",
+                  }}
                 />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="save"
-                  onClick={saveNotes}
-                  id="saveNotesButton"
-                >
-                  Save Notes
-                </Button>
-              </Card>
+              </div>
+              <div className="plan">
+                <MaterialTable
+                  title="Summer"
+                  columns={data.columns}
+                  data={planData[data.planIndex].firstYear.quarters[3].courses}
+                  cellEditable={{
+                    onCellEditApproved: (
+                      newValue,
+                      oldValue,
+                      rowData,
+                      columnDef
+                    ) =>
+                      new Promise((resolve, reject) => {
+                        updateTableCellEdit(
+                          newValue,
+                          rowData,
+                          columnDef,
+                          "firstYear",
+                          3
+                        );
+                        setTimeout(resolve(), 3000);
+                      }),
+                  }}
+                  options={{
+                    search: false,
+                    tableLayout: "auto",
+                    draggable: false,
+                    headerStyle: {
+                      fontSize: 20,
+                    },
+                    rowStyle: {
+                      fontSize: 18,
+                    },
+                    paging: false,
+                    padding: "dense",
+                    paginationType: "normal",
+                  }}
+                />
+              </div>
+              <div>
+                <Card id="notes">
+                  <h2 className="text" id="notesText">
+                    Notes
+                  </h2>
+                  <ReactQuill
+                    value={data.text}
+                    className="textbox"
+                    onChange={textboxChange}
+                  />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="save"
+                    onClick={saveNotes}
+                    id="saveNotesButton"
+                  >
+                    Save Notes
+                  </Button>
+                </Card>
+              </div>
             </Fragment>
           ) : (
             <Fragment></Fragment>

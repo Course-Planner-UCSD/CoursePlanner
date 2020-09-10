@@ -1,10 +1,12 @@
 const express = require("express");
 const connectToDB = require("./config/db");
+const bodyParser = require("body-parser");
 const app = express();
 
 connectToDB();
 
-app.use(express.json({ extended: false }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
+app.use(bodyParser.json({ limit: "50mb" }));
 //Routes
 app.use("/api/register", require("./routes/api/register"));
 app.use("/api/authentication", require("./routes/api/authentication"));
