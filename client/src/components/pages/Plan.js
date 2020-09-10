@@ -123,6 +123,72 @@ const Plan = ({ userAuth, planData }) => {
                 />
               </div>
 
+              <div className="planLeft">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"thirdYear"}
+                  quarterNum={0}
+                />
+              </div>
+              <div className="plan">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"thirdYear"}
+                  quarterNum={1}
+                />
+              </div>
+              <div className="plan">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"thirdYear"}
+                  quarterNum={2}
+                />
+              </div>
+              <div className="plan">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"thirdYear"}
+                  quarterNum={3}
+                />
+              </div>
+
+              <div className="planLeft">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"fourthYear"}
+                  quarterNum={0}
+                />
+              </div>
+              <div className="plan">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"fourthYear"}
+                  quarterNum={1}
+                />
+              </div>
+              <div className="plan">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"fourthYear"}
+                  quarterNum={2}
+                />
+              </div>
+              <div className="plan">
+                <QuarterTable
+                  planID={planID}
+                  planIndex={data.planIndex}
+                  year={"fourthYear"}
+                  quarterNum={3}
+                />
+              </div>
+
               <Notes planID={planID} planIndex={data.planIndex} />
             </Fragment>
           ) : (

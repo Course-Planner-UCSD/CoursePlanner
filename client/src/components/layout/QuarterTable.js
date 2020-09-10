@@ -172,7 +172,7 @@ const QuarterTable = ({
                 quarterNum
               );
               resolve();
-            }, 1000);
+            }, 500);
           }),
       }}
       options={{
