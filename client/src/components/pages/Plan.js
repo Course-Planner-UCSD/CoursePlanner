@@ -53,7 +53,6 @@ const Plan = ({ userAuth, planData }) => {
         <Fragment>
           {data.planIndex != null ? (
             <Fragment>
-              {console.log("render test")}
               <div className="planHeader">
                 <h1>{planData[data.planIndex].name}</h1>
                 <ModifiedDate planIndex={data.planIndex} />
