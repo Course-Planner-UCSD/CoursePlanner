@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
   } catch (err) {
     //logs error and sends code 500 for server error
     res.status(500).send("There is a problem with the server");
-    console.error(err.message);
+    console.error(err);
   }
 });
 

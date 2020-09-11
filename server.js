@@ -1,14 +1,16 @@
 const express = require("express");
 const connectToDB = require("./config/db");
+const bodyParser = require("body-parser");
 const app = express();
 
 connectToDB();
 
-app.use(express.json({ extended: false }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
+app.use(bodyParser.json({ limit: "50mb" }));
 //Routes
 app.use("/api/register", require("./routes/api/register"));
 app.use("/api/authentication", require("./routes/api/authentication"));
-app.use("/api/userData", require("./routes/api/userData"));
+app.use("/api/checkAuth", require("./routes/api/checkAuth"));
 app.use("/api/coursePlan", require("./routes/api/coursePlan"));
 
 const PORT = process.env.PORT || 5000;

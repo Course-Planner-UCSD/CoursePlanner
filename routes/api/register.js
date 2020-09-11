@@ -10,9 +10,9 @@ router.post("/", async (req, res) => {
   const { email, password } = req.body;
   try {
     if (await UserModel.findOne({ email })) {
-      return res.status(400).json({
-        errors: [{ msg: "There is already an account for that email address" }],
-      });
+      return res
+        .status(400)
+        .send("There is already an account associated with that email address");
     }
     let user = new UserModel({
       email,

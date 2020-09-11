@@ -10,10 +10,9 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import rootReducer from "./Redux/reducers";
-import { loadUserData } from "./Redux/actions/loadUser";
 import Dashboard from "./components/pages/dashboard";
 import Landing from "./components/pages/landing";
-import { plan } from "./Redux/actions/plan";
+import { checkAuth } from "./Redux/actions/checkAuth";
 
 const originalState = {};
 
@@ -28,8 +27,7 @@ const store = createStore(
 const App = () => {
   useEffect(() => {
     if (localStorage.token) {
-      store.dispatch(loadUserData());
-      store.dispatch(plan());
+      store.dispatch(checkAuth());
     }
   });
   return (
