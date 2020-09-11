@@ -23,6 +23,7 @@ const QuarterTable = ({
     planIndex: null,
     tableInfo: [],
     title: "",
+    firstAdd: true,
   });
 
   useEffect(() => {
@@ -101,7 +102,7 @@ const QuarterTable = ({
 
     if (columnDef.field === "units") {
       if (newValue === "") {
-        currentPlanData.quarters[quarterNum].courses[courseNum].units = "-";
+        currentPlanData.quarters[quarterNum].courses[courseNum].units = "0";
       } else {
         currentPlanData.quarters[quarterNum].courses[
           courseNum
@@ -155,41 +156,222 @@ const QuarterTable = ({
     });
   };
 
+  const deleteCourse = async (oldData, year, quarterNum) => {
+    const courseNum = oldData.tableData.id;
+
+    const config = {
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+    var currentPlanData;
+
+    if (year === "firstYear") {
+      currentPlanData = planData[data.planIndex].firstYear;
+    }
+    if (year === "secondYear") {
+      currentPlanData = planData[data.planIndex].secondYear;
+    }
+    if (year === "thirdYear") {
+      currentPlanData = planData[data.planIndex].thirdYear;
+    }
+    if (year === "fourthYear") {
+      currentPlanData = planData[data.planIndex].fourthYear;
+    }
+    if (year === "fifthYear") {
+      currentPlanData = planData[data.planIndex].fifthYear;
+    }
+
+    currentPlanData.quarters[quarterNum].courses = currentPlanData.quarters[
+      quarterNum
+    ].courses.filter((value, index, array) => {
+      if (index !== courseNum) {
+        return value;
+      }
+    });
+
+    var currentTime = moment().toISOString();
+    var body;
+    if (year === "firstYear") {
+      body = JSON.stringify({
+        firstYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "secondYear") {
+      body = JSON.stringify({
+        secondYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "thirdYear") {
+      body = JSON.stringify({
+        thirdYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fourthYear") {
+      body = JSON.stringify({
+        fourthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fifthYear") {
+      body = JSON.stringify({
+        fifthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+
+    var url = "/api/coursePlan/updatePlan/" + planID;
+    await axios
+      .post(url, body, config)
+      .catch((err) => console.error(err))
+      .then((result) => {
+        updatePlan(result.data, planData, data.planIndex);
+      });
+    setData({
+      ...data,
+      tableInfo: currentPlanData.quarters[quarterNum].courses,
+    });
+  };
+
+  const addCourse = async (newData, year, quarterNum) => {
+    const config = {
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+    var currentPlanData;
+
+    if (year === "firstYear") {
+      currentPlanData = planData[data.planIndex].firstYear;
+    }
+    if (year === "secondYear") {
+      currentPlanData = planData[data.planIndex].secondYear;
+    }
+    if (year === "thirdYear") {
+      currentPlanData = planData[data.planIndex].thirdYear;
+    }
+    if (year === "fourthYear") {
+      currentPlanData = planData[data.planIndex].fourthYear;
+    }
+    if (year === "fifthYear") {
+      currentPlanData = planData[data.planIndex].fifthYear;
+    }
+
+    if (newData.course === undefined) {
+      newData.course = "-";
+    }
+    if (newData.units === undefined) {
+      newData.units = "0";
+    }
+    const nextIndex = currentPlanData.quarters[quarterNum].courses.length;
+    newData.tableData = { id: nextIndex };
+    currentPlanData.quarters[quarterNum].courses.push(newData);
+
+    var currentTime = moment().toISOString();
+    var body;
+    if (year === "firstYear") {
+      body = JSON.stringify({
+        firstYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "secondYear") {
+      body = JSON.stringify({
+        secondYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "thirdYear") {
+      body = JSON.stringify({
+        thirdYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fourthYear") {
+      body = JSON.stringify({
+        fourthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fifthYear") {
+      body = JSON.stringify({
+        fifthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+
+    var url = "/api/coursePlan/updatePlan/" + planID;
+    await axios
+      .post(url, body, config)
+      .catch((err) => console.error(err))
+      .then((result) => {
+        updatePlan(result.data, planData, data.planIndex);
+      });
+
+    setData({
+      ...data,
+      tableInfo: currentPlanData.quarters[quarterNum].courses,
+    });
+  };
+
   return (
-    <MaterialTable
-      title={data.title}
-      columns={data.columns}
-      data={data.tableInfo}
-      cellEditable={{
-        onCellEditApproved: (newValue, oldValue, rowData, columnDef) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              updateTableCellEdit(
-                newValue,
-                rowData,
-                columnDef,
-                year,
-                quarterNum
-              );
-              resolve();
-            }, 500);
-          }),
-      }}
-      options={{
-        search: false,
-        tableLayout: "auto",
-        draggable: false,
-        headerStyle: {
-          fontSize: 20,
-        },
-        rowStyle: {
-          fontSize: 18,
-        },
-        paging: false,
-        padding: "dense",
-        paginationType: "normal",
-      }}
-    />
+    <div>
+      <MaterialTable
+        title={data.title}
+        columns={data.columns}
+        data={data.tableInfo}
+        cellEditable={{
+          onCellEditApproved: (newValue, oldValue, rowData, columnDef) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                updateTableCellEdit(
+                  newValue,
+                  rowData,
+                  columnDef,
+                  year,
+                  quarterNum
+                );
+                resolve();
+              }, 500);
+            }),
+        }}
+        editable={{
+          onRowDelete: (oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                deleteCourse(oldData, year, quarterNum);
+                resolve();
+              }, 500);
+            }),
+          onRowAdd: (newData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                addCourse(newData, year, quarterNum);
+                resolve();
+              }, 1000);
+            }),
+        }}
+        options={{
+          search: false,
+          tableLayout: "auto",
+          draggable: false,
+          headerStyle: {
+            fontSize: 18,
+          },
+          rowStyle: {
+            fontSize: 18,
+          },
+          paging: false,
+          padding: "dense",
+          paginationType: "normal",
+        }}
+      />
+    </div>
   );
 };
 
