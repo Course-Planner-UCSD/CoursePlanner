@@ -2,7 +2,6 @@ import React, { Fragment, useState, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect, useParams } from "react-router-dom";
-import { updatePlan } from "../../Redux/actions/plan";
 import { ThemeProvider } from "@material-ui/styles";
 import myTheme from "../layout/myTheme.component";
 import QuarterTable from "../layout/QuarterTable";

@@ -1,6 +1,6 @@
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOADED_USER = "LOADED_USER";
+export const REGISTER = "REGISTER";
+export const LOGIN = "LOGIN";
+export const CHECK_AUTH = "CHECK_AUTH";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT = "LOGOUT";
 export const VIEW_PLAN = "VIEW_PLAN";
