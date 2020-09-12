@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import moment from "moment";
 
@@ -9,10 +8,18 @@ const ModifiedDate = ({ planIndex, planData }) => {
   });
 
   useEffect(() => {
+    var mount = false;
+
     initialState();
     setInterval(() => {
-      initialState();
+      if (!mount) {
+        initialState();
+      }
     }, 500);
+
+    return () => {
+      mount = true;
+    };
   }, [planData]);
 
   const initialState = () => {
@@ -25,10 +32,6 @@ const ModifiedDate = ({ planIndex, planData }) => {
   };
 
   return <h3>Modified On: {data.lastModified}</h3>;
-};
-
-ModifiedDate.propTypes = {
-  updatePlan: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

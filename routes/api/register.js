@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
       { expiresIn: 36000000 },
       (err, token) => {
         if (err) {
-          throw err;
+          console.error(err);
         }
         res.json({ token });
         console.log("Registered User");
