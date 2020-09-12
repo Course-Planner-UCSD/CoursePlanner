@@ -23,7 +23,6 @@ const QuarterTable = ({
     planIndex: null,
     tableInfo: [],
     title: "",
-    firstAdd: true,
   });
 
   useEffect(() => {
@@ -353,7 +352,7 @@ const QuarterTable = ({
               setTimeout(() => {
                 addCourse(newData, year, quarterNum);
                 resolve();
-              }, 1000);
+              }, 500);
             }),
         }}
         options={{
