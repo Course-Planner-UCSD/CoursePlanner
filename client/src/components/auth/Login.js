@@ -84,22 +84,23 @@ const Login = ({ loginUser, userAuth, error }) => {
     e.preventDefault();
 
     //Send login command to login action
-    loginUser({ email, password });
-    if (!userAuth) {
-      //alert:
-      //setFormData({ ...formData, loginErrors: error });
-      try {
-        document.getElementById("badLoginAlert").style.display = "flex";
-      } catch {
-        //Alert isn't on the page right now
+    loginUser({ email, password }).then(() => {
+      if (!userAuth) {
+        //alert:
+        //setFormData({ ...formData, loginErrors: error });
+        try {
+          document.getElementById("badLoginAlert").style.display = "flex";
+        } catch {
+          //Alert isn't on the page right now
+        }
+        //animation:
+        try {
+          document.getElementById("login").classList.add("shaking");
+        } catch {
+          //button isn't on the page right now
+        }
       }
-      //animation:
-      try {
-        document.getElementById("login").classList.add("shaking");
-      } catch {
-        //button isn't on the page right now
-      }
-    }
+    });
   };
 
   if (userAuth) {
