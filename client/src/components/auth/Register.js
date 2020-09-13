@@ -163,23 +163,23 @@ const Register = ({ register, userAuth, error }) => {
       });
     } else {
       //Send register command to register action
-      register({ email, password });
-
-      if (!userAuth) {
-        //alert:
-        //setFormData({ ...formData, loginErrors: error });
-        try {
-          document.getElementById("badLoginAlert").style.display = "flex";
-        } catch {
-          //Alert isn't on the page right now
+      register({ email, password }).then(() => {
+        if (!userAuth) {
+          //alert:
+          //setFormData({ ...formData, loginErrors: error });
+          try {
+            document.getElementById("badLoginAlert").style.display = "flex";
+          } catch {
+            //Alert isn't on the page right now
+          }
+          //animation:
+          try {
+            button.classList.add("shaking");
+          } catch {
+            //button isn't on the page right now
+          }
         }
-        //animation:
-        try {
-          button.classList.add("shaking");
-        } catch {
-          //button isn't on the page right now
-        }
-      }
+      });
     }
   };
 
