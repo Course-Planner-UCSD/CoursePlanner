@@ -17,8 +17,9 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import Alert from "@material-ui/lab/Alert";
 
-const Register = ({ register, userAuth }) => {
+const Register = ({ register, userAuth, error }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -163,6 +164,22 @@ const Register = ({ register, userAuth }) => {
     } else {
       //Send register command to register action
       register({ email, password });
+
+      if (!userAuth) {
+        //alert:
+        //setFormData({ ...formData, loginErrors: error });
+        try {
+          document.getElementById("badLoginAlert").style.display = "flex";
+        } catch {
+          //Alert isn't on the page right now
+        }
+        //animation:
+        try {
+          button.classList.add("shaking");
+        } catch {
+          //button isn't on the page right now
+        }
+      }
     }
   };
 
@@ -174,6 +191,15 @@ const Register = ({ register, userAuth }) => {
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
         <div id="mainContainer">
+          <Alert
+            onClose={() => {
+              document.getElementById("badLoginAlert").style.display = "none";
+            }}
+            severity="error"
+            id="badLoginAlert"
+          >
+            {error}
+          </Alert>
           <Card id="testCard">
             <h2 className="text" id="headerText">
               Create Account
@@ -278,10 +304,12 @@ const Register = ({ register, userAuth }) => {
 Register.propTypes = {
   register: PropTypes.func.isRequired,
   userAuth: PropTypes.bool,
+  error: PropTypes.string,
 };
 
 const stateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
+  error: state.authReducer.error,
 });
 
 export default connect(stateToProps, { register })(Register);

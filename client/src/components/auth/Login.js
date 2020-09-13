@@ -19,7 +19,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Alert from "@material-ui/lab/Alert";
 
-const Login = ({ loginUser, userAuth }) => {
+const Login = ({ loginUser, userAuth, error }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,6 +27,7 @@ const Login = ({ loginUser, userAuth }) => {
     triedPW: false,
     showPassword: false,
     badLogin: false,
+    loginErrors: null,
   });
   const { email, password, triedEmail, showPassword } = formData;
 
@@ -83,22 +84,22 @@ const Login = ({ loginUser, userAuth }) => {
     e.preventDefault();
 
     //Send login command to login action
-    loginUser({ email, password }).then(() => {
-      if (!userAuth) {
-        //alert:
-        try {
-          document.getElementById("badLoginAlert").style.display = "flex";
-        } catch {
-          //Alert isn't on the page right now
-        }
-        //animation:
-        try {
-          document.getElementById("login").classList.add("shaking");
-        } catch {
-          //button isn't on the page right now
-        }
+    loginUser({ email, password });
+    if (!userAuth) {
+      //alert:
+      //setFormData({ ...formData, loginErrors: error });
+      try {
+        document.getElementById("badLoginAlert").style.display = "flex";
+      } catch {
+        //Alert isn't on the page right now
       }
-    });
+      //animation:
+      try {
+        document.getElementById("login").classList.add("shaking");
+      } catch {
+        //button isn't on the page right now
+      }
+    }
   };
 
   if (userAuth) {
@@ -116,7 +117,7 @@ const Login = ({ loginUser, userAuth }) => {
             severity="error"
             id="badLoginAlert"
           >
-            Incorrect username or password
+            {error}
           </Alert>
           <Card id="testCard">
             <h2 className="text" id="headerText">
@@ -186,10 +187,12 @@ const Login = ({ loginUser, userAuth }) => {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   userAuth: PropTypes.bool,
+  error: PropTypes.string,
 };
 
 const stateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
+  error: state.authReducer.error,
 });
 
 export default connect(stateToProps, { loginUser })(Login);
