@@ -24,7 +24,7 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
     .catch((err) => {
       dispatch({
         type: AUTH_ERROR,
+        payload: err.response.data,
       });
-      console.error(err);
     });
 };

@@ -7,6 +7,7 @@ import myTheme from "../layout/myTheme.component";
 import QuarterTable from "../layout/QuarterTable";
 import Notes from "../layout/Notes";
 import ModifiedDate from "../layout/ModifiedDate";
+import Alert from "@material-ui/lab/Alert";
 
 const Plan = ({ userAuth, planData }) => {
   let { planID } = useParams();

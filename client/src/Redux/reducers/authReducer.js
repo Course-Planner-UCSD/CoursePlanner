@@ -9,6 +9,7 @@ import {
 const originalState = {
   userAuth: false,
   token: localStorage.getItem("token"),
+  error: null,
 };
 
 function authReducer(state = originalState, action) {
@@ -20,6 +21,7 @@ function authReducer(state = originalState, action) {
         ...state,
         token: action.payload.token,
         userAuth: true,
+        error: null,
       };
     case CHECK_AUTH:
       return {
@@ -27,6 +29,14 @@ function authReducer(state = originalState, action) {
         userAuth: true,
       };
     case AUTH_ERROR:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        userAuth: false,
+        token: null,
+        email: null,
+        error: action.payload,
+      };
     case LOGOUT:
       localStorage.removeItem("token");
       return {
