@@ -27,6 +27,9 @@
 [0913/164547.715:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0913/164547.715:ERROR:crash_report_database_win.cc(469)] failed to stat report
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> log
 [0913/235433.574:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0913/235433.574:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0913/235433.574:ERROR:crash_report_database_win.cc(469)] failed to stat report
@@ -41,5 +44,8 @@
 [0914/145602.721:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0914/145602.721:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0914/145602.721:ERROR:crash_report_database_win.cc(469)] failed to stat report
+<<<<<<< HEAD
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> log
