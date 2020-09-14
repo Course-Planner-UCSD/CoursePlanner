@@ -8,6 +8,7 @@ import QuarterTable from "../layout/QuarterTable";
 import Notes from "../layout/Notes";
 import ModifiedDate from "../layout/ModifiedDate";
 import Alert from "@material-ui/lab/Alert";
+import Card from "@material-ui/core/Card";
 
 const Plan = ({ userAuth, planData }) => {
   let { planID } = useParams();
@@ -56,6 +57,10 @@ const Plan = ({ userAuth, planData }) => {
               <h1>{planData[data.planIndex].name}</h1>
               <ModifiedDate planIndex={data.planIndex} />
             </div>
+			
+			<Card className="yearCard">
+			<h1 class="text yearHeaderText">2020-2021</h1>
+			<div class="year">
             <div className="planLeft">
               <QuarterTable
                 planID={planID}
@@ -88,6 +93,11 @@ const Plan = ({ userAuth, planData }) => {
                 quarterNum={3}
               />
             </div>
+			</div>
+			</Card>
+			<Card className="yearCard">
+			<h1 class="text yearHeaderText">2021-2022</h1>
+			<div class="year">
             <div className="planLeft">
               <QuarterTable
                 planID={planID}
@@ -120,7 +130,11 @@ const Plan = ({ userAuth, planData }) => {
                 quarterNum={3}
               />
             </div>
-
+			</div>
+			</Card>
+			<Card className="yearCard">
+			<h1 class="text yearHeaderText">2022-2023</h1>
+			<div class="year">
             <div className="planLeft">
               <QuarterTable
                 planID={planID}
@@ -153,7 +167,11 @@ const Plan = ({ userAuth, planData }) => {
                 quarterNum={3}
               />
             </div>
-
+			</div>
+			</Card>
+			<Card className="yearCard">
+			<h1 class="text yearHeaderText">2023-2024</h1>
+			<div class="year">
             <div className="planLeft">
               <QuarterTable
                 planID={planID}
@@ -186,7 +204,8 @@ const Plan = ({ userAuth, planData }) => {
                 quarterNum={3}
               />
             </div>
-
+			</div>
+			</Card>
             <Notes planID={planID} planIndex={data.planIndex} />
           </Fragment>
         ) : (
