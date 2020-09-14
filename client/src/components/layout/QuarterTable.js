@@ -21,7 +21,6 @@ const QuarterTable = ({
       { title: "Units", field: "units" },
     ],
     planIndex: null,
-    tableInfo: [],
     title: "",
   });
 
@@ -30,28 +29,21 @@ const QuarterTable = ({
   }, [planIndex, planData]);
 
   const initialState = () => {
-    var tableInfo;
     var title;
     if (year === "firstYear") {
-      tableInfo = planData[planIndex].firstYear.quarters[quarterNum].courses;
       title = planData[planIndex].firstYear.quarters[quarterNum].season;
     } else if (year === "secondYear") {
-      tableInfo = planData[planIndex].secondYear.quarters[quarterNum].courses;
       title = planData[planIndex].secondYear.quarters[quarterNum].season;
     } else if (year === "thirdYear") {
-      tableInfo = planData[planIndex].thirdYear.quarters[quarterNum].courses;
       title = planData[planIndex].thirdYear.quarters[quarterNum].season;
     } else if (year === "fourthYear") {
-      tableInfo = planData[planIndex].fourthYear.quarters[quarterNum].courses;
       title = planData[planIndex].fourthYear.quarters[quarterNum].season;
     } else if (year === "fifthYear") {
-      tableInfo = planData[planIndex].fifthYear.quarters[quarterNum].courses;
       title = planData[planIndex].fifthYear.quarters[quarterNum].season;
     }
     setData({
       ...data,
       planIndex,
-      tableInfo,
       title,
     });
   };
@@ -149,10 +141,6 @@ const QuarterTable = ({
       .then((result) => {
         updatePlan(result.data, planData, data.planIndex);
       });
-    setData({
-      ...data,
-      tableInfo: currentPlanData.quarters[quarterNum].courses,
-    });
   };
 
   const deleteCourse = async (oldData, year, quarterNum) => {
@@ -230,10 +218,6 @@ const QuarterTable = ({
       .then((result) => {
         updatePlan(result.data, planData, data.planIndex);
       });
-    setData({
-      ...data,
-      tableInfo: currentPlanData.quarters[quarterNum].courses,
-    });
   };
 
   const addCourse = async (newData, year, quarterNum) => {
@@ -311,11 +295,6 @@ const QuarterTable = ({
       .then((result) => {
         updatePlan(result.data, planData, data.planIndex);
       });
-
-    setData({
-      ...data,
-      tableInfo: currentPlanData.quarters[quarterNum].courses,
-    });
   };
   const tableRef = React.createRef();
   return (
@@ -353,28 +332,18 @@ const QuarterTable = ({
         cellEditable={{
           onCellEditApproved: (newValue, oldValue, rowData, columnDef) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                updateTableCellEdit(
-                  newValue,
-                  rowData,
-                  columnDef,
-                  year,
-                  quarterNum
-                );
-                tableRef.current && tableRef.current.onQueryChange();
-                resolve();
-              }, 500);
+              updateTableCellEdit(
+                newValue,
+                rowData,
+                columnDef,
+                year,
+                quarterNum
+              );
+              tableRef.current && tableRef.current.onQueryChange();
+              resolve();
             }),
         }}
         actions={[
-          {
-            icon: "refresh",
-            tooltip: "Refresh",
-            isFreeAction: true,
-            onClick: () => {
-              tableRef.current && tableRef.current.onQueryChange();
-            },
-          },
           {
             icon: "add",
             tooltip: "Add Course",
@@ -388,11 +357,9 @@ const QuarterTable = ({
         editable={{
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                deleteCourse(oldData, year, quarterNum);
-                tableRef.current && tableRef.current.onQueryChange();
-                resolve();
-              }, 500);
+              deleteCourse(oldData, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+              resolve();
             }),
         }}
         options={{
@@ -408,6 +375,8 @@ const QuarterTable = ({
           paging: false,
           padding: "dense",
           paginationType: "normal",
+          actionsColumnIndex: -1,
+          sorting: false,
         }}
       />
     </div>
