@@ -1,11 +1,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> change
 /*!
  * Materialize v1.0.0 (http://materializecss.com)
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> materialize a bit?
@@ -25,6 +29,8 @@
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
 >>>>>>> materialize a bit?
+=======
+>>>>>>> change
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -7525,6 +7531,9 @@ body.keyboard-focused .dropdown-content li:focus {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> change
 /*!
  * Waves v0.6.0
  * http://fian.my.id/Waves
@@ -7532,6 +7541,7 @@ body.keyboard-focused .dropdown-content li:focus {
  * Copyright 2014 Alfiana E. Sibuea and other contributors
  * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> materialize a bit?
@@ -7551,6 +7561,8 @@ body.keyboard-focused .dropdown-content li:focus {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> change
  */
 .waves-effect {
   position: relative;
@@ -9257,6 +9269,7 @@ textarea.materialize-textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Switch
 =======
 /* Switch
@@ -9267,6 +9280,9 @@ textarea.materialize-textarea {
 =======
 /* Switch
 >>>>>>> materialize a bit?
+=======
+/* Switch
+>>>>>>> change
    ========================================================================== */
 .switch,
 .switch * {
@@ -9545,6 +9561,7 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* File Input
 =======
 /* File Input
@@ -9555,6 +9572,9 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 =======
 /* File Input
 >>>>>>> materialize a bit?
+=======
+/* File Input
+>>>>>>> change
    ========================================================================== */
 .file-field {
   position: relative;
@@ -10086,6 +10106,9 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> change
 /*
     @license
     Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -10094,6 +10117,7 @@ input[type=range]::-ms-thumb {
     The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> materialize a bit?
@@ -10114,6 +10138,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> change
  */
 /**************************/
 /* STYLES FOR THE SPINNER */
@@ -10121,6 +10147,9 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> change
 /*
  * Constants:
  *      STROKEWIDTH = 3px
@@ -10133,6 +10162,7 @@ input[type=range]::-ms-thumb {
  *                                360/7 * 3 = 154.286)
  *      CONTAINERWIDTH = 28px
  *      SHRINK_TIME = 400ms
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> materialize a bit?
@@ -10157,6 +10187,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> change
  */
 .preloader-wrapper {
   display: inline-block;
@@ -10225,6 +10257,9 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> change
 /**
  * IMPORTANT NOTE ABOUT CSS ANIMATION PROPERTIES (keanulee):
  *
@@ -10237,6 +10272,7 @@ input[type=range]::-ms-thumb {
  * animation-duration, etc.) because under the polyfill, Safari does not recognize those
  * specific properties properly, treats them as -webkit-animation, and overrides the
  * other animation rules. See https://github.com/Polymer/platform/issues/53.
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> materialize a bit?
@@ -10261,6 +10297,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> change
  */
 .active .spinner-layer.spinner-blue {
   /* durations: 4 * ARCTIME */
@@ -10528,6 +10566,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Patch the gap that appear between the two adjacent div.circle-clipper while the
  * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
@@ -10546,6 +10585,11 @@ input[type=range]::-ms-thumb {
  * Patch the gap that appear between the two adjacent div.circle-clipper while the
  * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
 >>>>>>> materialize a bit?
+=======
+/**
+ * Patch the gap that appear between the two adjacent div.circle-clipper while the
+ * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
+>>>>>>> change
  */
 .gap-patch {
   position: absolute;
@@ -10915,6 +10959,9 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> change
   -webkit-transition: opacity .3s,
  visibility 0s 1s,
  -webkit-transform .3s;
@@ -10928,6 +10975,7 @@ input[type=range]::-ms-thumb {
  transform .3s,
  visibility 0s 1s,
  -webkit-transform .3s;
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> materialize a bit?
@@ -10944,6 +10992,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> change
 }
 
 .tap-target {
@@ -10999,6 +11049,9 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> change
   -webkit-transition: opacity .3s,
  visibility 0s,
  -webkit-transform .3s;
@@ -11012,6 +11065,7 @@ input[type=range]::-ms-thumb {
  transform .3s,
  visibility 0s,
  -webkit-transform .3s;
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> materialize a bit?
@@ -11028,6 +11082,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> change
   z-index: -1;
 }
 
