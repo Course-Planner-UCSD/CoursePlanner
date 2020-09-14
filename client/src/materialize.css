@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> change
 /*!
@@ -31,6 +32,13 @@
 >>>>>>> materialize a bit?
 =======
 >>>>>>> change
+=======
+/*!
+ * Materialize v1.0.0-rc.1 (http://materializecss.com)
+ * Copyright 2014-2017 Materialize
+ * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
+ */
+>>>>>>> materialize a bit?
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -2175,6 +2183,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Document
    ========================================================================== */
 /**
@@ -2196,10 +2205,15 @@
 /* Document
    ========================================================================== */
 >>>>>>> materialize a bit?
+=======
+/* Document
+   ========================================================================== */
+>>>>>>> materialize a bit?
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in
  *    IE on Windows Phone and in iOS.
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2232,6 +2246,8 @@
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 html {
   line-height: 1.15;
@@ -2249,6 +2265,7 @@ html {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Sections
    ========================================================================== */
 /**
@@ -2256,10 +2273,13 @@ html {
 =======
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /* Sections
    ========================================================================== */
 /**
  * Remove the margin in all browsers (opinionated).
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
@@ -2293,6 +2313,8 @@ html {
 /**
  * Remove the margin in all browsers (opinionated).
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 body {
   margin: 0;
@@ -2305,6 +2327,7 @@ body {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct display in IE 9-.
 =======
@@ -2335,6 +2358,10 @@ body {
 /**
  * Add the correct display in IE 9-.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct display in IE 9-.
+>>>>>>> materialize a bit?
  */
 article,
 aside,
@@ -2352,6 +2379,7 @@ section {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
@@ -2390,6 +2418,11 @@ section {
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
 >>>>>>> materialize formatting
+=======
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+>>>>>>> materialize a bit?
  */
 h1 {
   font-size: 2em;
@@ -2403,6 +2436,7 @@ h1 {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Grouping content
    ========================================================================== */
 /**
@@ -2411,11 +2445,14 @@ h1 {
 =======
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /* Grouping content
    ========================================================================== */
 /**
  * Add the correct display in IE 9-.
  * 1. Add the correct display in IE.
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
@@ -2453,6 +2490,8 @@ h1 {
  * Add the correct display in IE 9-.
  * 1. Add the correct display in IE.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 figcaption,
 figure,
@@ -2468,6 +2507,7 @@ main {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct margin in IE 8.
 =======
@@ -2498,6 +2538,10 @@ main {
 /**
  * Add the correct margin in IE 8.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct margin in IE 8.
+>>>>>>> materialize a bit?
  */
 figure {
   margin: 1em 40px;
@@ -2510,6 +2554,7 @@ figure {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Add the correct box sizing in Firefox.
  * 2. Show the overflow in Edge and IE.
@@ -2548,6 +2593,11 @@ figure {
  * 1. Add the correct box sizing in Firefox.
  * 2. Show the overflow in Edge and IE.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+>>>>>>> materialize a bit?
  */
 hr {
   -webkit-box-sizing: content-box;
@@ -2566,6 +2616,7 @@ hr {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
@@ -2604,6 +2655,11 @@ hr {
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+>>>>>>> materialize a bit?
  */
 pre {
   font-family: monospace, monospace;
@@ -2619,6 +2675,7 @@ pre {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Text-level semantics
    ========================================================================== */
 /**
@@ -2644,11 +2701,14 @@ pre {
 =======
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /* Text-level semantics
    ========================================================================== */
 /**
  * 1. Remove the gray background on active links in IE 10.
  * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> temp
 =======
@@ -2669,6 +2729,8 @@ pre {
  * 1. Remove the gray background on active links in IE 10.
  * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 a {
   background-color: transparent;
@@ -2684,6 +2746,7 @@ a {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Remove the bottom border in Chrome 57- and Firefox 39-.
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
@@ -2722,6 +2785,11 @@ a {
  * 1. Remove the bottom border in Chrome 57- and Firefox 39-.
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Remove the bottom border in Chrome 57- and Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+>>>>>>> materialize a bit?
  */
 abbr[title] {
   border-bottom: none;
@@ -2735,6 +2803,7 @@ abbr[title] {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   -webkit-text-decoration: underline dotted;
      -moz-text-decoration: underline dotted;
           text-decoration: underline dotted;
@@ -2767,12 +2836,15 @@ abbr[title] {
 =======
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
   text-decoration: underline dotted;
   /* 2 */
 }
 
 /**
  * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> temp
 =======
@@ -2799,6 +2871,8 @@ abbr[title] {
 /**
  * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 b,
 strong {
@@ -2812,6 +2886,7 @@ strong {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
 =======
@@ -2842,6 +2917,10 @@ strong {
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+>>>>>>> materialize a bit?
  */
 b,
 strong {
@@ -2855,6 +2934,7 @@ strong {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
@@ -2893,6 +2973,11 @@ strong {
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+>>>>>>> materialize a bit?
  */
 code,
 kbd,
@@ -2910,6 +2995,7 @@ samp {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct font style in Android 4.3-.
 =======
@@ -2940,6 +3026,10 @@ samp {
 /**
  * Add the correct font style in Android 4.3-.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct font style in Android 4.3-.
+>>>>>>> materialize a bit?
  */
 dfn {
   font-style: italic;
@@ -2952,6 +3042,7 @@ dfn {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct background and color in IE 9-.
 =======
@@ -2982,6 +3073,10 @@ dfn {
 /**
  * Add the correct background and color in IE 9-.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct background and color in IE 9-.
+>>>>>>> materialize a bit?
  */
 mark {
   background-color: #ff0;
@@ -2995,6 +3090,7 @@ mark {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct font size in all browsers.
 =======
@@ -3025,6 +3121,10 @@ mark {
 /**
  * Add the correct font size in all browsers.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct font size in all browsers.
+>>>>>>> materialize a bit?
  */
 small {
   font-size: 80%;
@@ -3037,6 +3137,7 @@ small {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Prevent `sub` and `sup` elements from affecting the line height in
  * all browsers.
@@ -3075,6 +3176,11 @@ small {
  * Prevent `sub` and `sup` elements from affecting the line height in
  * all browsers.
 >>>>>>> materialize formatting
+=======
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+>>>>>>> materialize a bit?
  */
 sub,
 sup {
@@ -3099,6 +3205,7 @@ sup {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Embedded content
    ========================================================================== */
 /**
@@ -3122,10 +3229,13 @@ sup {
  * Add the correct display in IE 9-.
 >>>>>>> materialize formatting
 =======
+=======
+>>>>>>> materialize a bit?
 /* Embedded content
    ========================================================================== */
 /**
  * Add the correct display in IE 9-.
+<<<<<<< HEAD
 >>>>>>> temp
 =======
 >>>>>>> materialize a bit?
@@ -3143,6 +3253,8 @@ sup {
 /**
  * Add the correct display in IE 9-.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 audio,
 video {
@@ -3156,6 +3268,7 @@ video {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct display in iOS 4-7.
 =======
@@ -3186,6 +3299,10 @@ video {
 /**
  * Add the correct display in iOS 4-7.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct display in iOS 4-7.
+>>>>>>> materialize a bit?
  */
 audio:not([controls]) {
   display: none;
@@ -3199,6 +3316,7 @@ audio:not([controls]) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Remove the border on images inside links in IE 10-.
 =======
@@ -3229,6 +3347,10 @@ audio:not([controls]) {
 /**
  * Remove the border on images inside links in IE 10-.
 >>>>>>> materialize formatting
+=======
+/**
+ * Remove the border on images inside links in IE 10-.
+>>>>>>> materialize a bit?
  */
 img {
   border-style: none;
@@ -3241,6 +3363,7 @@ img {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Hide the overflow in IE.
 =======
@@ -3271,6 +3394,10 @@ img {
 /**
  * Hide the overflow in IE.
 >>>>>>> materialize formatting
+=======
+/**
+ * Hide the overflow in IE.
+>>>>>>> materialize a bit?
  */
 svg:not(:root) {
   overflow: hidden;
@@ -3283,6 +3410,7 @@ svg:not(:root) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Forms
    ========================================================================== */
 /**
@@ -3291,11 +3419,14 @@ svg:not(:root) {
 =======
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /* Forms
    ========================================================================== */
 /**
  * 1. Change the font styles in all browsers (opinionated).
  * 2. Remove the margin in Firefox and Safari.
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
@@ -3333,6 +3464,8 @@ svg:not(:root) {
  * 1. Change the font styles in all browsers (opinionated).
  * 2. Remove the margin in Firefox and Safari.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 button,
 input,
@@ -3356,6 +3489,7 @@ textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
@@ -3394,6 +3528,11 @@ textarea {
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
 >>>>>>> materialize formatting
+=======
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+>>>>>>> materialize a bit?
  */
 button,
 input {
@@ -3408,6 +3547,7 @@ input {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
  * 1. Remove the inheritance of text transform in Firefox.
@@ -3446,6 +3586,11 @@ input {
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
  * 1. Remove the inheritance of text transform in Firefox.
 >>>>>>> materialize formatting
+=======
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+>>>>>>> materialize a bit?
  */
 button,
 select {
@@ -3460,6 +3605,7 @@ select {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> materialize formatting
 =======
@@ -3480,10 +3626,13 @@ select {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /**
  * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
  *    controls in Android 4.
  * 2. Correct the inability to style clickable types in iOS and Safari.
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3500,6 +3649,8 @@ select {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 button,
 html [type="button"],
@@ -3516,6 +3667,7 @@ html [type="button"],
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Remove the inner border and padding in Firefox.
 =======
@@ -3546,6 +3698,10 @@ html [type="button"],
 /**
  * Remove the inner border and padding in Firefox.
 >>>>>>> materialize formatting
+=======
+/**
+ * Remove the inner border and padding in Firefox.
+>>>>>>> materialize a bit?
  */
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -3562,6 +3718,7 @@ button::-moz-focus-inner,
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Restore the focus styles unset by the previous rule.
 =======
@@ -3592,6 +3749,10 @@ button::-moz-focus-inner,
 /**
  * Restore the focus styles unset by the previous rule.
 >>>>>>> materialize formatting
+=======
+/**
+ * Restore the focus styles unset by the previous rule.
+>>>>>>> materialize a bit?
  */
 button:-moz-focusring,
 [type="button"]:-moz-focusring,
@@ -3607,6 +3768,7 @@ button:-moz-focusring,
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Correct the padding in Firefox.
 =======
@@ -3637,6 +3799,10 @@ button:-moz-focusring,
 /**
  * Correct the padding in Firefox.
 >>>>>>> materialize formatting
+=======
+/**
+ * Correct the padding in Firefox.
+>>>>>>> materialize a bit?
  */
 fieldset {
   padding: 0.35em 0.75em 0.625em;
@@ -3649,6 +3815,7 @@ fieldset {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> materialize formatting
 =======
@@ -3670,11 +3837,14 @@ fieldset {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /**
  * 1. Correct the text wrapping in Edge and IE.
  * 2. Correct the color inheritance from `fieldset` elements in IE.
  * 3. Remove the padding so developers are not caught out when they zero out
  *    `fieldset` elements in all browsers.
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3691,6 +3861,8 @@ fieldset {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 legend {
   -webkit-box-sizing: border-box;
@@ -3715,6 +3887,7 @@ legend {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Add the correct display in IE 9-.
  * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
@@ -3753,6 +3926,11 @@ legend {
  * 1. Add the correct display in IE 9-.
  * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Add the correct display in IE 9-.
+ * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+>>>>>>> materialize a bit?
  */
 progress {
   display: inline-block;
@@ -3768,6 +3946,7 @@ progress {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Remove the default vertical scrollbar in IE.
 =======
@@ -3798,6 +3977,10 @@ progress {
 /**
  * Remove the default vertical scrollbar in IE.
 >>>>>>> materialize formatting
+=======
+/**
+ * Remove the default vertical scrollbar in IE.
+>>>>>>> materialize a bit?
  */
 textarea {
   overflow: auto;
@@ -3810,6 +3993,7 @@ textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Add the correct box sizing in IE 10-.
  * 2. Remove the padding in IE 10-.
@@ -3848,6 +4032,11 @@ textarea {
  * 1. Add the correct box sizing in IE 10-.
  * 2. Remove the padding in IE 10-.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Add the correct box sizing in IE 10-.
+ * 2. Remove the padding in IE 10-.
+>>>>>>> materialize a bit?
  */
 [type="checkbox"],
 [type="radio"] {
@@ -3865,6 +4054,7 @@ textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
 =======
@@ -3895,6 +4085,10 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
 >>>>>>> materialize formatting
+=======
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+>>>>>>> materialize a bit?
  */
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {
@@ -3908,6 +4102,7 @@ textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
@@ -3946,6 +4141,11 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+>>>>>>> materialize a bit?
  */
 [type="search"] {
   -webkit-appearance: textfield;
@@ -3961,6 +4161,7 @@ textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
 =======
@@ -3991,6 +4192,10 @@ textarea {
 /**
  * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
 >>>>>>> materialize formatting
+=======
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+>>>>>>> materialize a bit?
  */
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
@@ -4004,6 +4209,7 @@ textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * 1. Correct the inability to style clickable types in iOS and Safari.
  * 2. Change font properties to `inherit` in Safari.
@@ -4042,6 +4248,11 @@ textarea {
  * 1. Correct the inability to style clickable types in iOS and Safari.
  * 2. Change font properties to `inherit` in Safari.
 >>>>>>> materialize formatting
+=======
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+>>>>>>> materialize a bit?
  */
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
@@ -4057,6 +4268,7 @@ textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Interactive
    ========================================================================== */
 /*
@@ -4083,11 +4295,14 @@ textarea {
  * 1. Add the correct display in Edge, IE, and Firefox.
 >>>>>>> materialize formatting
 =======
+=======
+>>>>>>> materialize a bit?
 /* Interactive
    ========================================================================== */
 /*
  * Add the correct display in IE 9-.
  * 1. Add the correct display in Edge, IE, and Firefox.
+<<<<<<< HEAD
 >>>>>>> temp
 =======
 >>>>>>> materialize a bit?
@@ -4107,6 +4322,8 @@ textarea {
  * Add the correct display in IE 9-.
  * 1. Add the correct display in Edge, IE, and Firefox.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 details,
 menu {
@@ -4120,6 +4337,7 @@ menu {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Add the correct display in all browsers.
 =======
@@ -4150,6 +4368,10 @@ menu {
 /*
  * Add the correct display in all browsers.
 >>>>>>> materialize formatting
+=======
+/*
+ * Add the correct display in all browsers.
+>>>>>>> materialize a bit?
  */
 summary {
   display: list-item;
@@ -4162,6 +4384,7 @@ summary {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Scripting
    ========================================================================== */
 /**
@@ -4169,10 +4392,13 @@ summary {
 =======
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /* Scripting
    ========================================================================== */
 /**
  * Add the correct display in IE 9-.
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
@@ -4206,6 +4432,8 @@ summary {
 /**
  * Add the correct display in IE 9-.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 canvas {
   display: inline-block;
@@ -4218,6 +4446,7 @@ canvas {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Add the correct display in IE.
 =======
@@ -4248,6 +4477,10 @@ canvas {
 /**
  * Add the correct display in IE.
 >>>>>>> materialize formatting
+=======
+/**
+ * Add the correct display in IE.
+>>>>>>> materialize a bit?
  */
 template {
   display: none;
@@ -4260,6 +4493,7 @@ template {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Hidden
    ========================================================================== */
 /**
@@ -4283,10 +4517,13 @@ template {
  * Add the correct display in IE 10-.
 >>>>>>> materialize formatting
 =======
+=======
+>>>>>>> materialize a bit?
 /* Hidden
    ========================================================================== */
 /**
  * Add the correct display in IE 10-.
+<<<<<<< HEAD
 >>>>>>> temp
 =======
 >>>>>>> materialize a bit?
@@ -4304,6 +4541,8 @@ template {
 /**
  * Add the correct display in IE 10-.
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
  */
 [hidden] {
   display: none;
@@ -4587,6 +4826,7 @@ video.responsive-video {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*********************
   Transition Classes
 =======
@@ -4617,6 +4857,10 @@ video.responsive-video {
 /*********************
   Transition Classes
 >>>>>>> materialize formatting
+=======
+/*********************
+  Transition Classes
+>>>>>>> materialize a bit?
 **********************/
 ul.staggered-list li {
   opacity: 0;
@@ -4635,6 +4879,7 @@ ul.staggered-list li {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*********************
   Media Query Classes
 =======
@@ -4665,6 +4910,10 @@ ul.staggered-list li {
 /*********************
   Media Query Classes
 >>>>>>> materialize formatting
+=======
+/*********************
+  Media Query Classes
+>>>>>>> materialize a bit?
 **********************/
 @media only screen and (max-width: 600px) {
   .hide-on-small-only, .hide-on-small-and-down {
@@ -5115,6 +5364,7 @@ td, th {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*******************
   Utility Classes
 =======
@@ -5145,6 +5395,10 @@ td, th {
 /*******************
   Utility Classes
 >>>>>>> materialize formatting
+=======
+/*******************
+  Utility Classes
+>>>>>>> materialize a bit?
 *******************/
 .hide {
   display: none !important;
@@ -7032,6 +7286,7 @@ small {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .btn-large[disabled],
 .btn-small[disabled],
 =======
@@ -7062,6 +7317,10 @@ small {
 .btn-large[disabled],
 .btn-small[disabled],
 >>>>>>> materialize formatting
+=======
+[disabled].btn-large,
+[disabled].btn-small,
+>>>>>>> materialize a bit?
 .btn-floating[disabled],
 .btn-large[disabled],
 .btn-small[disabled],
@@ -7094,6 +7353,7 @@ small {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .btn-large[disabled]:hover,
 .btn-small[disabled]:hover,
 =======
@@ -7124,6 +7384,10 @@ small {
 .btn-large[disabled]:hover,
 .btn-small[disabled]:hover,
 >>>>>>> materialize formatting
+=======
+[disabled].btn-large:hover,
+[disabled].btn-small:hover,
+>>>>>>> materialize a bit?
 .btn-floating[disabled]:hover,
 .btn-large[disabled]:hover,
 .btn-small[disabled]:hover,
@@ -7532,6 +7796,7 @@ body.keyboard-focused .dropdown-content li:focus {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> change
 /*!
@@ -7547,6 +7812,8 @@ body.keyboard-focused .dropdown-content li:focus {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /*!
  * Waves v0.6.0
  * http://fian.my.id/Waves
@@ -7556,6 +7823,7 @@ body.keyboard-focused .dropdown-content li:focus {
  * https://github.com/fians/Waves/blob/master/LICENSE
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
@@ -7563,6 +7831,8 @@ body.keyboard-focused .dropdown-content li:focus {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> change
+=======
+>>>>>>> materialize a bit?
  */
 .waves-effect {
   position: relative;
@@ -7704,6 +7974,7 @@ body.keyboard-focused .dropdown-content li:focus {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> materialize formatting
 =======
@@ -7731,6 +8002,8 @@ body.keyboard-focused .dropdown-content li:focus {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
 @media only screen and (max-width: 992px) {
   .modal {
     width: 80%;
@@ -8072,6 +8345,7 @@ label {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Text Inputs + Textarea
 =======
 /* Text Inputs + Textarea
@@ -8094,6 +8368,9 @@ label {
 =======
 /* Text Inputs + Textarea
 >>>>>>> materialize formatting
+=======
+/* Text Inputs + Textarea
+>>>>>>> materialize a bit?
    ========================================================================== */
 /* Style Placeholders */
 ::-webkit-input-placeholder {
@@ -8112,6 +8389,7 @@ label {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ::-ms-input-placeholder {
   color: #d1d1d1;
 }
@@ -8138,6 +8416,8 @@ label {
   color: #d1d1d1;
 }
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
 ::placeholder {
   color: #d1d1d1;
 }
@@ -8325,6 +8605,7 @@ input.valid:not([type]), input.valid:not([type]):focus,
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> materialize formatting
 =======
@@ -8363,6 +8644,8 @@ input.valid[type=search]:not(.browser-default):focus,
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 input[type=text].valid:not(.browser-default),
 input[type=text].valid:not(.browser-default):focus,
 input[type=password].valid:not(.browser-default),
@@ -8388,6 +8671,7 @@ input[type=search].valid:not(.browser-default):focus,
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
@@ -8401,6 +8685,8 @@ input[type=search].valid:not(.browser-default):focus,
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
 textarea.materialize-textarea.valid,
 textarea.materialize-textarea.valid:focus, .select-wrapper.valid > input.select-dropdown {
   border-bottom: 1px solid #4CAF50;
@@ -8409,6 +8695,7 @@ textarea.materialize-textarea.valid:focus, .select-wrapper.valid > input.select-
 }
 
 input.invalid:not([type]), input.invalid:not([type]):focus,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -8454,6 +8741,8 @@ input.invalid[type=search]:not(.browser-default):focus,
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 input[type=text].invalid:not(.browser-default),
 input[type=text].invalid:not(.browser-default):focus,
 input[type=password].invalid:not(.browser-default),
@@ -8479,6 +8768,7 @@ input[type=search].invalid:not(.browser-default):focus,
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
@@ -8492,6 +8782,8 @@ input[type=search].invalid:not(.browser-default):focus,
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
 textarea.materialize-textarea.invalid,
 textarea.materialize-textarea.invalid:focus, .select-wrapper.invalid > input.select-dropdown,
 .select-wrapper.invalid > input.select-dropdown:focus {
@@ -8702,6 +8994,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .input-field > input[type]:-webkit-autofill:not(.browser-default):not([type="search"]) + label,
 =======
 .input-field > input[type]:-webkit-autofill:not(.browser-default) + label,
@@ -8724,6 +9017,9 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 =======
 .input-field > input[type]:-webkit-autofill:not(.browser-default):not([type="search"]) + label,
 >>>>>>> materialize formatting
+=======
+.input-field > input[type]:-webkit-autofill:not(.browser-default) + label,
+>>>>>>> materialize a bit?
 .input-field > input[type=date]:not(.browser-default) + label,
 .input-field > input[type=time]:not(.browser-default) + label {
   -webkit-transform: translateY(-14px) scale(0.8);
@@ -8893,6 +9189,7 @@ textarea.materialize-textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Radio Buttons
 =======
 /* Radio Buttons
@@ -8915,6 +9212,9 @@ textarea.materialize-textarea {
 =======
 /* Radio Buttons
 >>>>>>> materialize formatting
+=======
+/* Radio Buttons
+>>>>>>> materialize a bit?
    ========================================================================== */
 [type="radio"]:not(:checked),
 [type="radio"]:checked {
@@ -9044,6 +9344,7 @@ textarea.materialize-textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Checkboxes
 =======
 /* Checkboxes
@@ -9066,6 +9367,9 @@ textarea.materialize-textarea {
 =======
 /* Checkboxes
 >>>>>>> materialize formatting
+=======
+/* Checkboxes
+>>>>>>> materialize a bit?
    ========================================================================== */
 /* Remove default checkbox */
 [type="checkbox"]:not(:checked),
@@ -9270,6 +9574,7 @@ textarea.materialize-textarea {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Switch
 =======
 /* Switch
@@ -9283,6 +9588,9 @@ textarea.materialize-textarea {
 =======
 /* Switch
 >>>>>>> change
+=======
+/* Switch
+>>>>>>> materialize a bit?
    ========================================================================== */
 .switch,
 .switch * {
@@ -9386,6 +9694,7 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::before {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Select Field
 =======
 /* Select Field
@@ -9408,6 +9717,9 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::before {
 =======
 /* Select Field
 >>>>>>> materialize formatting
+=======
+/* Select Field
+>>>>>>> materialize a bit?
    ========================================================================== */
 select {
   display: none;
@@ -9562,6 +9874,7 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* File Input
 =======
 /* File Input
@@ -9575,6 +9888,9 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 =======
 /* File Input
 >>>>>>> change
+=======
+/* File Input
+>>>>>>> materialize a bit?
    ========================================================================== */
 .file-field {
   position: relative;
@@ -9625,6 +9941,7 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Range
 =======
 /* Range
@@ -9647,6 +9964,9 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 =======
 /* Range
 >>>>>>> materialize formatting
+=======
+/* Range
+>>>>>>> materialize a bit?
    ========================================================================== */
 .range-field {
   position: relative;
@@ -9818,6 +10138,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /***************
     Nav List
 =======
@@ -9848,6 +10169,10 @@ input[type=range]::-ms-thumb {
 /***************
     Nav List
 >>>>>>> materialize formatting
+=======
+/***************
+    Nav List
+>>>>>>> materialize a bit?
 ***************/
 .table-of-contents.fixed {
   position: fixed;
@@ -10107,6 +10432,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> change
 /*
@@ -10123,6 +10449,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /*
     @license
     Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -10133,6 +10461,7 @@ input[type=range]::-ms-thumb {
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
@@ -10140,6 +10469,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> change
+=======
+>>>>>>> materialize a bit?
  */
 /**************************/
 /* STYLES FOR THE SPINNER */
@@ -10148,6 +10479,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> change
 /*
@@ -10168,6 +10500,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /*
  * Constants:
  *      STROKEWIDTH = 3px
@@ -10182,6 +10516,7 @@ input[type=range]::-ms-thumb {
  *      SHRINK_TIME = 400ms
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
@@ -10189,6 +10524,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> change
+=======
+>>>>>>> materialize a bit?
  */
 .preloader-wrapper {
   display: inline-block;
@@ -10258,6 +10595,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> change
 /**
@@ -10278,6 +10616,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
 /**
  * IMPORTANT NOTE ABOUT CSS ANIMATION PROPERTIES (keanulee):
  *
@@ -10292,6 +10632,7 @@ input[type=range]::-ms-thumb {
  * other animation rules. See https://github.com/Polymer/platform/issues/53.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
@@ -10299,6 +10640,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> change
+=======
+>>>>>>> materialize a bit?
  */
 .active .spinner-layer.spinner-blue {
   /* durations: 4 * ARCTIME */
@@ -10567,6 +10910,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Patch the gap that appear between the two adjacent div.circle-clipper while the
  * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
@@ -10590,6 +10934,11 @@ input[type=range]::-ms-thumb {
  * Patch the gap that appear between the two adjacent div.circle-clipper while the
  * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
 >>>>>>> change
+=======
+/**
+ * Patch the gap that appear between the two adjacent div.circle-clipper while the
+ * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
+>>>>>>> materialize a bit?
  */
 .gap-patch {
   position: absolute;
@@ -10960,6 +11309,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> change
   -webkit-transition: opacity .3s,
@@ -10981,10 +11331,13 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
   -webkit-transition: opacity .3s, visibility 0s 1s, -webkit-transform .3s;
   transition: opacity .3s, visibility 0s 1s, -webkit-transform .3s;
   transition: opacity .3s, transform .3s, visibility 0s 1s;
   transition: opacity .3s, transform .3s, visibility 0s 1s, -webkit-transform .3s;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> materialize a bit?
@@ -10994,6 +11347,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> change
+=======
+>>>>>>> materialize a bit?
 }
 
 .tap-target {
@@ -11050,6 +11405,7 @@ input[type=range]::-ms-thumb {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> change
   -webkit-transition: opacity .3s,
@@ -11071,10 +11427,13 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
+=======
+>>>>>>> materialize a bit?
   -webkit-transition: opacity .3s, visibility 0s, -webkit-transform .3s;
   transition: opacity .3s, visibility 0s, -webkit-transform .3s;
   transition: opacity .3s, transform .3s, visibility 0s;
   transition: opacity .3s, transform .3s, visibility 0s, -webkit-transform .3s;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> materialize a bit?
@@ -11084,6 +11443,8 @@ input[type=range]::-ms-thumb {
 >>>>>>> materialize a bit?
 =======
 >>>>>>> change
+=======
+>>>>>>> materialize a bit?
   z-index: -1;
 }
 

@@ -11,10 +11,13 @@ import { Redirect } from "react-router-dom";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 =======
 >>>>>>> temp
+=======
+>>>>>>> materialize a bit?
 =======
 >>>>>>> materialize a bit?
 =======
@@ -37,6 +40,7 @@ import Alert from "@material-ui/lab/Alert";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 
@@ -53,6 +57,8 @@ import Alert from "@material-ui/lab/Alert";
 =======
 
 >>>>>>> materialize formatting
+=======
+>>>>>>> materialize a bit?
 import "../../materialize.css";
 import "../../materialize.min.css";
 import "../../style.css";

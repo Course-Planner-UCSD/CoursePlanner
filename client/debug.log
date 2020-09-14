@@ -28,6 +28,7 @@
 [0913/164547.715:ERROR:crash_report_database_win.cc(469)] failed to stat report
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> log
 [0913/235433.574:ERROR:crash_report_database_win.cc(469)] failed to stat report
@@ -49,3 +50,5 @@
 >>>>>>> materialize a bit?
 =======
 >>>>>>> log
+=======
+>>>>>>> materialize a bit?
