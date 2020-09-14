@@ -23,6 +23,13 @@ body,
   padding-bottom: 20px;
 }
 
+#myBackground2 {
+  background-image: linear-gradient(#edf6ff, #5ba1e6);
+  height: auto;
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
 #mainContainer {
   height: auto;
   min-height: 100vh;
@@ -132,15 +139,15 @@ body,
 }
 
 .plan {
-  width: 20%;
-  margin-left: 3.333%;
+  width: 22.5%;
+  margin-left: 2%;
   padding-bottom: 2.5%;
   float: left;
 }
 
 .planLeft {
-  width: 20%;
-  margin-left: 5%;
+  width: 22.5%;
+  margin-left: 2%;
   padding-bottom: 2.5%;
   float: left;
 }
@@ -176,4 +183,21 @@ body,
 
 #notesText {
   font-size: 27px;
+}
+
+.year {
+	display: flex;
+	flex-direction: row;
+}
+
+.yearCard {
+	padding:10px;
+	padding-top:0px;
+	margin-right:5%;
+	margin-left:5%;
+	margin-bottom:2%;
+}
+
+.yearHeaderText {
+	font-size: 22px;
 }
