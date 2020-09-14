@@ -22,12 +22,16 @@
     "materialize-css": "^1.0.0",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> materialize a bit?
     "mongoose": "^5.10.3",
 =======
     "mongoose": "^5.10.5",
 >>>>>>> materialize a bit?
+=======
+    "mongoose": "^5.10.5",
+>>>>>>> update packages
     "react-bootstrap": "^1.3.0",
     "request": "^2.88.2",
     "uniqid": "^5.2.0"
