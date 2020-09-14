@@ -265,7 +265,7 @@ const QuarterTable = ({
       newData.course = "-";
     }
     if (newData.units === undefined) {
-      newData.units = "0";
+      newData.units = "4";
     }
     const nextIndex = currentPlanData.quarters[quarterNum].courses.length;
     newData.tableData = { id: nextIndex };
@@ -317,13 +317,39 @@ const QuarterTable = ({
       tableInfo: currentPlanData.quarters[quarterNum].courses,
     });
   };
-
+  const tableRef = React.createRef();
   return (
     <div>
       <MaterialTable
         title={data.title}
         columns={data.columns}
-        data={data.tableInfo}
+        data={(query) =>
+          new Promise((resolve, reject) => {
+            var tableInfo;
+            if (year === "firstYear") {
+              tableInfo =
+                planData[planIndex].firstYear.quarters[quarterNum].courses;
+            } else if (year === "secondYear") {
+              tableInfo =
+                planData[planIndex].secondYear.quarters[quarterNum].courses;
+            } else if (year === "thirdYear") {
+              tableInfo =
+                planData[planIndex].thirdYear.quarters[quarterNum].courses;
+            } else if (year === "fourthYear") {
+              tableInfo =
+                planData[planIndex].fourthYear.quarters[quarterNum].courses;
+            } else if (year === "fifthYear") {
+              tableInfo =
+                planData[planIndex].fifthYear.quarters[quarterNum].courses;
+            }
+            resolve({
+              data: tableInfo,
+              page: query.page,
+              totalCount: tableInfo.length,
+            });
+          })
+        }
+        tableRef={tableRef}
         cellEditable={{
           onCellEditApproved: (newValue, oldValue, rowData, columnDef) =>
             new Promise((resolve, reject) => {
@@ -335,22 +361,36 @@ const QuarterTable = ({
                   year,
                   quarterNum
                 );
+                tableRef.current && tableRef.current.onQueryChange();
                 resolve();
               }, 500);
             }),
         }}
+        actions={[
+          {
+            icon: "refresh",
+            tooltip: "Refresh",
+            isFreeAction: true,
+            onClick: () => {
+              tableRef.current && tableRef.current.onQueryChange();
+            },
+          },
+          {
+            icon: "add",
+            tooltip: "Add Course",
+            isFreeAction: true,
+            onClick: () => {
+              addCourse({}, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+            },
+          },
+        ]}
         editable={{
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 deleteCourse(oldData, year, quarterNum);
-                resolve();
-              }, 500);
-            }),
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                addCourse(newData, year, quarterNum);
+                tableRef.current && tableRef.current.onQueryChange();
                 resolve();
               }, 500);
             }),
