@@ -2,28 +2,18 @@ import React, { Fragment, useState, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect, useParams } from "react-router-dom";
-import MaterialTable from "material-table";
-import axios from "axios";
-import { updatePlan } from "../../Redux/actions/plan";
-import moment from "moment";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/styles";
 import myTheme from "../layout/myTheme.component";
-import Card from "@material-ui/core/Card";
+import QuarterTable from "../layout/QuarterTable";
+import Notes from "../layout/Notes";
+import ModifiedDate from "../layout/ModifiedDate";
+import Alert from "@material-ui/lab/Alert";
 
-const Plan = ({ userAuth, token, planData, updatePlan }) => {
+const Plan = ({ userAuth, planData }) => {
   let { planID } = useParams();
 
   const [data, setData] = useState({
-    columns: [
-      { title: "Courses", field: "course" },
-      { title: "Units", field: "units" },
-    ],
-    lastModified: null,
     planIndex: null,
-    text: "",
   });
 
   useLayoutEffect(() => {
@@ -50,125 +40,7 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
     setData({
       ...data,
       planIndex: finalIndex,
-      text: planData[finalIndex].notes,
-      lastModified: moment(planData[finalIndex].modifiedDate).format(
-        "MMMM Do, h:mm a"
-      ),
     });
-  };
-  const updateTable = async (updates, year, quarterNum) => {
-    var i = 0;
-    while (updates[i] === undefined) {
-      i++;
-    }
-    const config = {
-      headers: {
-        "x-auth-token": token,
-        "Content-Type": "application/json",
-      },
-    };
-    var currentPlanData;
-
-    if (year === "firstYear") {
-      currentPlanData = planData[data.planIndex].firstYear;
-    }
-    if (year === "secondYear") {
-      currentPlanData = planData[data.planIndex].secondYear;
-    }
-    if (year === "thirdYear") {
-      currentPlanData = planData[data.planIndex].thirdYear;
-    }
-    if (year === "fourthYear") {
-      currentPlanData = planData[data.planIndex].fourthYear;
-    }
-    if (year === "fifthYear") {
-      currentPlanData = planData[data.planIndex].fifthYear;
-    }
-    while (updates[i] != null) {
-      for (
-        var j = 0;
-        j < currentPlanData.quarters[quarterNum].courses.length;
-        j++
-      ) {
-        if (
-          currentPlanData.quarters[quarterNum].courses[j].course ===
-          updates[i].oldData.course
-        ) {
-          currentPlanData.quarters[quarterNum].courses[j].course =
-            updates[i].newData.course;
-          break;
-        }
-      }
-      i++;
-    }
-
-    var currentTime = moment().toISOString();
-    var body;
-    if (year === "firstYear") {
-      body = JSON.stringify({
-        firstYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "secondYear") {
-      body = JSON.stringify({
-        secondYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "thirdYear") {
-      body = JSON.stringify({
-        thirdYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fourthYear") {
-      body = JSON.stringify({
-        fourthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fifthYear") {
-      body = JSON.stringify({
-        fifthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-
-    var url = "/api/coursePlan/updatePlan/" + planID;
-    await axios
-      .post(url, body, config)
-      .catch((err) => console.error(err))
-      .then((result) => {
-        updatePlan(result.data, planData, data.planIndex);
-      });
-    var newModified = moment(planData[data.planIndex].modifiedDate).format(
-      "MMMM Do, h:mm a"
-    );
-    setData({ ...data, lastModified: newModified });
-  };
-
-  const textboxChange = (value) => {
-    setData({ ...data, text: value });
-  };
-
-  const saveNotes = async () => {
-    var url = "/api/coursePlan/updatePlan/" + planID;
-    const config = {
-      headers: {
-        "x-auth-token": token,
-        "Content-Type": "application/json",
-      },
-    };
-
-    var body = JSON.stringify({ notes: data.text });
-
-    await axios
-      .post(url, body, config)
-      .catch((err) => console.error(err))
-      .then((result) => {
-        updatePlan(result.data, planData, data.planIndex);
-      });
   };
 
   if (!userAuth) {
@@ -178,81 +50,148 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
   return (
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
-        <Fragment>
-          {data.planIndex != null ? (
-            <Fragment>
-              <div className="plan">
-                <h1>{planData[data.planIndex].name}</h1>
-                <h2>
-                  Date Last Modified:
-                  {" " + data.lastModified}
-                </h2>
+        {data.planIndex != null ? (
+          <Fragment>
+            <div className="planHeader">
+              <h1>{planData[data.planIndex].name}</h1>
+              <ModifiedDate planIndex={data.planIndex} />
+            </div>
+            <div className="planLeft">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"firstYear"}
+                quarterNum={0}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"firstYear"}
+                quarterNum={1}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"firstYear"}
+                quarterNum={2}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"firstYear"}
+                quarterNum={3}
+              />
+            </div>
+            <div className="planLeft">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"secondYear"}
+                quarterNum={0}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"secondYear"}
+                quarterNum={1}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"secondYear"}
+                quarterNum={2}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"secondYear"}
+                quarterNum={3}
+              />
+            </div>
 
-                <MaterialTable
-                  title="Fall"
-                  columns={data.columns}
-                  data={(query) =>
-                    new Promise((resolve, reject) => {
-                      var newData =
-                        planData[data.planIndex].firstYear.quarters[0].courses;
-                      var newDatalength =
-                        planData[data.planIndex].firstYear.quarters[0].courses
-                          .length;
-                      resolve({
-                        data: newData,
-                        page: query.page,
-                        totalCount: newDatalength,
-                      });
-                    })
-                  }
-                  editable={{
-                    onBulkUpdate: (updates) =>
-                      new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                          updateTable(updates, "firstYear", 0);
-                          resolve();
-                        }, 1000);
-                      }),
-                  }}
-                  options={{
-                    search: false,
-                    tableLayout: "auto",
-                    headerStyle: {
-                      fontSize: 20,
-                    },
-                    rowStyle: {
-                      fontSize: 18,
-                    },
-                    paging: false,
-                    padding: "dense",
-                    paginationType: "normal",
-                  }}
-                />
-              </div>
-              <Card id="notes">
-                <h2 className="text" id="notesText">
-                  Notes
-                </h2>
-                <ReactQuill
-                  value={data.text}
-                  className="textbox"
-                  onChange={textboxChange}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="save"
-                  onClick={saveNotes}
-                  id="saveNotesButton"
-                >
-                  Save Notes
-                </Button>
-              </Card>
-            </Fragment>
-          ) : (
-            <Fragment></Fragment>
-          )}
-        </Fragment>
+            <div className="planLeft">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"thirdYear"}
+                quarterNum={0}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"thirdYear"}
+                quarterNum={1}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"thirdYear"}
+                quarterNum={2}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"thirdYear"}
+                quarterNum={3}
+              />
+            </div>
+
+            <div className="planLeft">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"fourthYear"}
+                quarterNum={0}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"fourthYear"}
+                quarterNum={1}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"fourthYear"}
+                quarterNum={2}
+              />
+            </div>
+            <div className="plan">
+              <QuarterTable
+                planID={planID}
+                planIndex={data.planIndex}
+                year={"fourthYear"}
+                quarterNum={3}
+              />
+            </div>
+
+            <Notes planID={planID} planIndex={data.planIndex} />
+          </Fragment>
+        ) : (
+          <Fragment></Fragment>
+        )}
       </div>
     </ThemeProvider>
   );
@@ -260,12 +199,10 @@ const Plan = ({ userAuth, token, planData, updatePlan }) => {
 Plan.propTypes = {
   token: PropTypes.string,
   userAuth: PropTypes.bool,
-  updatePlan: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
-  token: state.authReducer.token,
   planData: state.planReducer.planData,
 });
 
-export default connect(mapStateToProps, { updatePlan })(Plan);
+export default connect(mapStateToProps)(Plan);

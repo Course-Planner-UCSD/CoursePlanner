@@ -1,6 +1,5 @@
 import axios from "axios";
-import { LOGIN_SUCCESS, AUTH_ERROR } from "../../other/types";
-import { loadUserData } from "./loadUser";
+import { LOGIN, AUTH_ERROR } from "../../other/types";
 
 export const loginUser = ({ email, password }) => async (dispatch) => {
   const config = {
@@ -10,22 +9,22 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ email, password });
-  //sends post request to login user and dispatches to authReducer
+
   await axios
     .post("api/authentication", body, config)
     .then((response) => {
+      const payload = {
+        token: response.data.token,
+      };
       dispatch({
-        type: LOGIN_SUCCESS,
-        payload: response.data,
+        type: LOGIN,
+        payload,
       });
-      dispatch(loadUserData());
     })
     .catch((err) => {
       dispatch({
         type: AUTH_ERROR,
+        payload: err.response.data,
       });
-      if (err.response.data.errors) {
-        console.log(err.response.data.errors);
-      }
     });
 };
