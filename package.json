@@ -21,6 +21,9 @@
     "jsonwebtoken": "^8.5.1",
     "materialize-css": "^1.0.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> materialize a bit?
     "mongoose": "^5.10.3",
 =======
     "mongoose": "^5.10.5",
