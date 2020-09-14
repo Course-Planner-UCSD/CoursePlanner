@@ -7,10 +7,13 @@ import { Redirect } from "react-router-dom";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 =======
 >>>>>>> temp
+=======
+>>>>>>> materialize a bit?
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
@@ -27,12 +30,15 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Alert from "@material-ui/lab/Alert";
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 
 >>>>>>> materialize formatting
 =======
 >>>>>>> temp
+=======
+>>>>>>> materialize a bit?
 import "../../materialize.css";
 import "../../materialize.min.css";
 import "../../style.css";
