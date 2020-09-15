@@ -17,13 +17,6 @@ body,
 }
 
 #myBackground {
-  background-image: linear-gradient(white, #5ba1e6);
-  height: auto;
-  min-height: 100vh;
-  padding-bottom: 20px;
-}
-
-#myBackground2 {
   background-image: linear-gradient(#edf6ff, #5ba1e6);
   height: auto;
   min-height: 100vh;
@@ -200,4 +193,9 @@ body,
 
 .yearHeaderText {
 	font-size: 22px;
+}
+
+#testContainer {
+	display: flex;
+	flex-direction: column;
 }
