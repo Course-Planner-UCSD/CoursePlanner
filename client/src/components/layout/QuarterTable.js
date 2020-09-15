@@ -21,7 +21,6 @@ const QuarterTable = ({
       { title: "Units", field: "units" },
     ],
     planIndex: null,
-    tableInfo: [],
     title: "",
   });
 
@@ -30,28 +29,21 @@ const QuarterTable = ({
   }, [planIndex, planData]);
 
   const initialState = () => {
-    var tableInfo;
     var title;
     if (year === "firstYear") {
-      tableInfo = planData[planIndex].firstYear.quarters[quarterNum].courses;
       title = planData[planIndex].firstYear.quarters[quarterNum].season;
     } else if (year === "secondYear") {
-      tableInfo = planData[planIndex].secondYear.quarters[quarterNum].courses;
       title = planData[planIndex].secondYear.quarters[quarterNum].season;
     } else if (year === "thirdYear") {
-      tableInfo = planData[planIndex].thirdYear.quarters[quarterNum].courses;
       title = planData[planIndex].thirdYear.quarters[quarterNum].season;
     } else if (year === "fourthYear") {
-      tableInfo = planData[planIndex].fourthYear.quarters[quarterNum].courses;
       title = planData[planIndex].fourthYear.quarters[quarterNum].season;
     } else if (year === "fifthYear") {
-      tableInfo = planData[planIndex].fifthYear.quarters[quarterNum].courses;
       title = planData[planIndex].fifthYear.quarters[quarterNum].season;
     }
     setData({
       ...data,
       planIndex,
-      tableInfo,
       title,
     });
   };
@@ -149,10 +141,6 @@ const QuarterTable = ({
       .then((result) => {
         updatePlan(result.data, planData, data.planIndex);
       });
-    setData({
-      ...data,
-      tableInfo: currentPlanData.quarters[quarterNum].courses,
-    });
   };
 
   const deleteCourse = async (oldData, year, quarterNum) => {
@@ -230,10 +218,6 @@ const QuarterTable = ({
       .then((result) => {
         updatePlan(result.data, planData, data.planIndex);
       });
-    setData({
-      ...data,
-      tableInfo: currentPlanData.quarters[quarterNum].courses,
-    });
   };
 
   const addCourse = async (newData, year, quarterNum) => {
@@ -265,7 +249,7 @@ const QuarterTable = ({
       newData.course = "-";
     }
     if (newData.units === undefined) {
-      newData.units = "0";
+      newData.units = "4";
     }
     const nextIndex = currentPlanData.quarters[quarterNum].courses.length;
     newData.tableData = { id: nextIndex };
@@ -311,48 +295,71 @@ const QuarterTable = ({
       .then((result) => {
         updatePlan(result.data, planData, data.planIndex);
       });
-
-    setData({
-      ...data,
-      tableInfo: currentPlanData.quarters[quarterNum].courses,
-    });
   };
-
+  const tableRef = React.createRef();
   return (
     <div>
       <MaterialTable
         title={data.title}
         columns={data.columns}
-        data={data.tableInfo}
+        data={(query) =>
+          new Promise((resolve, reject) => {
+            var tableInfo;
+            if (year === "firstYear") {
+              tableInfo =
+                planData[planIndex].firstYear.quarters[quarterNum].courses;
+            } else if (year === "secondYear") {
+              tableInfo =
+                planData[planIndex].secondYear.quarters[quarterNum].courses;
+            } else if (year === "thirdYear") {
+              tableInfo =
+                planData[planIndex].thirdYear.quarters[quarterNum].courses;
+            } else if (year === "fourthYear") {
+              tableInfo =
+                planData[planIndex].fourthYear.quarters[quarterNum].courses;
+            } else if (year === "fifthYear") {
+              tableInfo =
+                planData[planIndex].fifthYear.quarters[quarterNum].courses;
+            }
+            resolve({
+              data: tableInfo,
+              page: query.page,
+              totalCount: tableInfo.length,
+            });
+          })
+        }
+        tableRef={tableRef}
         cellEditable={{
           onCellEditApproved: (newValue, oldValue, rowData, columnDef) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                updateTableCellEdit(
-                  newValue,
-                  rowData,
-                  columnDef,
-                  year,
-                  quarterNum
-                );
-                resolve();
-              }, 500);
+              updateTableCellEdit(
+                newValue,
+                rowData,
+                columnDef,
+                year,
+                quarterNum
+              );
+              tableRef.current && tableRef.current.onQueryChange();
+              resolve();
             }),
         }}
+        actions={[
+          {
+            icon: "add",
+            tooltip: "Add Course",
+            isFreeAction: true,
+            onClick: () => {
+              addCourse({}, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+            },
+          },
+        ]}
         editable={{
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                deleteCourse(oldData, year, quarterNum);
-                resolve();
-              }, 500);
-            }),
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                addCourse(newData, year, quarterNum);
-                resolve();
-              }, 500);
+              deleteCourse(oldData, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+              resolve();
             }),
         }}
         options={{
@@ -368,6 +375,8 @@ const QuarterTable = ({
           paging: false,
           padding: "dense",
           paginationType: "normal",
+          actionsColumnIndex: -1,
+          sorting: false,
         }}
       />
     </div>
