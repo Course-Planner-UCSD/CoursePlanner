@@ -57,155 +57,155 @@ const Plan = ({ userAuth, planData }) => {
               <h1>{planData[data.planIndex].name}</h1>
               <ModifiedDate planIndex={data.planIndex} />
             </div>
-			
-			<Card className="yearCard">
-			<h1 class="text yearHeaderText">2020-2021</h1>
-			<div class="year">
-            <div className="planLeft">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"firstYear"}
-                quarterNum={0}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"firstYear"}
-                quarterNum={1}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"firstYear"}
-                quarterNum={2}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"firstYear"}
-                quarterNum={3}
-              />
-            </div>
-			</div>
-			</Card>
-			<Card className="yearCard">
-			<h1 class="text yearHeaderText">2021-2022</h1>
-			<div class="year">
-            <div className="planLeft">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"secondYear"}
-                quarterNum={0}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"secondYear"}
-                quarterNum={1}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"secondYear"}
-                quarterNum={2}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"secondYear"}
-                quarterNum={3}
-              />
-            </div>
-			</div>
-			</Card>
-			<Card className="yearCard">
-			<h1 class="text yearHeaderText">2022-2023</h1>
-			<div class="year">
-            <div className="planLeft">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"thirdYear"}
-                quarterNum={0}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"thirdYear"}
-                quarterNum={1}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"thirdYear"}
-                quarterNum={2}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"thirdYear"}
-                quarterNum={3}
-              />
-            </div>
-			</div>
-			</Card>
-			<Card className="yearCard">
-			<h1 class="text yearHeaderText">2023-2024</h1>
-			<div class="year">
-            <div className="planLeft">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"fourthYear"}
-                quarterNum={0}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"fourthYear"}
-                quarterNum={1}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"fourthYear"}
-                quarterNum={2}
-              />
-            </div>
-            <div className="plan">
-              <QuarterTable
-                planID={planID}
-                planIndex={data.planIndex}
-                year={"fourthYear"}
-                quarterNum={3}
-              />
-            </div>
-			</div>
-			</Card>
+
+            <Card className="yearCard">
+              <h1 className="text yearHeaderText">2020-2021</h1>
+              <div className="year">
+                <div className="planLeft">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"firstYear"}
+                    quarterNum={0}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"firstYear"}
+                    quarterNum={1}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"firstYear"}
+                    quarterNum={2}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"firstYear"}
+                    quarterNum={3}
+                  />
+                </div>
+              </div>
+            </Card>
+            <Card className="yearCard">
+              <h1 className="text yearHeaderText">2021-2022</h1>
+              <div className="year">
+                <div className="planLeft">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"secondYear"}
+                    quarterNum={0}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"secondYear"}
+                    quarterNum={1}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"secondYear"}
+                    quarterNum={2}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"secondYear"}
+                    quarterNum={3}
+                  />
+                </div>
+              </div>
+            </Card>
+            <Card className="yearCard">
+              <h1 className="text yearHeaderText">2022-2023</h1>
+              <div className="year">
+                <div className="planLeft">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"thirdYear"}
+                    quarterNum={0}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"thirdYear"}
+                    quarterNum={1}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"thirdYear"}
+                    quarterNum={2}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"thirdYear"}
+                    quarterNum={3}
+                  />
+                </div>
+              </div>
+            </Card>
+            <Card className="yearCard">
+              <h1 className="text yearHeaderText">2023-2024</h1>
+              <div className="year">
+                <div className="planLeft">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"fourthYear"}
+                    quarterNum={0}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"fourthYear"}
+                    quarterNum={1}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"fourthYear"}
+                    quarterNum={2}
+                  />
+                </div>
+                <div className="plan">
+                  <QuarterTable
+                    planID={planID}
+                    planIndex={data.planIndex}
+                    year={"fourthYear"}
+                    quarterNum={3}
+                  />
+                </div>
+              </div>
+            </Card>
             <Notes planID={planID} planIndex={data.planIndex} />
           </Fragment>
         ) : (
