@@ -6,8 +6,11 @@ import { Redirect } from "react-router-dom";
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> temp
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
@@ -23,10 +26,13 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Alert from "@material-ui/lab/Alert";
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 
 >>>>>>> materialize formatting
+=======
+>>>>>>> temp
 import "../../materialize.css";
 import "../../materialize.min.css";
 import "../../style.css";
@@ -37,20 +43,13 @@ const Landing = ({ userAuth }) => {
   }
   return (
     <Fragment>
-    <div class="container">
-
-      <h1>Course Planner</h1>
-      <Link to="/register" >
-      <div class="col s6">
-        <h1 class="card-panel">Register</h1>
-      </div>
+      <h1>Landing</h1>
+      <Link to="/register">
+        <h1>Register</h1>
       </Link>
       <Link to="/login">
-      <div class="col s6">
-        <h1 class="card-panel">Login</h1>
-      </div>
+        <h1>Login</h1>
       </Link>
-      </div>
     </Fragment>
   );
 };
