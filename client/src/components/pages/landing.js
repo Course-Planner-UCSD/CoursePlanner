@@ -14,10 +14,14 @@ import { Redirect } from "react-router-dom";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 040fc8e59ff1b446097013c09f50baac3582bcc0
 
 =======
 =======
 >>>>>>> temp
+<<<<<<< HEAD
 =======
 >>>>>>> materialize a bit?
 =======
@@ -26,6 +30,8 @@ import { Redirect } from "react-router-dom";
 >>>>>>> materialize a bit?
 =======
 >>>>>>> temp
+=======
+>>>>>>> 040fc8e59ff1b446097013c09f50baac3582bcc0
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
@@ -46,6 +52,9 @@ import Alert from "@material-ui/lab/Alert";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 040fc8e59ff1b446097013c09f50baac3582bcc0
 >>>>>>> materialize a bit?
 =======
 
@@ -53,6 +62,7 @@ import Alert from "@material-ui/lab/Alert";
 =======
 >>>>>>> temp
 =======
+<<<<<<< HEAD
 >>>>>>> materialize a bit?
 =======
 
@@ -69,6 +79,10 @@ import Alert from "@material-ui/lab/Alert";
 >>>>>>> materialize formatting
 =======
 >>>>>>> temp
+=======
+
+>>>>>>> e549ede1318cabebe544bdd8282e93ea8e9850a9
+>>>>>>> 040fc8e59ff1b446097013c09f50baac3582bcc0
 import "../../materialize.css";
 import "../../materialize.min.css";
 import "../../style.css";
@@ -79,13 +93,20 @@ const Landing = ({ userAuth }) => {
   }
   return (
     <Fragment>
-      <h1>Landing</h1>
-      <Link to="/register">
-        <h1>Register</h1>
+    <div class="container">
+
+      <h1>Course Planner</h1>
+      <Link to="/register" >
+      <div class="col s6">
+        <h1 class="card-panel">Register</h1>
+      </div>
       </Link>
       <Link to="/login">
-        <h1>Login</h1>
+      <div class="col s6">
+        <h1 class="card-panel">Login</h1>
+      </div>
       </Link>
+      </div>
     </Fragment>
   );
 };

@@ -25,6 +25,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> materialize a bit?
     "mongoose": "^5.10.3",
@@ -39,6 +40,12 @@
 =======
     "mongoose": "^5.10.3",
 >>>>>>> temp
+=======
+    "mongoose": "^5.10.3",
+=======
+    "mongoose": "^5.10.5",
+>>>>>>> e549ede1318cabebe544bdd8282e93ea8e9850a9
+>>>>>>> 040fc8e59ff1b446097013c09f50baac3582bcc0
     "react-bootstrap": "^1.3.0",
     "request": "^2.88.2",
     "uniqid": "^5.2.0"
