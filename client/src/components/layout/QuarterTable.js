@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MaterialTable from "material-table";
@@ -333,7 +333,7 @@ const QuarterTable = ({
   };
   const tableRef = React.createRef();
   return (
-    <div>
+    <Fragment>
       <MaterialTable
         title={data.title}
         columns={data.columns}
@@ -417,8 +417,8 @@ const QuarterTable = ({
           sorting: false,
         }}
       />
-      <h3>Units: {data.totalUnits}</h3>
-    </div>
+      <h3 className="unitsText">Units: {data.totalUnits}</h3>
+    </Fragment>
   );
 };
 
