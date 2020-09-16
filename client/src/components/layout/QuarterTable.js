@@ -54,22 +54,7 @@ const QuarterTable = ({
   };
 
   const calculateUnits = (planIndex, type) => {
-    var currentPlanData;
-    if (year === "firstYear") {
-      currentPlanData = planData[planIndex].firstYear;
-    }
-    if (year === "secondYear") {
-      currentPlanData = planData[planIndex].secondYear;
-    }
-    if (year === "thirdYear") {
-      currentPlanData = planData[planIndex].thirdYear;
-    }
-    if (year === "fourthYear") {
-      currentPlanData = planData[planIndex].fourthYear;
-    }
-    if (year === "fifthYear") {
-      currentPlanData = planData[planIndex].fifthYear;
-    }
+    var currentPlanData = checkYear(year, planIndex);
     var totalUnits = 0;
     currentPlanData.quarters[quarterNum].courses.forEach((courseObject) => {
       totalUnits = totalUnits + parseInt(courseObject.units);
@@ -81,6 +66,61 @@ const QuarterTable = ({
       planTotalUnits(data.totalUnits, totalUnits);
       setData({ ...data, totalUnits });
     }
+  };
+
+  const checkYear = (year, index) => {
+    var currentPlanData;
+    if (year === "firstYear") {
+      currentPlanData = planData[index].firstYear;
+    }
+    if (year === "secondYear") {
+      currentPlanData = planData[index].secondYear;
+    }
+    if (year === "thirdYear") {
+      currentPlanData = planData[index].thirdYear;
+    }
+    if (year === "fourthYear") {
+      currentPlanData = planData[index].fourthYear;
+    }
+    if (year === "fifthYear") {
+      currentPlanData = planData[index].fifthYear;
+    }
+    return currentPlanData;
+  };
+
+  const generateBody = (year, currentPlanData, currentTime) => {
+    var body;
+    if (year === "firstYear") {
+      body = JSON.stringify({
+        firstYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "secondYear") {
+      body = JSON.stringify({
+        secondYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "thirdYear") {
+      body = JSON.stringify({
+        thirdYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fourthYear") {
+      body = JSON.stringify({
+        fourthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    if (year === "fifthYear") {
+      body = JSON.stringify({
+        fifthYear: currentPlanData,
+        modifiedDate: currentTime,
+      });
+    }
+    return body;
   };
 
   const updateTableCellEdit = async (
@@ -98,23 +138,7 @@ const QuarterTable = ({
         "Content-Type": "application/json",
       },
     };
-    var currentPlanData;
-
-    if (year === "firstYear") {
-      currentPlanData = planData[data.planIndex].firstYear;
-    }
-    if (year === "secondYear") {
-      currentPlanData = planData[data.planIndex].secondYear;
-    }
-    if (year === "thirdYear") {
-      currentPlanData = planData[data.planIndex].thirdYear;
-    }
-    if (year === "fourthYear") {
-      currentPlanData = planData[data.planIndex].fourthYear;
-    }
-    if (year === "fifthYear") {
-      currentPlanData = planData[data.planIndex].fifthYear;
-    }
+    var currentPlanData = checkYear(year, data.planIndex);
 
     if (columnDef.field === "course") {
       if (newValue === "") {
@@ -136,40 +160,10 @@ const QuarterTable = ({
       }
     }
 
-    var currentTime = moment().toISOString();
-    var body;
-    if (year === "firstYear") {
-      body = JSON.stringify({
-        firstYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "secondYear") {
-      body = JSON.stringify({
-        secondYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "thirdYear") {
-      body = JSON.stringify({
-        thirdYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fourthYear") {
-      body = JSON.stringify({
-        fourthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fifthYear") {
-      body = JSON.stringify({
-        fifthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
+    const currentTime = moment().toISOString();
+    const body = generateBody(year, currentPlanData, currentTime);
+    const url = "/api/coursePlan/updatePlan/" + planID;
 
-    var url = "/api/coursePlan/updatePlan/" + planID;
     await axios
       .post(url, body, config)
       .catch((err) => console.error(err))
@@ -187,23 +181,7 @@ const QuarterTable = ({
         "Content-Type": "application/json",
       },
     };
-    var currentPlanData;
-
-    if (year === "firstYear") {
-      currentPlanData = planData[data.planIndex].firstYear;
-    }
-    if (year === "secondYear") {
-      currentPlanData = planData[data.planIndex].secondYear;
-    }
-    if (year === "thirdYear") {
-      currentPlanData = planData[data.planIndex].thirdYear;
-    }
-    if (year === "fourthYear") {
-      currentPlanData = planData[data.planIndex].fourthYear;
-    }
-    if (year === "fifthYear") {
-      currentPlanData = planData[data.planIndex].fifthYear;
-    }
+    var currentPlanData = checkYear(year, data.planIndex);
 
     currentPlanData.quarters[quarterNum].courses = currentPlanData.quarters[
       quarterNum
@@ -213,40 +191,10 @@ const QuarterTable = ({
       }
     });
 
-    var currentTime = moment().toISOString();
-    var body;
-    if (year === "firstYear") {
-      body = JSON.stringify({
-        firstYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "secondYear") {
-      body = JSON.stringify({
-        secondYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "thirdYear") {
-      body = JSON.stringify({
-        thirdYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fourthYear") {
-      body = JSON.stringify({
-        fourthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fifthYear") {
-      body = JSON.stringify({
-        fifthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
+    const currentTime = moment().toISOString();
+    const body = generateBody(year, currentPlanData, currentTime);
+    const url = "/api/coursePlan/updatePlan/" + planID;
 
-    var url = "/api/coursePlan/updatePlan/" + planID;
     await axios
       .post(url, body, config)
       .catch((err) => console.error(err))
@@ -262,23 +210,7 @@ const QuarterTable = ({
         "Content-Type": "application/json",
       },
     };
-    var currentPlanData;
-
-    if (year === "firstYear") {
-      currentPlanData = planData[data.planIndex].firstYear;
-    }
-    if (year === "secondYear") {
-      currentPlanData = planData[data.planIndex].secondYear;
-    }
-    if (year === "thirdYear") {
-      currentPlanData = planData[data.planIndex].thirdYear;
-    }
-    if (year === "fourthYear") {
-      currentPlanData = planData[data.planIndex].fourthYear;
-    }
-    if (year === "fifthYear") {
-      currentPlanData = planData[data.planIndex].fifthYear;
-    }
+    var currentPlanData = checkYear(year, data.planIndex);
 
     if (newData.course === undefined) {
       newData.course = "-";
@@ -290,40 +222,10 @@ const QuarterTable = ({
     newData.tableData = { id: nextIndex };
     currentPlanData.quarters[quarterNum].courses.push(newData);
 
-    var currentTime = moment().toISOString();
-    var body;
-    if (year === "firstYear") {
-      body = JSON.stringify({
-        firstYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "secondYear") {
-      body = JSON.stringify({
-        secondYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "thirdYear") {
-      body = JSON.stringify({
-        thirdYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fourthYear") {
-      body = JSON.stringify({
-        fourthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
-    if (year === "fifthYear") {
-      body = JSON.stringify({
-        fifthYear: currentPlanData,
-        modifiedDate: currentTime,
-      });
-    }
+    const currentTime = moment().toISOString();
+    const body = generateBody(year, currentPlanData, currentTime);
+    const url = "/api/coursePlan/updatePlan/" + planID;
 
-    var url = "/api/coursePlan/updatePlan/" + planID;
     await axios
       .post(url, body, config)
       .catch((err) => console.error(err))

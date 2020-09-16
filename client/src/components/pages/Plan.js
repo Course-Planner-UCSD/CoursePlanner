@@ -26,7 +26,7 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
     return () => {
       mount = true;
     };
-  }, [planData, userAuth, currentTotalUnits]);
+  }, [planData, userAuth]);
 
   const initialState = () => {
     //DO NOT try to get anything from planData here since the app will crash
