@@ -51,12 +51,12 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
       .catch((err) => {
         console.error(err);
         document.getElementById("notesFailedSave").style.display = "flex";
-        window.setTimeout(closeFailedNotesAlert, 10000);
+        window.setTimeout(closeFailedNotesAlert, 5000);
       })
       .then((result) => {
         updatePlan(result.data, planData, planIndex);
         document.getElementById("notesSavedAlert").style.display = "flex";
-        window.setTimeout(closeSaveNotesAlert, 10000);
+        window.setTimeout(closeSaveNotesAlert, 5000);
       });
   };
 
