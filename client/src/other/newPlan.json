@@ -67,24 +67,7 @@
       },
       {
         "season": "Summer",
-        "courses": [
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          }
-        ]
+        "courses": []
       }
     ]
   },
@@ -155,24 +138,7 @@
       },
       {
         "season": "Summer",
-        "courses": [
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          }
-        ]
+        "courses": []
       }
     ]
   },
@@ -243,24 +209,7 @@
       },
       {
         "season": "Summer",
-        "courses": [
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          }
-        ]
+        "courses": []
       }
     ]
   },
@@ -331,24 +280,7 @@
       },
       {
         "season": "Summer",
-        "courses": [
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          }
-        ]
+        "courses": []
       }
     ]
   },
@@ -419,24 +351,7 @@
       },
       {
         "season": "Summer",
-        "courses": [
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          },
-          {
-            "course": "-",
-            "units": "4"
-          }
-        ]
+        "courses": []
       }
     ]
   }

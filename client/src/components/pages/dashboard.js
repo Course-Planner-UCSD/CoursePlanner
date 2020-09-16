@@ -208,6 +208,21 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
                   }, 1000);
                 }),
             }}
+            localization={{
+              body: {
+                editRow: {
+                  deleteText:
+                    "Are you sure you want to delete this Course Plan?",
+                },
+                emptyDataSourceMessage: "No Course Plans to display",
+              },
+              toolbar: {
+                searchPlaceholder: "Search Course Plans",
+              },
+              header: {
+                actions: "",
+              },
+            }}
           />
         </div>
       </div>
