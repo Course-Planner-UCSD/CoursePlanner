@@ -16,6 +16,7 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
 
   useEffect(() => {
     initialState();
+    closeFailedNotesAlert();
   }, [planData]);
 
   const initialState = () => {
@@ -26,8 +27,12 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
     setData({ ...data, text: value });
   };
 
-  const closeNotesAlert = () => {
-	document.getElementById("notesSavedAlert").style.display = "none";
+  const closeSaveNotesAlert = () => {
+    document.getElementById("notesSavedAlert").style.display = "none";
+  };
+
+  const closeFailedNotesAlert = () => {
+    document.getElementById("notesFailedSave").style.display = "none";
   };
 
   const saveNotes = async () => {
@@ -43,25 +48,38 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
 
     await axios
       .post(url, body, config)
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        console.error(err);
+        document.getElementById("notesFailedSave").style.display = "flex";
+        window.setTimeout(closeFailedNotesAlert, 5000);
+      })
       .then((result) => {
         updatePlan(result.data, planData, planIndex);
-		document.getElementById("notesSavedAlert").style.display = "flex";
-		window.setTimeout(closeNotesAlert, 10000);
+        document.getElementById("notesSavedAlert").style.display = "flex";
+        window.setTimeout(closeSaveNotesAlert, 5000);
       });
   };
 
   return (
     <div>
-	  <Alert
-            onClose={() => {
-              document.getElementById("notesSavedAlert").style.display = "none";
-            }}
-            severity="success"
-            id="notesSavedAlert"
-          >
-		  Notes saved!
-          </Alert>
+      <Alert
+        onClose={() => {
+          document.getElementById("notesSavedAlert").style.display = "none";
+        }}
+        severity="success"
+        id="notesSavedAlert"
+      >
+        Notes saved!
+      </Alert>
+      <Alert
+        onClose={() => {
+          document.getElementById("notesFailedSave").style.display = "none";
+        }}
+        severity="error"
+        id="notesFailedSave"
+      >
+        Error: Notes were not saved.
+      </Alert>
       <Card id="notes">
         <h2 className="text" id="notesText">
           Notes
