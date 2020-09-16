@@ -166,7 +166,7 @@ body,
 
 #notes {
   margin-left: 5%;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 2%;
   margin-right: 5%;
   padding-left: 1.5%;
@@ -203,4 +203,18 @@ body,
 .unitsText {
   margin-bottom: -10%;
   text-align: center;
+}
+
+#notesSavedAlert {
+  margin-bottom: 0px;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: none;
+}
+
+#notesFailedSave {
+  margin-bottom: 0px;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: none;
 }
