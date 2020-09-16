@@ -19,7 +19,7 @@ const QuarterTable = ({
   const [data, setData] = useState({
     columns: [
       { title: "Courses", field: "course" },
-      { title: "Units", field: "units" },
+      { title: "Units", field: "units", type: "numeric", align: "left" },
     ],
     planIndex: null,
     title: "",
@@ -317,6 +317,17 @@ const QuarterTable = ({
           paginationType: "normal",
           actionsColumnIndex: -1,
           sorting: false,
+        }}
+        localization={{
+          body: {
+            editRow: {
+              deleteText: "Are you sure you want to delete this course?",
+            },
+            emptyDataSourceMessage: "No courses to display",
+          },
+          header: {
+            actions: "",
+          },
         }}
       />
       <h3 className="unitsText">Units: {data.totalUnits}</h3>
