@@ -7,14 +7,14 @@ import myTheme from "../layout/myTheme.component";
 import QuarterTable from "../layout/QuarterTable";
 import Notes from "../layout/Notes";
 import ModifiedDate from "../layout/ModifiedDate";
-import Alert from "@material-ui/lab/Alert";
 import Card from "@material-ui/core/Card";
 
-const Plan = ({ userAuth, planData }) => {
+const Plan = ({ userAuth, planData, currentTotalUnits }) => {
   let { planID } = useParams();
 
   const [data, setData] = useState({
     planIndex: null,
+    totalUnits: 0,
   });
 
   useLayoutEffect(() => {
@@ -56,6 +56,7 @@ const Plan = ({ userAuth, planData }) => {
             <div className="planHeader">
               <h1>{planData[data.planIndex].name}</h1>
               <ModifiedDate planIndex={data.planIndex} />
+              <h3>Total Units: {currentTotalUnits}</h3>
             </div>
 
             <Card className="yearCard">
@@ -218,10 +219,12 @@ const Plan = ({ userAuth, planData }) => {
 Plan.propTypes = {
   token: PropTypes.string,
   userAuth: PropTypes.bool,
+  currentTotalUnits: PropTypes.number,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
   planData: state.planReducer.planData,
+  currentTotalUnits: state.planReducer.currentTotalUnits,
 });
 
 export default connect(mapStateToProps)(Plan);

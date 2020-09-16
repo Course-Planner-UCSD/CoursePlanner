@@ -10,40 +10,42 @@ router.post("/", async (req, res) => {
   const { email, password } = req.body;
   try {
     if (await UserModel.findOne({ email })) {
-      return res
+      res
         .status(400)
         .send("There is already an account associated with that email address");
-    }
-    let user = new UserModel({
-      email,
-      password,
-    });
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
+    } else {
+      const encryptedPassword = await bcrypt.hash(
+        password,
+        await bcrypt.genSalt(10)
+      );
+      let user = new UserModel({
+        email,
+        password: encryptedPassword,
+      });
 
-    await user.save();
+      await user.save();
 
-    const userID = {
-      user: {
-        id: user.id,
-      },
-    };
+      const userID = {
+        user: {
+          id: user.id,
+        },
+      };
 
-    //change expiresInv value to 3600
-    jwt.sign(
-      userID,
-      config.get("jwt"),
-      { expiresIn: 36000000 },
-      (err, token) => {
-        if (err) {
-          console.error(err);
+      jwt.sign(
+        userID,
+        config.get("jwt"),
+        { expiresIn: 36000000 },
+        (err, token) => {
+          if (err) {
+            console.error(err);
+          }
+          res.json({ token });
+          console.log("Registered User");
         }
-        res.json({ token });
-        console.log("Registered User");
-      }
-    );
-  } catch (error) {
-    console.log(error.message);
+      );
+    }
+  } catch (err) {
+    console.error(err);
     res.status(500).send("There is a problem with the server");
   }
 });
