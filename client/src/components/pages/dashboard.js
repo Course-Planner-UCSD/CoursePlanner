@@ -5,12 +5,12 @@ import { Redirect } from "react-router-dom";
 import MaterialTable from "material-table";
 import axios from "axios";
 import moment from "moment";
-import { plan } from "../../Redux/actions/plan";
+import { plan, planTotalUnits } from "../../Redux/actions/plan";
 import { ThemeProvider } from "@material-ui/styles";
 import myTheme from "../layout/myTheme.component";
 var newPlan = require("../../other/newPlan.json");
 
-const Dashboard = ({ userAuth, token, plan }) => {
+const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
   const [tableData, setTableData] = useState({
     columns: [
       { title: "Name", field: "name", defaultSort: "asc" },
@@ -34,6 +34,7 @@ const Dashboard = ({ userAuth, token, plan }) => {
   useLayoutEffect(() => {
     if (userAuth) {
       loadTableData();
+      planTotalUnits(null, null);
     }
     plan();
   }, [userAuth]);
@@ -217,6 +218,7 @@ Dashboard.propTypes = {
   token: PropTypes.string,
   userAuth: PropTypes.bool,
   plan: PropTypes.func.isRequired,
+  planTotalUnits: PropTypes.func.isRequired,
 };
 
 const stateToProps = (state) => ({
@@ -224,4 +226,4 @@ const stateToProps = (state) => ({
   token: state.authReducer.token,
 });
 
-export default connect(stateToProps, { plan })(Dashboard);
+export default connect(stateToProps, { plan, planTotalUnits })(Dashboard);

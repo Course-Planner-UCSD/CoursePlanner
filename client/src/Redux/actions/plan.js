@@ -1,5 +1,10 @@
 import axios from "axios";
-import { VIEW_PLAN, UPDATE_PLAN } from "../../other/types";
+import {
+  VIEW_PLAN,
+  UPDATE_PLAN,
+  TOTAL_UNITS,
+  RESET_UNITS,
+} from "../../other/types";
 
 export const plan = () => async (dispatch) => {
   var token = localStorage.getItem("token");
@@ -98,4 +103,22 @@ export const updatePlan = (newPlan, planData, index) => (dispatch) => {
     type: UPDATE_PLAN,
     payload: planData,
   });
+};
+
+export const planTotalUnits = (oldValue, newValue) => (dispatch) => {
+  if (oldValue === null && newValue === null) {
+    dispatch({
+      type: RESET_UNITS,
+    });
+  } else {
+    const payload = {
+      oldValue,
+      newValue,
+    };
+
+    dispatch({
+      type: TOTAL_UNITS,
+      payload,
+    });
+  }
 };

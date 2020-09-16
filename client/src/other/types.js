@@ -5,3 +5,5 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT = "LOGOUT";
 export const VIEW_PLAN = "VIEW_PLAN";
 export const UPDATE_PLAN = "UPDATE_PLAN";
+export const TOTAL_UNITS = "TOTAL_UNITS";
+export const RESET_UNITS = "RESET_UNITS";

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MaterialTable from "material-table";
 import axios from "axios";
-import { updatePlan } from "../../Redux/actions/plan";
+import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
 import moment from "moment";
 
 const QuarterTable = ({
@@ -14,6 +14,7 @@ const QuarterTable = ({
   planIndex,
   year,
   quarterNum,
+  planTotalUnits,
 }) => {
   const [data, setData] = useState({
     columns: [
@@ -22,6 +23,7 @@ const QuarterTable = ({
     ],
     planIndex: null,
     title: "",
+    totalUnits: 0,
   });
 
   useEffect(() => {
@@ -41,11 +43,44 @@ const QuarterTable = ({
     } else if (year === "fifthYear") {
       title = planData[planIndex].fifthYear.quarters[quarterNum].season;
     }
+    const totalUnits = calculateUnits(planIndex, "init");
+    planTotalUnits(0, totalUnits);
     setData({
       ...data,
       planIndex,
       title,
+      totalUnits,
     });
+  };
+
+  const calculateUnits = (planIndex, type) => {
+    var currentPlanData;
+    if (year === "firstYear") {
+      currentPlanData = planData[planIndex].firstYear;
+    }
+    if (year === "secondYear") {
+      currentPlanData = planData[planIndex].secondYear;
+    }
+    if (year === "thirdYear") {
+      currentPlanData = planData[planIndex].thirdYear;
+    }
+    if (year === "fourthYear") {
+      currentPlanData = planData[planIndex].fourthYear;
+    }
+    if (year === "fifthYear") {
+      currentPlanData = planData[planIndex].fifthYear;
+    }
+    var totalUnits = 0;
+    currentPlanData.quarters[quarterNum].courses.forEach((courseObject) => {
+      totalUnits = totalUnits + parseInt(courseObject.units);
+    });
+
+    if (type === "init") {
+      return totalUnits;
+    } else {
+      planTotalUnits(data.totalUnits, totalUnits);
+      setData({ ...data, totalUnits });
+    }
   };
 
   const updateTableCellEdit = async (
@@ -92,8 +127,8 @@ const QuarterTable = ({
     }
 
     if (columnDef.field === "units") {
-      if (newValue === "") {
-        currentPlanData.quarters[quarterNum].courses[courseNum].units = "0";
+      if (newValue === "" || Number.isNaN(parseInt(newValue))) {
+        currentPlanData.quarters[quarterNum].courses[courseNum].units = "4";
       } else {
         currentPlanData.quarters[quarterNum].courses[
           courseNum
@@ -340,6 +375,7 @@ const QuarterTable = ({
                 quarterNum
               );
               tableRef.current && tableRef.current.onQueryChange();
+              calculateUnits(planIndex);
               resolve();
             }),
         }}
@@ -351,6 +387,7 @@ const QuarterTable = ({
             onClick: () => {
               addCourse({}, year, quarterNum);
               tableRef.current && tableRef.current.onQueryChange();
+              calculateUnits(planIndex);
             },
           },
         ]}
@@ -359,6 +396,7 @@ const QuarterTable = ({
             new Promise((resolve, reject) => {
               deleteCourse(oldData, year, quarterNum);
               tableRef.current && tableRef.current.onQueryChange();
+              calculateUnits(planIndex);
               resolve();
             }),
         }}
@@ -379,6 +417,7 @@ const QuarterTable = ({
           sorting: false,
         }}
       />
+      <h3>Units: {data.totalUnits}</h3>
     </div>
   );
 };
@@ -386,6 +425,7 @@ const QuarterTable = ({
 QuarterTable.propTypes = {
   token: PropTypes.string,
   updatePlan: PropTypes.func.isRequired,
+  planTotalUnits: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -393,4 +433,6 @@ const mapStateToProps = (state) => ({
   planData: state.planReducer.planData,
 });
 
-export default connect(mapStateToProps, { updatePlan })(QuarterTable);
+export default connect(mapStateToProps, { updatePlan, planTotalUnits })(
+  QuarterTable
+);
