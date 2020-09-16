@@ -206,8 +206,15 @@ body,
 }
 
 #notesSavedAlert {
-	margin-bottom: 0px;
-	margin-left: 5%;
-	margin-right: 5%;
-	display: none;
+  margin-bottom: 0px;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: none;
+}
+
+#notesFailedSave {
+  margin-bottom: 0px;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: none;
 }
