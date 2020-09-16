@@ -7,6 +7,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import "react-quill/dist/quill.snow.css";
 import { updatePlan } from "../../Redux/actions/plan";
+import Alert from "@material-ui/lab/Alert";
 
 const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
   const [data, setData] = useState({
@@ -25,6 +26,10 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
     setData({ ...data, text: value });
   };
 
+  const closeNotesAlert = () => {
+	document.getElementById("notesSavedAlert").style.display = "none";
+  };
+
   const saveNotes = async () => {
     var url = "/api/coursePlan/updatePlan/" + planID;
     const config = {
@@ -41,11 +46,22 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
       .catch((err) => console.error(err))
       .then((result) => {
         updatePlan(result.data, planData, planIndex);
+		document.getElementById("notesSavedAlert").style.display = "flex";
+		window.setTimeout(closeNotesAlert, 10000);
       });
   };
 
   return (
     <div>
+	  <Alert
+            onClose={() => {
+              document.getElementById("notesSavedAlert").style.display = "none";
+            }}
+            severity="success"
+            id="notesSavedAlert"
+          >
+		  Notes saved!
+          </Alert>
       <Card id="notes">
         <h2 className="text" id="notesText">
           Notes
