@@ -35,8 +35,8 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
     if (userAuth) {
       loadTableData();
       planTotalUnits(null, null);
+      plan();
     }
-    plan();
   }, [userAuth]);
 
   const loadTableData = async () => {

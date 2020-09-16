@@ -132,17 +132,15 @@ body,
 }
 
 .plan {
-  width: 22.5%;
   margin-left: 2%;
   padding-bottom: 2.5%;
   float: left;
 }
-
-.planLeft {
+.summer {
   width: 22.5%;
-  margin-left: 2%;
-  padding-bottom: 2.5%;
-  float: left;
+}
+.noSummer {
+  width: 30.5%;
 }
 
 .planHeader {
