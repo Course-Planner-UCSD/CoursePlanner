@@ -206,12 +206,6 @@ body,
 }
 
 #notesSavedAlert {
-<<<<<<< HEAD
-	margin-bottom: 0px;
-	margin-left: 5%;
-	margin-right: 5%;
-	display: none;
-=======
   margin-bottom: 0px;
   margin-left: 5%;
   margin-right: 5%;
@@ -223,5 +217,9 @@ body,
   margin-left: 5%;
   margin-right: 5%;
   display: none;
->>>>>>> 0a4c51f6effe5b8dd66c43fe9143c3ab6d37838b
+}
+
+#title {
+	display: flex;
+	flex-direction: row;
 }

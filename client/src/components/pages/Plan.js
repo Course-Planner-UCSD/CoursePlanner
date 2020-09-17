@@ -8,6 +8,9 @@ import QuarterTable from "../layout/QuarterTable";
 import Notes from "../layout/Notes";
 import ModifiedDate from "../layout/ModifiedDate";
 import Card from "@material-ui/core/Card";
+import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
+import CreateIcon from '@material-ui/icons/Create';
 
 const Plan = ({ userAuth, planData, currentTotalUnits }) => {
   let { planID } = useParams();
@@ -15,6 +18,7 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
   const [data, setData] = useState({
     planIndex: null,
     totalUnits: 0,
+	editingTitle: false,
   });
 
   useLayoutEffect(() => {
@@ -41,8 +45,16 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
     setData({
       ...data,
       planIndex: finalIndex,
+	  editingTitle: true,
     });
   };
+
+  const switchEditing = () => {
+	setData({
+      ...data,
+	  editingTitle: !data.editingTitle,
+    });
+  }
 
   if (!userAuth) {
     return <Redirect to="/" />;
@@ -54,7 +66,18 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
         {data.planIndex != null ? (
           <Fragment>
             <div className="planHeader">
-              <h1>{planData[data.planIndex].name}</h1>
+			  {data.editingTitle ? 
+				<div id="title"><p>editing</p>
+				<IconButton
+                onClick={switchEditing}>
+                  <CreateIcon />
+                </IconButton></div>
+				: <div id="title"><h1>{planData[data.planIndex].name}</h1>
+				<IconButton
+                onClick={switchEditing}>
+                  <CreateIcon/>
+                </IconButton></div>
+			  }
               <ModifiedDate planIndex={data.planIndex} />
               <h3>Total Units: {currentTotalUnits}</h3>
             </div>
@@ -208,6 +231,7 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
               </div>
             </Card>
             <Notes planID={planID} planIndex={data.planIndex} />
+			<Button onClick={switchEditing} variant="contained"color="primary"></Button>
           </Fragment>
         ) : (
           <Fragment></Fragment>
