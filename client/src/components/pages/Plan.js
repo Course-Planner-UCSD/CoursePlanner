@@ -12,6 +12,7 @@ import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
 import Axios from "axios";
+import FormGroup from "@material-ui/core/FormGroup";
 
 const Plan = ({
   userAuth,
@@ -159,30 +160,30 @@ const Plan = ({
               <h1>{planData[data.planIndex].name}</h1>
               <ModifiedDate planIndex={data.planIndex} />
               <h3>Total Units: {currentTotalUnits}</h3>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={data.summerChecked}
-                    onChange={displaySummer}
-                    name="Summer"
-                    color="secondary"
-                  />
-                }
-                label="Summer Courses"
-                labelPlacement="start"
-              />
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={data.fiveYearChecked}
-                    onChange={displayFiveYears}
-                    name="Fifth Year"
-                    color="secondary"
-                  />
-                }
-                label="Fifth Year"
-                labelPlacement="start"
-              />
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={data.summerChecked}
+                      onChange={displaySummer}
+                      name="Summer"
+                      color="secondary"
+                    />
+                  }
+                  label="Summer Courses"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={data.fiveYearChecked}
+                      onChange={displayFiveYears}
+                      name="Fifth Year"
+                      color="secondary"
+                    />
+                  }
+                  label="Fifth Year"
+                />
+              </FormGroup>
             </div>
             <Fragment>
               <Card className="yearCard">
