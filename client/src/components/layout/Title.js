@@ -85,6 +85,13 @@ const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
       });
   };
 
+  const cancelTitle = () => {
+	setData({
+      ...data,
+	  editingTitle: false,
+    });
+  }
+
   return (
     <div>
 	  <Alert
@@ -117,6 +124,10 @@ const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
 		  <IconButton
           onClick={saveTitle}>
             <CheckIcon />
+          </IconButton>
+		  <IconButton
+          onClick={cancelTitle}>
+            <ClearIcon />
           </IconButton></div>
 		: <div id="title"><h1>{data.currentTitle}</h1>
 		<IconButton
