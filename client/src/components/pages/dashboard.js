@@ -14,6 +14,17 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
   const [tableData, setTableData] = useState({
     columns: [
       { title: "Name", field: "name", defaultSort: "asc" },
+      {
+        title: "Start Year",
+        field: "startYear",
+        type: "numeric",
+        align: "left",
+      },
+      {
+        title: "Number of Years",
+        field: "years",
+        editable: "never",
+      },
       { title: "Date Created", field: "createdDate", editable: "never" },
       {
         title: "Date Modified",
@@ -29,14 +40,15 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
     viewPlan: false,
     redirectURL: "",
     viewPlanID: "",
+    data: [],
   });
 
   useLayoutEffect(() => {
     if (userAuth) {
       loadTableData();
       planTotalUnits(null, null);
+      plan();
     }
-    plan();
   }, [userAuth]);
 
   const loadTableData = async () => {
@@ -61,7 +73,12 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
       var planData = await axios
         .get(url, config)
         .catch((err) => console.error(err));
-
+      var year = 0;
+      if (planData.data[0].showFifthYear) {
+        year = 5;
+      } else {
+        year = 4;
+      }
       currentData.push({
         name: planData.data[0].name,
         createdDate: moment(planData.data[0].createdDate).format(
@@ -74,6 +91,8 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
           "MMMM Do, h:mm a"
         ),
         planID: planData.data[0]._id,
+        years: year,
+        startYear: planData.data[0].startYear,
       });
     }
 
@@ -119,7 +138,20 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
       },
     };
 
-    const body = JSON.stringify({ name: newData.name });
+    if (newData.name === undefined) {
+      newData.name = "Course Plan";
+    }
+    if (
+      newData.startYear === undefined ||
+      Number.isNaN(parseInt(newData.startYear))
+    ) {
+      newData.startYear = parseInt(moment().format("YYYY"));
+    }
+
+    const body = JSON.stringify({
+      name: newData.name,
+      startYear: newData.startYear,
+    });
 
     var updateURL = "/api/coursePlan/updatePlan/" + newPlanID;
 
@@ -207,6 +239,21 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
                     resolve();
                   }, 1000);
                 }),
+            }}
+            localization={{
+              body: {
+                editRow: {
+                  deleteText:
+                    "Are you sure you want to delete this Course Plan?",
+                },
+                emptyDataSourceMessage: "No Course Plans to display",
+              },
+              toolbar: {
+                searchPlaceholder: "Search Course Plans",
+              },
+              header: {
+                actions: "",
+              },
             }}
           />
         </div>
