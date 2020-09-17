@@ -9,30 +9,35 @@ import Alert from "@material-ui/lab/Alert";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 
-import CreateIcon from '@material-ui/icons/Create';
-import CheckIcon from '@material-ui/icons/Check';
-import ClearIcon from '@material-ui/icons/Clear';
+import CreateIcon from "@material-ui/icons/Create";
+import CheckIcon from "@material-ui/icons/Check";
+import ClearIcon from "@material-ui/icons/Clear";
 
 var timeouts = [];
 
 const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
   const [data, setData] = useState({
-	currentTitle: "",
+    currentTitle: "",
     editingTitle: false,
-	newTitle: "",
+    newTitle: "",
   });
 
   useEffect(() => {
     initialState();
-	return function cleanup() {
-	  for (var i = 0; i < timeouts.length; i++) {
-	    window.clearTimeout(timeouts[i]);
-      }   
+    return function cleanup() {
+      for (var i = 0; i < timeouts.length; i++) {
+        window.clearTimeout(timeouts[i]);
+      }
     };
   }, [planData]);
 
   const initialState = () => {
-    setData({ ...data, currentTitle: planData[planIndex].name, editingTitle: false, newTitle: "" });
+    setData({
+      ...data,
+      currentTitle: planData[planIndex].name,
+      editingTitle: false,
+      newTitle: "",
+    });
   };
 
   const closeSaveTitleAlert = () => {
@@ -44,12 +49,12 @@ const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
   };
 
   const startEditing = () => {
-	setData({
+    setData({
       ...data,
-	  editingTitle: true,
-	  newTitle: data.currentTitle,
+      editingTitle: true,
+      newTitle: data.currentTitle,
     });
-  }
+  };
 
   const onChangeTitle = (e) => {
     setData({ ...data, newTitle: e.target.value });
@@ -70,31 +75,31 @@ const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
       .post(url, body, config)
       .catch((err) => {
         console.error(err);
-		document.getElementById("titleFailedSave").style.display = "flex";
+        document.getElementById("titleFailedSave").style.display = "flex";
         timeouts.push(window.setTimeout(closeFailedTitleAlert, 5000));
       })
       .then((result) => {
         updatePlan(result.data, planData, planIndex);
-		document.getElementById("titleSavedAlert").style.display = "flex";
+        document.getElementById("titleSavedAlert").style.display = "flex";
         timeouts.push(window.setTimeout(closeSaveTitleAlert, 5000));
-		setData({
-	      ...data,
-		  currentTitle: data.newTitle,
-		  editingTitle: false,
-	    });
+        setData({
+          ...data,
+          currentTitle: data.newTitle,
+          editingTitle: false,
+        });
       });
   };
 
   const cancelTitle = () => {
-	setData({
+    setData({
       ...data,
-	  editingTitle: false,
+      editingTitle: false,
     });
-  }
+  };
 
   return (
     <div>
-	  <Alert
+      <Alert
         onClose={() => {
           document.getElementById("titleSavedAlert").style.display = "none";
         }}
@@ -112,30 +117,30 @@ const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
       >
         Error: Title was not saved.
       </Alert>
-      {data.editingTitle ? 
-		<div id="title">
-		  <TextField
-          id="titleInput"
-          label=""
-          variant="standard"
-          value={data.newTitle}
-          onChange={onChangeTitle}
+      {data.editingTitle ? (
+        <div id="title">
+          <TextField
+            id="titleInput"
+            label=""
+            variant="standard"
+            value={data.newTitle}
+            onChange={onChangeTitle}
           />
-		  <IconButton
-          onClick={saveTitle}>
+          <IconButton onClick={saveTitle}>
             <CheckIcon />
           </IconButton>
-		  <IconButton
-          onClick={cancelTitle}>
+          <IconButton onClick={cancelTitle}>
             <ClearIcon />
-          </IconButton></div>
-		:
-		<div id="title"><h1>{data.currentTitle}</h1>
-		<IconButton
-        onClick={startEditing}>
-          <CreateIcon/>
-        </IconButton></div>
-	  }
+          </IconButton>
+        </div>
+      ) : (
+        <div id="title">
+          <h1>{data.currentTitle}</h1>
+          <IconButton onClick={startEditing}>
+            <CreateIcon />
+          </IconButton>
+        </div>
+      )}
     </div>
   );
 };

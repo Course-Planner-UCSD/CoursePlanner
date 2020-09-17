@@ -55,7 +55,7 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
         {data.planIndex != null ? (
           <Fragment>
             <div className="planHeader">
-			  <Title planID={planID} planIndex={data.planIndex}/>
+              <Title planID={planID} planIndex={data.planIndex} />
               <ModifiedDate planIndex={data.planIndex} />
               <h3>Total Units: {currentTotalUnits}</h3>
             </div>
