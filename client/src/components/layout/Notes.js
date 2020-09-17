@@ -9,6 +9,8 @@ import "react-quill/dist/quill.snow.css";
 import { updatePlan } from "../../Redux/actions/plan";
 import Alert from "@material-ui/lab/Alert";
 
+var timeouts = [];
+
 const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
   const [data, setData] = useState({
     text: "",
@@ -17,6 +19,11 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
   useEffect(() => {
     initialState();
     closeFailedNotesAlert();
+	return function cleanup() {
+	  for (var i = 0; i < timeouts.length; i++) {
+	    window.clearTimeout(timeouts[i]);
+      }   
+    };
   }, [planData]);
 
   const initialState = () => {
@@ -51,12 +58,12 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
       .catch((err) => {
         console.error(err);
         document.getElementById("notesFailedSave").style.display = "flex";
-        window.setTimeout(closeFailedNotesAlert, 5000);
+        timeouts.push(window.setTimeout(closeFailedNotesAlert, 5000));
       })
       .then((result) => {
         updatePlan(result.data, planData, planIndex);
         document.getElementById("notesSavedAlert").style.display = "flex";
-        window.setTimeout(closeSaveNotesAlert, 5000);
+        timeouts.push(window.setTimeout(closeSaveNotesAlert, 5000));
       });
   };
 

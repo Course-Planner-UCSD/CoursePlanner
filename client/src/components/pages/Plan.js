@@ -6,11 +6,9 @@ import { ThemeProvider } from "@material-ui/styles";
 import myTheme from "../layout/myTheme.component";
 import QuarterTable from "../layout/QuarterTable";
 import Notes from "../layout/Notes";
+import Title from "../layout/Title";
 import ModifiedDate from "../layout/ModifiedDate";
 import Card from "@material-ui/core/Card";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import CreateIcon from '@material-ui/icons/Create';
 
 const Plan = ({ userAuth, planData, currentTotalUnits }) => {
   let { planID } = useParams();
@@ -19,6 +17,7 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
     planIndex: null,
     totalUnits: 0,
 	editingTitle: false,
+	newTitle: "",
   });
 
   useLayoutEffect(() => {
@@ -45,16 +44,22 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
     setData({
       ...data,
       planIndex: finalIndex,
-	  editingTitle: true,
+	  editingTitle: false,
+	  newTitle: ""
     });
   };
 
-  const switchEditing = () => {
+  const startEditing = () => {
 	setData({
       ...data,
-	  editingTitle: !data.editingTitle,
+	  editingTitle: true,
     });
+	data.newTitle = planData[data.planIndex].name;
   }
+
+  const onChangeTitle = (e) => {
+    setData({ ...data, newTitle: e.target.value });
+  };
 
   if (!userAuth) {
     return <Redirect to="/" />;
@@ -66,18 +71,7 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
         {data.planIndex != null ? (
           <Fragment>
             <div className="planHeader">
-			  {data.editingTitle ? 
-				<div id="title"><p>editing</p>
-				<IconButton
-                onClick={switchEditing}>
-                  <CreateIcon />
-                </IconButton></div>
-				: <div id="title"><h1>{planData[data.planIndex].name}</h1>
-				<IconButton
-                onClick={switchEditing}>
-                  <CreateIcon/>
-                </IconButton></div>
-			  }
+			  <Title planID={planID} planIndex={data.planIndex}/>
               <ModifiedDate planIndex={data.planIndex} />
               <h3>Total Units: {currentTotalUnits}</h3>
             </div>
@@ -231,7 +225,6 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
               </div>
             </Card>
             <Notes planID={planID} planIndex={data.planIndex} />
-			<Button onClick={switchEditing} variant="contained"color="primary"></Button>
           </Fragment>
         ) : (
           <Fragment></Fragment>
