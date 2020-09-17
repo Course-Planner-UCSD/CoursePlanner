@@ -129,7 +129,8 @@ const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
           onClick={cancelTitle}>
             <ClearIcon />
           </IconButton></div>
-		: <div id="title"><h1>{data.currentTitle}</h1>
+		:
+		<div id="title"><h1>{data.currentTitle}</h1>
 		<IconButton
         onClick={startEditing}>
           <CreateIcon/>
