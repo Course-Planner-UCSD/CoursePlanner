@@ -16,8 +16,6 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
   const [data, setData] = useState({
     planIndex: null,
     totalUnits: 0,
-	editingTitle: false,
-	newTitle: "",
   });
 
   useLayoutEffect(() => {
@@ -44,21 +42,7 @@ const Plan = ({ userAuth, planData, currentTotalUnits }) => {
     setData({
       ...data,
       planIndex: finalIndex,
-	  editingTitle: false,
-	  newTitle: ""
     });
-  };
-
-  const startEditing = () => {
-	setData({
-      ...data,
-	  editingTitle: true,
-    });
-	data.newTitle = planData[data.planIndex].name;
-  }
-
-  const onChangeTitle = (e) => {
-    setData({ ...data, newTitle: e.target.value });
   };
 
   if (!userAuth) {
