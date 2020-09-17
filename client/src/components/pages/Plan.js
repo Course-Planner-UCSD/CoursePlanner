@@ -27,6 +27,7 @@ const Plan = ({
     planIndex: null,
     totalUnits: 0,
     summerChecked: false,
+    fiveYearChecked: false,
   });
 
   useLayoutEffect(() => {
@@ -42,20 +43,21 @@ const Plan = ({
 
   const initialState = () => {
     //DO NOT try to get anything from planData here since the app will crash
-    //Set everything in the state once in this setData function only
+
     var finalIndex = 0;
     planData.forEach((currentPlan, index) => {
       if (currentPlan._id === planID) {
         finalIndex = index;
       }
     });
-    //return finalIndex;
+
     const showSummer = planData[finalIndex].showSummer;
+    const showfifth = planData[finalIndex].showFifthYear;
     setData({
       ...data,
       planIndex: finalIndex,
-      showSummer,
       summerChecked: showSummer,
+      fiveYearChecked: showfifth,
     });
   };
 
@@ -112,6 +114,38 @@ const Plan = ({
       .catch((err) => console.error(err));
   };
 
+  const displayFiveYears = (event) => {
+    var fifthYearTotal = 0;
+    if (!event.target.checked) {
+      planData[data.planIndex].fifthYear.quarters.forEach((quarter) => {
+        quarter.courses.forEach((course) => {
+          fifthYearTotal = fifthYearTotal + parseInt(course.units);
+        });
+      });
+
+      planTotalUnits(fifthYearTotal, 0);
+    }
+    saveFifthYear(event.target.checked);
+    setData({ ...data, fiveYearChecked: event.target.checked });
+  };
+
+  const saveFifthYear = async (fifthData) => {
+    const body = JSON.stringify({ showFifthYear: fifthData });
+    const url = "/api/coursePlan/updatePlan/" + planID;
+    const config = {
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+
+    await Axios.post(url, body, config)
+      .then((result) => {
+        updatePlan(result.data, planData, data.planIndex);
+      })
+      .catch((err) => console.error(err));
+  };
+
   if (!userAuth) {
     return <Redirect to="/" />;
   }
@@ -125,7 +159,6 @@ const Plan = ({
               <h1>{planData[data.planIndex].name}</h1>
               <ModifiedDate planIndex={data.planIndex} />
               <h3>Total Units: {currentTotalUnits}</h3>
-
               <FormControlLabel
                 control={
                   <Switch
@@ -136,6 +169,18 @@ const Plan = ({
                   />
                 }
                 label="Summer Courses"
+                labelPlacement="start"
+              />
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={data.fiveYearChecked}
+                    onChange={displayFiveYears}
+                    name="Fifth Year"
+                    color="secondary"
+                  />
+                }
+                label="Fifth Year"
                 labelPlacement="start"
               />
             </div>
@@ -360,6 +405,63 @@ const Plan = ({
                   )}
                 </div>
               </Card>
+              {data.fiveYearChecked && (
+                <Card className="yearCard">
+                  <h1 className="text yearHeaderText">2024-2025</h1>
+                  <div className="year">
+                    <div
+                      className={`plan ${
+                        data.summerChecked ? "summer" : "noSummer"
+                      }`}
+                    >
+                      <QuarterTable
+                        planID={planID}
+                        planIndex={data.planIndex}
+                        year={"fifthYear"}
+                        quarterNum={0}
+                      />
+                    </div>
+                    <div
+                      className={`plan ${
+                        data.summerChecked ? "summer" : "noSummer"
+                      }`}
+                    >
+                      <QuarterTable
+                        planID={planID}
+                        planIndex={data.planIndex}
+                        year={"fifthYear"}
+                        quarterNum={1}
+                      />
+                    </div>
+                    <div
+                      className={`plan ${
+                        data.summerChecked ? "summer" : "noSummer"
+                      }`}
+                    >
+                      <QuarterTable
+                        planID={planID}
+                        planIndex={data.planIndex}
+                        year={"fifthYear"}
+                        quarterNum={2}
+                      />
+                    </div>
+                    {data.summerChecked && (
+                      <div
+                        className={`plan ${
+                          data.summerChecked ? "summer" : "noSummer"
+                        }`}
+                      >
+                        <QuarterTable
+                          planID={planID}
+                          planIndex={data.planIndex}
+                          year={"fifthYear"}
+                          quarterNum={3}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </Card>
+              )}
               <Notes planID={planID} planIndex={data.planIndex} />
             </Fragment>
           </Fragment>

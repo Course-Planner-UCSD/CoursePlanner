@@ -1,6 +1,7 @@
 {
   "notes": "",
   "showSummer": false,
+  "showFifthYear": false,
   "firstYear": {
     "quarters": [
       {
