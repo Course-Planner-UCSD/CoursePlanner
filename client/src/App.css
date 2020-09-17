@@ -145,6 +145,7 @@ body,
 
 .planHeader {
   margin-left: 5%;
+  margin-right: 5%;
 }
 
 .links {
@@ -214,5 +215,20 @@ body,
   margin-bottom: 0px;
   margin-left: 5%;
   margin-right: 5%;
+  display: none;
+}
+
+#title {
+	display: flex;
+	flex-direction: row;
+}
+
+#titleSavedAlert {
+  margin-bottom: 0px;
+  display: none;
+}
+
+#titleFailedSave {
+  margin-bottom: 0px;
   display: none;
 }

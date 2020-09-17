@@ -6,6 +6,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import myTheme from "../layout/myTheme.component";
 import QuarterTable from "../layout/QuarterTable";
 import Notes from "../layout/Notes";
+import Title from "../layout/Title";
 import ModifiedDate from "../layout/ModifiedDate";
 import Card from "@material-ui/core/Card";
 import Switch from "@material-ui/core/Switch";
@@ -157,7 +158,7 @@ const Plan = ({
         {data.planIndex != null ? (
           <Fragment>
             <div className="planHeader">
-              <h1>{planData[data.planIndex].name}</h1>
+              <Title planID={planID} planIndex={data.planIndex} />
               <ModifiedDate planIndex={data.planIndex} />
               <h3>Total Units: {currentTotalUnits}</h3>
               <FormGroup>
