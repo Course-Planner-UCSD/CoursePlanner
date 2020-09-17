@@ -33,16 +33,16 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-		<div id="testContainer">
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/plan/:planID" component={Plan} />
-        </Switch>
-		</div>
+        <div id="testContainer">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/plan/:planID" component={Plan} />
+          </Switch>
+        </div>
       </Router>
     </Provider>
   );

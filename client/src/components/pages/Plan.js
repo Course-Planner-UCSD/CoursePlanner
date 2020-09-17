@@ -186,7 +186,10 @@ const Plan = ({
             </div>
             <Fragment>
               <Card className="yearCard">
-                <h1 className="text yearHeaderText">2020-2021</h1>
+                <h1 className="text yearHeaderText">
+                  {planData[data.planIndex].startYear} -{" "}
+                  {planData[data.planIndex].startYear + 1}
+                </h1>
                 <div className="year">
                   <div
                     className={`plan ${
@@ -241,7 +244,10 @@ const Plan = ({
                 </div>
               </Card>
               <Card className="yearCard">
-                <h1 className="text yearHeaderText">2021-2022</h1>
+                <h1 className="text yearHeaderText">
+                  {planData[data.planIndex].startYear + 1} -{" "}
+                  {planData[data.planIndex].startYear + 2}
+                </h1>
                 <div className="year">
                   <div
                     className={`plan ${
@@ -296,7 +302,10 @@ const Plan = ({
                 </div>
               </Card>
               <Card className="yearCard">
-                <h1 className="text yearHeaderText">2022-2023</h1>
+                <h1 className="text yearHeaderText">
+                  {planData[data.planIndex].startYear + 2} -{" "}
+                  {planData[data.planIndex].startYear + 3}
+                </h1>
                 <div className="year">
                   <div
                     className={`plan ${
@@ -351,7 +360,10 @@ const Plan = ({
                 </div>
               </Card>
               <Card className="yearCard">
-                <h1 className="text yearHeaderText">2023-2024</h1>
+                <h1 className="text yearHeaderText">
+                  {planData[data.planIndex].startYear + 3} -{" "}
+                  {planData[data.planIndex].startYear + 4}
+                </h1>
                 <div className="year">
                   <div
                     className={`plan ${
@@ -407,7 +419,10 @@ const Plan = ({
               </Card>
               {data.fiveYearChecked && (
                 <Card className="yearCard">
-                  <h1 className="text yearHeaderText">2024-2025</h1>
+                  <h1 className="text yearHeaderText">
+                    {planData[data.planIndex].startYear + 4} -{" "}
+                    {planData[data.planIndex].startYear + 5}
+                  </h1>
                   <div className="year">
                     <div
                       className={`plan ${

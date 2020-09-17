@@ -138,10 +138,13 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
       },
     };
 
-    if (newData.name === "") {
-      newData.name = "plan";
+    if (newData.name === undefined) {
+      newData.name = "Course Plan";
     }
-    if (newData.startYear === "" || Number.isNaN(parseInt(newData.startYear))) {
+    if (
+      newData.startYear === undefined ||
+      Number.isNaN(parseInt(newData.startYear))
+    ) {
       newData.startYear = parseInt(moment().format("YYYY"));
     }
 
