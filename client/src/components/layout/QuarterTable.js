@@ -18,7 +18,7 @@ const QuarterTable = ({
 }) => {
   const [data, setData] = useState({
     columns: [
-      { title: "Courses", field: "course" },
+      { title: "Courses", field: "course", align: "left" },
       { title: "Units", field: "units", type: "numeric", align: "left" },
     ],
     planIndex: null,
@@ -123,43 +123,25 @@ const QuarterTable = ({
     return body;
   };
 
-  const updateTableCellEdit = async (
-    newValue,
-    rowData,
-    columnDef,
-    year,
-    quarterNum
-  ) => {
-    const courseNum = rowData.tableData.id;
+  const bulkEdit = async (changes, year, quarterNum) => {
+    var currentPlanData = checkYear(year, data.planIndex);
 
+    for (var i = 0; i < 10; i++) {
+      if (changes[i] !== undefined) {
+        console.log(currentPlanData.quarters[quarterNum].courses[i].course);
+        console.log(changes);
+        currentPlanData.quarters[quarterNum].courses[i].course =
+          changes[i].newData.course;
+        currentPlanData.quarters[quarterNum].courses[i].units =
+          changes[i].newData.units;
+      }
+    }
     const config = {
       headers: {
         "x-auth-token": token,
         "Content-Type": "application/json",
       },
     };
-    var currentPlanData = checkYear(year, data.planIndex);
-
-    if (columnDef.field === "course") {
-      if (newValue === "") {
-        currentPlanData.quarters[quarterNum].courses[courseNum].course = "-";
-      } else {
-        currentPlanData.quarters[quarterNum].courses[
-          courseNum
-        ].course = newValue;
-      }
-    }
-
-    if (columnDef.field === "units") {
-      if (newValue === "" || Number.isNaN(parseInt(newValue))) {
-        currentPlanData.quarters[quarterNum].courses[courseNum].units = "4";
-      } else {
-        currentPlanData.quarters[quarterNum].courses[
-          courseNum
-        ].units = newValue;
-      }
-    }
-
     const currentTime = moment().toISOString();
     const body = generateBody(year, currentPlanData, currentTime);
     const url = "/api/coursePlan/updatePlan/" + planID;
@@ -266,21 +248,6 @@ const QuarterTable = ({
           })
         }
         tableRef={tableRef}
-        cellEditable={{
-          onCellEditApproved: (newValue, oldValue, rowData, columnDef) =>
-            new Promise((resolve, reject) => {
-              updateTableCellEdit(
-                newValue,
-                rowData,
-                columnDef,
-                year,
-                quarterNum
-              );
-              tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
-              resolve();
-            }),
-        }}
         actions={[
           {
             icon: "add",
@@ -299,6 +266,11 @@ const QuarterTable = ({
               deleteCourse(oldData, year, quarterNum);
               tableRef.current && tableRef.current.onQueryChange();
               calculateUnits(planIndex);
+              resolve();
+            }),
+          onBulkUpdate: (changes) =>
+            new Promise((resolve, reject) => {
+              bulkEdit(changes, year, quarterNum);
               resolve();
             }),
         }}
