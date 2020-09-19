@@ -145,7 +145,7 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
       newData.startYear === undefined ||
       Number.isNaN(parseInt(newData.startYear))
     ) {
-      newData.startYear = parseInt(moment().format("YYYY"));
+      newData.startYear = moment().year();
     }
 
     const body = JSON.stringify({

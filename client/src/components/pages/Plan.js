@@ -14,6 +14,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
 import Axios from "axios";
 import FormGroup from "@material-ui/core/FormGroup";
+import FormControl from "@material-ui/core/FormControl";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import InputLabel from "@material-ui/core/InputLabel";
+import moment from "moment";
 
 const Plan = ({
   userAuth,
@@ -30,6 +34,7 @@ const Plan = ({
     totalUnits: 0,
     summerChecked: false,
     fiveYearChecked: false,
+    currentStartYear: 0,
   });
 
   useLayoutEffect(() => {
@@ -55,11 +60,13 @@ const Plan = ({
 
     const showSummer = planData[finalIndex].showSummer;
     const showfifth = planData[finalIndex].showFifthYear;
+    const startYear = planData[finalIndex].startYear;
     setData({
       ...data,
       planIndex: finalIndex,
       summerChecked: showSummer,
       fiveYearChecked: showfifth,
+      currentStartYear: startYear,
     });
   };
 
@@ -148,6 +155,28 @@ const Plan = ({
       .catch((err) => console.error(err));
   };
 
+  const changeStartYear = (event) => {
+    updateStartYear(event);
+    setData({ ...data, currentStartYear: event.target.value });
+  };
+
+  const updateStartYear = async (event) => {
+    const body = JSON.stringify({ startYear: event.target.value });
+    const url = "/api/coursePlan/updatePlan/" + planID;
+    const config = {
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+    };
+
+    await Axios.post(url, body, config)
+      .then((result) => {
+        updatePlan(result.data, planData, data.planIndex);
+      })
+      .catch((err) => console.error(err));
+  };
+
   if (!userAuth) {
     return <Redirect to="/" />;
   }
@@ -185,12 +214,40 @@ const Plan = ({
                   label="Fifth Year"
                 />
               </FormGroup>
+              <FormControl>
+                <InputLabel className="startYear">Start Year</InputLabel>
+                <NativeSelect
+                  value={parseInt(data.currentStartYear)}
+                  onChange={changeStartYear}
+                  className="startYear"
+                >
+                  <option value={moment().year() - 4}>
+                    {moment().year() - 4}
+                  </option>
+                  <option value={moment().year() - 3}>
+                    {moment().year() - 3}
+                  </option>
+                  <option value={moment().year() - 2}>
+                    {moment().year() - 2}
+                  </option>
+                  <option value={moment().year() - 1}>
+                    {moment().year() - 1}
+                  </option>
+                  <option value={moment().year()}>{moment().year()}</option>
+                  <option value={moment().year() + 1}>
+                    {moment().year() + 1}
+                  </option>
+                  <option value={moment().year() + 2}>
+                    {moment().year() + 2}
+                  </option>
+                </NativeSelect>
+              </FormControl>
             </div>
             <Fragment>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
-                  {planData[data.planIndex].startYear} -{" "}
-                  {planData[data.planIndex].startYear + 1}
+                  {parseInt(data.currentStartYear)} -{" "}
+                  {parseInt(parseInt(data.currentStartYear)) + 1}
                 </h1>
                 <div className="year">
                   <div
@@ -247,8 +304,8 @@ const Plan = ({
               </Card>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
-                  {planData[data.planIndex].startYear + 1} -{" "}
-                  {planData[data.planIndex].startYear + 2}
+                  {parseInt(data.currentStartYear) + 1} -{" "}
+                  {parseInt(data.currentStartYear) + 2}
                 </h1>
                 <div className="year">
                   <div
@@ -305,8 +362,8 @@ const Plan = ({
               </Card>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
-                  {planData[data.planIndex].startYear + 2} -{" "}
-                  {planData[data.planIndex].startYear + 3}
+                  {parseInt(data.currentStartYear) + 2} -{" "}
+                  {parseInt(data.currentStartYear) + 3}
                 </h1>
                 <div className="year">
                   <div
@@ -363,8 +420,8 @@ const Plan = ({
               </Card>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
-                  {planData[data.planIndex].startYear + 3} -{" "}
-                  {planData[data.planIndex].startYear + 4}
+                  {parseInt(data.currentStartYear) + 3} -{" "}
+                  {parseInt(data.currentStartYear) + 4}
                 </h1>
                 <div className="year">
                   <div
@@ -422,8 +479,8 @@ const Plan = ({
               {data.fiveYearChecked && (
                 <Card className="yearCard">
                   <h1 className="text yearHeaderText">
-                    {planData[data.planIndex].startYear + 4} -{" "}
-                    {planData[data.planIndex].startYear + 5}
+                    {parseInt(data.currentStartYear) + 4} -{" "}
+                    {parseInt(data.currentStartYear) + 5}
                   </h1>
                   <div className="year">
                     <div
@@ -504,4 +561,6 @@ const mapStateToProps = (state) => ({
   token: state.authReducer.token,
 });
 
-export default connect(mapStateToProps, { planTotalUnits, updatePlan })(Plan);
+export default React.memo(
+  connect(mapStateToProps, { planTotalUnits, updatePlan })(Plan)
+);
