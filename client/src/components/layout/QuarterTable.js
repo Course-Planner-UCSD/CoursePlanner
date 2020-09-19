@@ -346,6 +346,6 @@ const mapStateToProps = (state) => ({
   planData: state.planReducer.planData,
 });
 
-export default connect(mapStateToProps, { updatePlan, planTotalUnits })(
-  QuarterTable
+export default React.memo(
+  connect(mapStateToProps, { updatePlan, planTotalUnits })(QuarterTable)
 );

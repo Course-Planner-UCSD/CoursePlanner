@@ -19,6 +19,7 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
         field: "startYear",
         type: "numeric",
         align: "left",
+        editable: "never",
       },
       {
         title: "Number of Years",
@@ -141,12 +142,8 @@ const Dashboard = ({ userAuth, token, plan, planTotalUnits }) => {
     if (newData.name === undefined) {
       newData.name = "Course Plan";
     }
-    if (
-      newData.startYear === undefined ||
-      Number.isNaN(parseInt(newData.startYear))
-    ) {
-      newData.startYear = parseInt(moment().format("YYYY"));
-    }
+
+    newData.startYear = moment().year();
 
     const body = JSON.stringify({
       name: newData.name,

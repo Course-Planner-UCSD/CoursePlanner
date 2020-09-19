@@ -219,8 +219,8 @@ body,
 }
 
 #title {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #titleSavedAlert {
@@ -231,4 +231,10 @@ body,
 #titleFailedSave {
   margin-bottom: 0px;
   display: none;
+}
+
+.startYear {
+  font-size: 1.17em;
+  width: 125%;
+  margin-bottom: 33%;
 }
