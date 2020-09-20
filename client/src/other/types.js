@@ -8,3 +8,4 @@ export const UPDATE_PLAN = "UPDATE_PLAN";
 export const TOTAL_UNITS = "TOTAL_UNITS";
 export const RESET_UNITS = "RESET_UNITS";
 export const NEW_ALERT = "NEW_ALERT";
+export const REMOVE_ALERT = "REMOVE_ALERT";

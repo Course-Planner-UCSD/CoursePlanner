@@ -212,7 +212,7 @@ body,
   display: none;
 }
 
-#planAlert {
+.planAlert {
   margin-bottom: 20px;
   margin-left: 5%;
   margin-right: 5%;

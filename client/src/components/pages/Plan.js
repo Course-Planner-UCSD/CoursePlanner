@@ -23,7 +23,8 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
 import moment from "moment";
 import Alert from "@material-ui/lab/Alert";
-import { subscribe } from "redux-subscriber";
+import LocalAlert from "../layout/LocalAlert";
+//import { subscribe } from "redux-subscriber";
 
 const Plan = ({
   userAuth,
@@ -32,8 +33,6 @@ const Plan = ({
   planTotalUnits,
   updatePlan,
   token,
-  newPlanAlert,
-  alert,
 }) => {
   let { planID } = useParams();
 
@@ -195,23 +194,22 @@ const Plan = ({
       })
       .catch((err) => console.error(err));
   };
-  subscribe("planReducer", (state) => {
+  /*subscribe("planReducer", (state) => {
     if (
       state.planReducer.alert.message !== null &&
       state.planReducer.alert.checked === false
     ) {
       newPlanAlert(
         state.planReducer.alert.severity,
-        state.planReducer.alert.message,
-        true
+        state.planReducer.alert.message
       );
       document.getElementById("planAlert").style.display = "flex";
       setTimeout(() => {
         document.getElementById("planAlert").style.display = "none";
-        newPlanAlert("error", null, false);
+        newPlanAlert("error", null);
       }, 20000);
     }
-  });
+  });*/
 
   if (!userAuth) {
     return <Redirect to="/" />;
@@ -279,16 +277,7 @@ const Plan = ({
                 </NativeSelect>
               </FormControl>
             </div>
-            <Alert
-              onClose={() => {
-                document.getElementById("planAlert").style.display = "none";
-                newPlanAlert("error", null, false);
-              }}
-              severity={alert.severity}
-              id="planAlert"
-            >
-              {alert.message}
-            </Alert>
+            <LocalAlert />
             <Fragment>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
@@ -599,15 +588,12 @@ Plan.propTypes = {
   currentTotalUnits: PropTypes.number,
   planTotalUnits: PropTypes.func.isRequired,
   updatePlan: PropTypes.func.isRequired,
-  newPlanAlert: PropTypes.func.isRequired,
-  alert: PropTypes.object,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
   planData: state.planReducer.planData,
   currentTotalUnits: state.planReducer.currentTotalUnits,
   token: state.authReducer.token,
-  alert: state.planReducer.alert,
 });
 
 export default React.memo(

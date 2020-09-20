@@ -20,6 +20,7 @@ const QuarterTable = ({
   quarterNum,
   planTotalUnits,
   newPlanAlert,
+  alert,
 }) => {
   const [data, setData] = useState({
     columns: [
@@ -37,18 +38,30 @@ const QuarterTable = ({
 
   const initialState = () => {
     var title;
+    var formattedYear;
     if (year === "firstYear") {
       title = planData[planIndex].firstYear.quarters[quarterNum].season;
+      formattedYear = "first year";
     } else if (year === "secondYear") {
       title = planData[planIndex].secondYear.quarters[quarterNum].season;
+      formattedYear = "second year";
     } else if (year === "thirdYear") {
       title = planData[planIndex].thirdYear.quarters[quarterNum].season;
+      formattedYear = "third year";
     } else if (year === "fourthYear") {
       title = planData[planIndex].fourthYear.quarters[quarterNum].season;
+      formattedYear = "fourth year";
     } else if (year === "fifthYear") {
       title = planData[planIndex].fifthYear.quarters[quarterNum].season;
+      formattedYear = "fifth year";
     }
-    const totalUnits = calculateUnits(planIndex, "init");
+    const totalUnits = calculateUnits(
+      planIndex,
+      "init",
+      formattedYear,
+      title,
+      quarterNum
+    );
     planTotalUnits(0, totalUnits);
     setData({
       ...data,
@@ -58,34 +71,62 @@ const QuarterTable = ({
     });
   };
 
-  const calculateUnits = (planIndex, type) => {
+  const calculateUnits = (
+    planIndex,
+    type,
+    formattedYear,
+    title,
+    quarterNum
+  ) => {
     var currentPlanData = checkYear(year, planIndex);
     var totalUnits = 0;
     currentPlanData.quarters[quarterNum].courses.forEach((courseObject) => {
       totalUnits = totalUnits + parseInt(courseObject.units);
     });
 
+    //insert map function to delete alerts for this particular quarter
+
     if (totalUnits > 20) {
-      newPlanAlert("error", "You have more than 20 units in a quarter", false);
+      newPlanAlert(
+        "error",
+        "You have more than 20 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear,
+        year,
+        quarterNum
+      );
     } else if (totalUnits > 18) {
       newPlanAlert(
         "warning",
-        "You have more than 18 units in a quarter",
-        false
+        "You have more than 18 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear,
+        year,
+        quarterNum
       );
     } else if (totalUnits < 12 && quarterNum !== 3) {
       newPlanAlert(
         "warning",
-        "You have less than 12 units in a quarter. A full time student has at least 12 units in a quarter.",
-        false
+        "You have less than 12 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear +
+          ". A full time student has at least 12 units in a quarter.",
+        year,
+        quarterNum
       );
     }
 
     if (quarterNum == 3 && totalUnits > 8) {
       newPlanAlert(
         "warning",
-        "Taking more than 8 units in a summer session is not advised.",
-        false
+        "Taking more than 8 units in the " +
+          formattedYear +
+          " summer session is not advised.",
+        year,
+        quarterNum
       );
     }
 
@@ -332,11 +373,13 @@ QuarterTable.propTypes = {
   updatePlan: PropTypes.func.isRequired,
   planTotalUnits: PropTypes.func.isRequired,
   newPlanAlert: PropTypes.func.isRequired,
+  alert: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   token: state.authReducer.token,
   planData: state.planReducer.planData,
+  alert: state.planReducer.alert,
 });
 
 export default React.memo(
