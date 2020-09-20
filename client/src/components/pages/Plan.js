@@ -11,13 +11,19 @@ import ModifiedDate from "../layout/ModifiedDate";
 import Card from "@material-ui/core/Card";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
+import {
+  updatePlan,
+  planTotalUnits,
+  newPlanAlert,
+} from "../../Redux/actions/plan";
 import Axios from "axios";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
 import moment from "moment";
+import Alert from "@material-ui/lab/Alert";
+import { subscribe } from "redux-subscriber";
 
 const Plan = ({
   userAuth,
@@ -26,6 +32,8 @@ const Plan = ({
   planTotalUnits,
   updatePlan,
   token,
+  newPlanAlert,
+  alert,
 }) => {
   let { planID } = useParams();
 
@@ -35,6 +43,8 @@ const Plan = ({
     summerChecked: false,
     fiveYearChecked: false,
     currentStartYear: 0,
+    alertMessage: "",
+    alertSeverity: "",
   });
 
   useLayoutEffect(() => {
@@ -176,6 +186,23 @@ const Plan = ({
       })
       .catch((err) => console.error(err));
   };
+  subscribe("planReducer", (state) => {
+    if (
+      state.planReducer.alert.message !== null &&
+      state.planReducer.alert.checked === false
+    ) {
+      newPlanAlert(
+        state.planReducer.alert.severity,
+        state.planReducer.alert.message,
+        true
+      );
+      document.getElementById("planAlert").style.display = "flex";
+      setTimeout(() => {
+        document.getElementById("planAlert").style.display = "none";
+        newPlanAlert("error", null, false);
+      }, 5000);
+    }
+  });
 
   if (!userAuth) {
     return <Redirect to="/" />;
@@ -243,6 +270,17 @@ const Plan = ({
                 </NativeSelect>
               </FormControl>
             </div>
+            {console.log(alert.checked)}
+            <Alert
+              onClose={() => {
+                document.getElementById("planAlert").style.display = "none";
+                newPlanAlert("error", null, false);
+              }}
+              severity={alert.severity}
+              id="planAlert"
+            >
+              {alert.message}
+            </Alert>
             <Fragment>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
@@ -553,14 +591,17 @@ Plan.propTypes = {
   currentTotalUnits: PropTypes.number,
   planTotalUnits: PropTypes.func.isRequired,
   updatePlan: PropTypes.func.isRequired,
+  newPlanAlert: PropTypes.func.isRequired,
+  alert: PropTypes.object,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
   planData: state.planReducer.planData,
   currentTotalUnits: state.planReducer.currentTotalUnits,
   token: state.authReducer.token,
+  alert: state.planReducer.alert,
 });
 
 export default React.memo(
-  connect(mapStateToProps, { planTotalUnits, updatePlan })(Plan)
+  connect(mapStateToProps, { planTotalUnits, updatePlan, newPlanAlert })(Plan)
 );

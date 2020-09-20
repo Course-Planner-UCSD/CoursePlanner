@@ -60,6 +60,11 @@ const QuarterTable = ({
       totalUnits = totalUnits + parseInt(courseObject.units);
     });
 
+    if (totalUnits > 15) {
+      //newPlanAlert("warning", "test", false);
+      //update total units number and import newPlanAlert func
+    }
+
     if (type === "init") {
       return totalUnits;
     } else {
@@ -126,7 +131,7 @@ const QuarterTable = ({
   const bulkEdit = async (changes, year, quarterNum) => {
     var currentPlanData = checkYear(year, data.planIndex);
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 15; i++) {
       if (changes[i] !== undefined) {
         console.log(currentPlanData.quarters[quarterNum].courses[i].course);
         console.log(changes);
@@ -248,18 +253,6 @@ const QuarterTable = ({
           })
         }
         tableRef={tableRef}
-        actions={[
-          {
-            icon: "add",
-            tooltip: "Add Course",
-            isFreeAction: true,
-            onClick: () => {
-              addCourse({}, year, quarterNum);
-              tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
-            },
-          },
-        ]}
         editable={{
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
@@ -271,6 +264,15 @@ const QuarterTable = ({
           onBulkUpdate: (changes) =>
             new Promise((resolve, reject) => {
               bulkEdit(changes, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+              calculateUnits(planIndex);
+              resolve();
+            }),
+          onRowAdd: (newData) =>
+            new Promise((resolve, reject) => {
+              addCourse(newData, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+              calculateUnits(planIndex);
               resolve();
             }),
         }}

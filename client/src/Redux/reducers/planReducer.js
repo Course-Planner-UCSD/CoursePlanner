@@ -4,11 +4,17 @@ import {
   LOGOUT,
   TOTAL_UNITS,
   RESET_UNITS,
+  NEW_ALERT,
 } from "../../other/types";
 
 const originalState = {
   planData: [],
   currentTotalUnits: 0,
+  alert: {
+    message: null,
+    severity: "error",
+    checked: false,
+  },
 };
 
 function planReducer(state = originalState, action) {
@@ -41,6 +47,11 @@ function planReducer(state = originalState, action) {
       return {
         ...state,
         currentTotalUnits: 0,
+      };
+    case NEW_ALERT:
+      return {
+        ...state,
+        alert: action.payload,
       };
     default:
       return state;

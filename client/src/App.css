@@ -204,15 +204,16 @@ body,
   text-align: center;
 }
 
-#notesSavedAlert {
+#notesSavedAlert,
+#notesFailedSave {
   margin-bottom: 0px;
   margin-left: 5%;
   margin-right: 5%;
   display: none;
 }
 
-#notesFailedSave {
-  margin-bottom: 0px;
+#planAlert {
+  margin-bottom: 20px;
   margin-left: 5%;
   margin-right: 5%;
   display: none;
