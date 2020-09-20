@@ -117,7 +117,10 @@ const Plan = ({
   };
 
   const saveSummerChecked = async (summerData) => {
-    const body = JSON.stringify({ showSummer: summerData });
+    const body = JSON.stringify({
+      showSummer: summerData,
+      modifiedDate: moment().toISOString(),
+    });
     const url = "/api/coursePlan/updatePlan/" + planID;
     const config = {
       headers: {
@@ -149,7 +152,10 @@ const Plan = ({
   };
 
   const saveFifthYear = async (fifthData) => {
-    const body = JSON.stringify({ showFifthYear: fifthData });
+    const body = JSON.stringify({
+      showFifthYear: fifthData,
+      modifiedDate: moment().toISOString(),
+    });
     const url = "/api/coursePlan/updatePlan/" + planID;
     const config = {
       headers: {
@@ -171,7 +177,10 @@ const Plan = ({
   };
 
   const updateStartYear = async (event) => {
-    const body = JSON.stringify({ startYear: event.target.value });
+    const body = JSON.stringify({
+      startYear: event.target.value,
+      modifiedDate: moment().toISOString(),
+    });
     const url = "/api/coursePlan/updatePlan/" + planID;
     const config = {
       headers: {
@@ -200,7 +209,7 @@ const Plan = ({
       setTimeout(() => {
         document.getElementById("planAlert").style.display = "none";
         newPlanAlert("error", null, false);
-      }, 5000);
+      }, 20000);
     }
   });
 
@@ -270,7 +279,6 @@ const Plan = ({
                 </NativeSelect>
               </FormControl>
             </div>
-            {console.log(alert.checked)}
             <Alert
               onClose={() => {
                 document.getElementById("planAlert").style.display = "none";

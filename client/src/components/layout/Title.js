@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
 import { connect } from "react-redux";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -8,7 +7,7 @@ import { updatePlan } from "../../Redux/actions/plan";
 import Alert from "@material-ui/lab/Alert";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
-
+import moment from "moment";
 import CreateIcon from "@material-ui/icons/Create";
 import CheckIcon from "@material-ui/icons/Check";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -69,7 +68,10 @@ const Title = ({ token, planData, updatePlan, planIndex, planID }) => {
       },
     };
 
-    var body = JSON.stringify({ name: data.newTitle });
+    var body = JSON.stringify({
+      name: data.newTitle,
+      modifiedDate: moment().toISOString(),
+    });
 
     await axios
       .post(url, body, config)

@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MaterialTable from "material-table";
 import axios from "axios";
-import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
+import {
+  updatePlan,
+  planTotalUnits,
+  newPlanAlert,
+} from "../../Redux/actions/plan";
 import moment from "moment";
 
 const QuarterTable = ({
@@ -15,6 +19,7 @@ const QuarterTable = ({
   year,
   quarterNum,
   planTotalUnits,
+  newPlanAlert,
 }) => {
   const [data, setData] = useState({
     columns: [
@@ -60,9 +65,28 @@ const QuarterTable = ({
       totalUnits = totalUnits + parseInt(courseObject.units);
     });
 
-    if (totalUnits > 15) {
-      //newPlanAlert("warning", "test", false);
-      //update total units number and import newPlanAlert func
+    if (totalUnits > 20) {
+      newPlanAlert("error", "You have more than 20 units in a quarter", false);
+    } else if (totalUnits > 18) {
+      newPlanAlert(
+        "warning",
+        "You have more than 18 units in a quarter",
+        false
+      );
+    } else if (totalUnits < 12 && quarterNum !== 3) {
+      newPlanAlert(
+        "warning",
+        "You have less than 12 units in a quarter. A full time student has at least 12 units in a quarter.",
+        false
+      );
+    }
+
+    if (quarterNum == 3 && totalUnits > 8) {
+      newPlanAlert(
+        "warning",
+        "Taking more than 8 units in a summer session is not advised.",
+        false
+      );
     }
 
     if (type === "init") {
@@ -133,8 +157,6 @@ const QuarterTable = ({
 
     for (var i = 0; i < 15; i++) {
       if (changes[i] !== undefined) {
-        console.log(currentPlanData.quarters[quarterNum].courses[i].course);
-        console.log(changes);
         currentPlanData.quarters[quarterNum].courses[i].course =
           changes[i].newData.course;
         currentPlanData.quarters[quarterNum].courses[i].units =
@@ -199,9 +221,6 @@ const QuarterTable = ({
     };
     var currentPlanData = checkYear(year, data.planIndex);
 
-    if (newData.course === undefined) {
-      newData.course = "-";
-    }
     if (newData.units === undefined) {
       newData.units = "4";
     }
@@ -313,6 +332,7 @@ QuarterTable.propTypes = {
   token: PropTypes.string,
   updatePlan: PropTypes.func.isRequired,
   planTotalUnits: PropTypes.func.isRequired,
+  newPlanAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -321,5 +341,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default React.memo(
-  connect(mapStateToProps, { updatePlan, planTotalUnits })(QuarterTable)
+  connect(mapStateToProps, { updatePlan, planTotalUnits, newPlanAlert })(
+    QuarterTable
+  )
 );

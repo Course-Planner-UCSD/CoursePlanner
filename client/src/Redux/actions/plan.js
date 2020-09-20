@@ -124,13 +124,14 @@ export const planTotalUnits = (oldValue, newValue) => (dispatch) => {
   }
 };
 
-export const newPlanAlert = (severity, message, checked) => (dispatch) => {
+export const newPlanAlert = (severity, message, checked, clear) => (
+  dispatch
+) => {
   const payload = {
     message,
     severity,
     checked,
   };
-
   dispatch({
     type: NEW_ALERT,
     payload,
