@@ -220,7 +220,6 @@ const QuarterTable = ({
       },
     };
     var currentPlanData = checkYear(year, data.planIndex);
-
     if (newData.units === undefined) {
       newData.units = "4";
     }
