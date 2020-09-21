@@ -125,6 +125,12 @@ body,
   display: none;
 }
 
+#demoRegisterAlert {
+  width: 30%;
+  margin-top: 10px;
+  display: none;
+}
+
 .dashboard {
   width: 75%;
   margin: auto;

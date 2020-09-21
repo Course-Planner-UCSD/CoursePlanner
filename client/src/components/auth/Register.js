@@ -162,8 +162,8 @@ const Register = ({ register, userAuth, error }) => {
         triedConfirmPW: true,
       });
     } else {
-      //Send register command to register action
-      register({ email, password }).then(() => {
+      //Don't do any data base stuff, since this is a demo version'
+      /*register({ email, password }).then(() => {
         if (!userAuth) {
           //alert:
           //setFormData({ ...formData, loginErrors: error });
@@ -179,7 +179,8 @@ const Register = ({ register, userAuth, error }) => {
             //button isn't on the page right now
           }
         }
-      });
+      });*/
+	  document.getElementById("demoRegisterAlert").style.display = "flex";
     }
   };
 
@@ -191,6 +192,15 @@ const Register = ({ register, userAuth, error }) => {
     <ThemeProvider theme={myTheme}>
       <div id="myBackground">
         <div id="mainContainer">
+		  <Alert
+			onClose={() => {
+				document.getElementById("demoRegisterAlert").style.display = "none";
+			}}
+			severity="warning"
+			id="demoRegisterAlert"
+		  >
+			This is a demo. Registration is disabled. Try <a href="/login">logging in</a> with the example account.
+		  </Alert>
           <Alert
             onClose={() => {
               document.getElementById("badLoginAlert").style.display = "none";
@@ -289,11 +299,9 @@ const Register = ({ register, userAuth, error }) => {
                   color="primary"
                   type="submit"
                   id="register"
-				  disabled
                 >
                   Register
                 </Button>
-				<p style={{color:"red"}} class="text">This is a demo. Registration is disabled. Try logging in with the example account.</p>
               </div>
             </form>
           </Card>
