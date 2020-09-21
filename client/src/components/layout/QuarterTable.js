@@ -20,11 +20,10 @@ const QuarterTable = ({
   quarterNum,
   planTotalUnits,
   newPlanAlert,
-  alert,
 }) => {
   const [data, setData] = useState({
     columns: [
-      { title: "Courses", field: "course", align: "left" },
+      { title: "Courses", field: "course" },
       { title: "Units", field: "units", type: "numeric", align: "left" },
     ],
     planIndex: null,
@@ -373,17 +372,15 @@ QuarterTable.propTypes = {
   updatePlan: PropTypes.func.isRequired,
   planTotalUnits: PropTypes.func.isRequired,
   newPlanAlert: PropTypes.func.isRequired,
-  alert: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   token: state.authReducer.token,
   planData: state.planReducer.planData,
-  alert: state.planReducer.alert,
 });
 
-export default React.memo(
-  connect(mapStateToProps, { updatePlan, planTotalUnits, newPlanAlert })(
-    QuarterTable
-  )
-);
+export default connect(mapStateToProps, {
+  updatePlan,
+  planTotalUnits,
+  newPlanAlert,
+})(QuarterTable);

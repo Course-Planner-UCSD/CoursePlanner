@@ -36,7 +36,7 @@ const LocalAlert = ({ alert }) => {
     return <div></div>;
   }
 };
-Alert.propTypes = {
+LocalAlert.propTypes = {
   alert: PropTypes.array.isRequired,
 };
 const mapStateToProps = (state) => ({
