@@ -59,6 +59,10 @@ function planReducer(state = originalState, action) {
           value.quarterNum !== action.payload.quarterNum ||
           value.year !== action.payload.year
         ) {
+          /*console.log("current year" + value.year);
+          console.log("delete year " + action.payload.year);
+          console.log("current quarter " + value.quarterNum);
+          console.log("delete quarter " + action.payload.quarterNum);*/
           newAlert.push(value);
         }
       });

@@ -31,75 +31,96 @@ const QuarterTable = ({
     planIndex: null,
     title: "",
     totalUnits: 0,
+    formattedYear: "",
   });
 
   useEffect(() => {
     initialState();
+    return () => {
+      deleteAlert(quarterNum, year);
+    };
   }, [planIndex, planData]);
 
   const initialState = () => {
     var title;
+    var formattedYear;
     if (year === "firstYear") {
       title = planData[planIndex].firstYear.quarters[quarterNum].season;
+      formattedYear = "First Year";
     } else if (year === "secondYear") {
       title = planData[planIndex].secondYear.quarters[quarterNum].season;
+      formattedYear = "Second Year";
     } else if (year === "thirdYear") {
       title = planData[planIndex].thirdYear.quarters[quarterNum].season;
+      formattedYear = "Third Year";
     } else if (year === "fourthYear") {
       title = planData[planIndex].fourthYear.quarters[quarterNum].season;
+      formattedYear = "Fourth Year";
     } else if (year === "fifthYear") {
       title = planData[planIndex].fifthYear.quarters[quarterNum].season;
+      formattedYear = "Fifth Year";
     }
-    const totalUnits = calculateUnits(planIndex, "init");
+    const totalUnits = calculateUnits(planIndex, "init", formattedYear, title);
     planTotalUnits(0, totalUnits);
     setData({
       ...data,
       planIndex,
       title,
       totalUnits,
+      formattedYear,
     });
   };
 
-  const calculateUnits = (planIndex, type) => {
+  const calculateUnits = (planIndex, type, formattedYear, title) => {
     var currentPlanData = checkYear(year, planIndex);
     var totalUnits = 0;
     currentPlanData.quarters[quarterNum].courses.forEach((courseObject) => {
       totalUnits = totalUnits + parseInt(courseObject.units);
     });
 
+    if (type !== "init") {
+      deleteAlert(quarterNum, year);
+    }
+
     if (totalUnits > 20) {
       newPlanAlert(
         "error",
-        "You have more than 20 units in a quarter",
-        quarterNum,
-        year
+        "You have more than 20 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear,
+        year,
+        quarterNum
       );
     } else if (totalUnits > 18) {
       newPlanAlert(
         "warning",
-        "You have more than 18 units in a quarter",
-        quarterNum,
-        year
+        "You have more than 18 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear,
+        year,
+        quarterNum
       );
     } else if (totalUnits < 12 && quarterNum !== 3) {
       newPlanAlert(
         "warning",
-        "You have less than 12 units in a quarter. A full time student has at least 12 units in a quarter.",
-        quarterNum,
-        year
+        "You have less than 12 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear +
+          ". A full time student has at least 12 units in a quarter.",
+        year,
+        quarterNum
       );
-    } else {
-      if (type !== "init") {
-        deleteAlert(quarterNum, year);
-      }
-    }
-
-    if (quarterNum == 3 && totalUnits > 8) {
+    } else if (quarterNum == 3 && totalUnits > 8) {
       newPlanAlert(
         "warning",
-        "Taking more than 8 units in a summer session is not advised.",
-        quarterNum,
-        year
+        "Taking more than 8 units in the " +
+          formattedYear +
+          " summer session is not advised.",
+        year,
+        quarterNum
       );
     }
 
@@ -291,21 +312,21 @@ const QuarterTable = ({
             new Promise((resolve, reject) => {
               deleteCourse(oldData, year, quarterNum);
               tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
+              calculateUnits(planIndex, "", data.formattedYear, data.title);
               resolve();
             }),
           onBulkUpdate: (changes) =>
             new Promise((resolve, reject) => {
               bulkEdit(changes, year, quarterNum);
               tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
+              calculateUnits(planIndex, "", data.formattedYear, data.title);
               resolve();
             }),
           onRowAdd: (newData) =>
             new Promise((resolve, reject) => {
               addCourse(newData, year, quarterNum);
               tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
+              calculateUnits(planIndex, "", data.formattedYear, data.title);
               resolve();
             }),
         }}

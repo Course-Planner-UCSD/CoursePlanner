@@ -15,6 +15,7 @@ import {
   updatePlan,
   planTotalUnits,
   newPlanAlert,
+  deleteAlert,
 } from "../../Redux/actions/plan";
 import Axios from "axios";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -23,7 +24,6 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
 import moment from "moment";
 import LocalAlert from "../layout/LocalAlert";
-import { subscribe } from "redux-subscriber";
 
 const Plan = ({
   userAuth,
@@ -34,6 +34,7 @@ const Plan = ({
   token,
   newPlanAlert,
   alert,
+  deleteAlert,
 }) => {
   let { planID } = useParams();
 
@@ -55,6 +56,9 @@ const Plan = ({
 
     return () => {
       mount = true;
+      /*alert.map((currentAlert) => {
+        deleteAlert(currentAlert.quarterNum, currentAlert.year);
+      });*/
     };
   }, []);
 
@@ -195,23 +199,6 @@ const Plan = ({
       })
       .catch((err) => console.error(err));
   };
-  subscribe("planReducer", (state) => {
-    if (
-      state.planReducer.alert.message !== null &&
-      state.planReducer.alert.checked === false
-    ) {
-      newPlanAlert(
-        state.planReducer.alert.severity,
-        state.planReducer.alert.message,
-        true
-      );
-      document.getElementById("planAlert").style.display = "flex";
-      setTimeout(() => {
-        document.getElementById("planAlert").style.display = "none";
-        newPlanAlert("error", null, false);
-      }, 20000);
-    }
-  });
 
   if (!userAuth) {
     return <Redirect to="/" />;
@@ -592,6 +579,7 @@ Plan.propTypes = {
   updatePlan: PropTypes.func.isRequired,
   newPlanAlert: PropTypes.func.isRequired,
   alert: PropTypes.array,
+  deleteAlert: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
@@ -602,5 +590,10 @@ const mapStateToProps = (state) => ({
 });
 
 export default React.memo(
-  connect(mapStateToProps, { planTotalUnits, updatePlan, newPlanAlert })(Plan)
+  connect(mapStateToProps, {
+    planTotalUnits,
+    updatePlan,
+    newPlanAlert,
+    deleteAlert,
+  })(Plan)
 );

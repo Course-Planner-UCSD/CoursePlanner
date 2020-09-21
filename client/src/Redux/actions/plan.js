@@ -125,7 +125,7 @@ export const planTotalUnits = (oldValue, newValue) => (dispatch) => {
   }
 };
 
-export const newPlanAlert = (severity, message, quarterNum, year) => (
+export const newPlanAlert = (severity, message, year, quarterNum) => (
   dispatch
 ) => {
   const payload = {
