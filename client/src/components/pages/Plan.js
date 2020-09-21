@@ -22,7 +22,7 @@ import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
 import moment from "moment";
-import Alert from "@material-ui/lab/Alert";
+import LocalAlert from "../layout/LocalAlert";
 import { subscribe } from "redux-subscriber";
 
 const Plan = ({
@@ -279,16 +279,7 @@ const Plan = ({
                 </NativeSelect>
               </FormControl>
             </div>
-            <Alert
-              onClose={() => {
-                document.getElementById("planAlert").style.display = "none";
-                newPlanAlert("error", null, false);
-              }}
-              severity={alert.severity}
-              id="planAlert"
-            >
-              {alert.message}
-            </Alert>
+            <LocalAlert />
             <Fragment>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
@@ -600,7 +591,7 @@ Plan.propTypes = {
   planTotalUnits: PropTypes.func.isRequired,
   updatePlan: PropTypes.func.isRequired,
   newPlanAlert: PropTypes.func.isRequired,
-  alert: PropTypes.object,
+  alert: PropTypes.array,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,

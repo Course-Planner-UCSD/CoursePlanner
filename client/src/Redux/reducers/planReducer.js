@@ -5,16 +5,13 @@ import {
   TOTAL_UNITS,
   RESET_UNITS,
   NEW_ALERT,
+  REMOVE_ALERT,
 } from "../../other/types";
 
 const originalState = {
   planData: [],
   currentTotalUnits: 0,
-  alert: {
-    message: null,
-    severity: "error",
-    checked: false,
-  },
+  alert: [],
 };
 
 function planReducer(state = originalState, action) {
@@ -49,9 +46,25 @@ function planReducer(state = originalState, action) {
         currentTotalUnits: 0,
       };
     case NEW_ALERT:
+      var newAlertArray = state.alert;
+      newAlertArray.push(action.payload);
       return {
         ...state,
-        alert: action.payload,
+        alert: newAlertArray,
+      };
+    case REMOVE_ALERT:
+      var newAlert = [];
+      state.alert.map((value) => {
+        if (
+          value.quarterNum !== action.payload.quarterNum ||
+          value.year !== action.payload.year
+        ) {
+          newAlert.push(value);
+        }
+      });
+      return {
+        ...state,
+        alert: newAlert,
       };
     default:
       return state;

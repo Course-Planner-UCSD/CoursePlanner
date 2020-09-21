@@ -7,6 +7,7 @@ import {
   updatePlan,
   planTotalUnits,
   newPlanAlert,
+  deleteAlert,
 } from "../../Redux/actions/plan";
 import moment from "moment";
 
@@ -20,6 +21,7 @@ const QuarterTable = ({
   quarterNum,
   planTotalUnits,
   newPlanAlert,
+  deleteAlert,
 }) => {
   const [data, setData] = useState({
     columns: [
@@ -66,26 +68,38 @@ const QuarterTable = ({
     });
 
     if (totalUnits > 20) {
-      newPlanAlert("error", "You have more than 20 units in a quarter", false);
+      newPlanAlert(
+        "error",
+        "You have more than 20 units in a quarter",
+        quarterNum,
+        year
+      );
     } else if (totalUnits > 18) {
       newPlanAlert(
         "warning",
         "You have more than 18 units in a quarter",
-        false
+        quarterNum,
+        year
       );
     } else if (totalUnits < 12 && quarterNum !== 3) {
       newPlanAlert(
         "warning",
         "You have less than 12 units in a quarter. A full time student has at least 12 units in a quarter.",
-        false
+        quarterNum,
+        year
       );
+    } else {
+      if (type !== "init") {
+        deleteAlert(quarterNum, year);
+      }
     }
 
     if (quarterNum == 3 && totalUnits > 8) {
       newPlanAlert(
         "warning",
         "Taking more than 8 units in a summer session is not advised.",
-        false
+        quarterNum,
+        year
       );
     }
 
@@ -333,6 +347,7 @@ QuarterTable.propTypes = {
   updatePlan: PropTypes.func.isRequired,
   planTotalUnits: PropTypes.func.isRequired,
   newPlanAlert: PropTypes.func.isRequired,
+  deleteAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -341,7 +356,10 @@ const mapStateToProps = (state) => ({
 });
 
 export default React.memo(
-  connect(mapStateToProps, { updatePlan, planTotalUnits, newPlanAlert })(
-    QuarterTable
-  )
+  connect(mapStateToProps, {
+    updatePlan,
+    planTotalUnits,
+    newPlanAlert,
+    deleteAlert,
+  })(QuarterTable)
 );
