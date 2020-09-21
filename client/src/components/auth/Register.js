@@ -289,9 +289,11 @@ const Register = ({ register, userAuth, error }) => {
                   color="primary"
                   type="submit"
                   id="register"
+				  disabled
                 >
                   Register
                 </Button>
+				<p style={{color:"red"}} class="text">This is a demo. Registration is disabled. Try logging in with the example account.</p>
               </div>
             </form>
           </Card>
