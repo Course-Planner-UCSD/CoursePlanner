@@ -4,6 +4,8 @@ import {
   UPDATE_PLAN,
   TOTAL_UNITS,
   RESET_UNITS,
+  NEW_ALERT,
+  REMOVE_ALERT,
 } from "../../other/types";
 
 export const plan = () => async (dispatch) => {
@@ -121,4 +123,30 @@ export const planTotalUnits = (oldValue, newValue) => (dispatch) => {
       payload,
     });
   }
+};
+
+export const newPlanAlert = (severity, message, year, quarterNum) => (
+  dispatch
+) => {
+  const payload = {
+    message,
+    severity,
+    quarterNum,
+    year,
+  };
+  dispatch({
+    type: NEW_ALERT,
+    payload,
+  });
+};
+
+export const deleteAlert = (quarterNum, year) => (dispatch) => {
+  const payload = {
+    quarterNum,
+    year,
+  };
+  dispatch({
+    type: REMOVE_ALERT,
+    payload,
+  });
 };

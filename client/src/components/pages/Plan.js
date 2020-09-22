@@ -11,13 +11,19 @@ import ModifiedDate from "../layout/ModifiedDate";
 import Card from "@material-ui/core/Card";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
+import {
+  updatePlan,
+  planTotalUnits,
+  newPlanAlert,
+  deleteAlert,
+} from "../../Redux/actions/plan";
 import Axios from "axios";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
 import moment from "moment";
+import LocalAlert from "../layout/LocalAlert";
 
 const Plan = ({
   userAuth,
@@ -26,6 +32,9 @@ const Plan = ({
   planTotalUnits,
   updatePlan,
   token,
+  newPlanAlert,
+  alert,
+  deleteAlert,
 }) => {
   let { planID } = useParams();
 
@@ -35,6 +44,8 @@ const Plan = ({
     summerChecked: false,
     fiveYearChecked: false,
     currentStartYear: 0,
+    alertMessage: "",
+    alertSeverity: "",
   });
 
   useLayoutEffect(() => {
@@ -46,7 +57,7 @@ const Plan = ({
     return () => {
       mount = true;
     };
-  }, []);
+  }, [userAuth]);
 
   const initialState = () => {
     //DO NOT try to get anything from planData here since the app will crash
@@ -107,7 +118,10 @@ const Plan = ({
   };
 
   const saveSummerChecked = async (summerData) => {
-    const body = JSON.stringify({ showSummer: summerData });
+    const body = JSON.stringify({
+      showSummer: summerData,
+      modifiedDate: moment().toISOString(),
+    });
     const url = "/api/coursePlan/updatePlan/" + planID;
     const config = {
       headers: {
@@ -139,7 +153,10 @@ const Plan = ({
   };
 
   const saveFifthYear = async (fifthData) => {
-    const body = JSON.stringify({ showFifthYear: fifthData });
+    const body = JSON.stringify({
+      showFifthYear: fifthData,
+      modifiedDate: moment().toISOString(),
+    });
     const url = "/api/coursePlan/updatePlan/" + planID;
     const config = {
       headers: {
@@ -161,7 +178,10 @@ const Plan = ({
   };
 
   const updateStartYear = async (event) => {
-    const body = JSON.stringify({ startYear: event.target.value });
+    const body = JSON.stringify({
+      startYear: event.target.value,
+      modifiedDate: moment().toISOString(),
+    });
     const url = "/api/coursePlan/updatePlan/" + planID;
     const config = {
       headers: {
@@ -243,6 +263,7 @@ const Plan = ({
                 </NativeSelect>
               </FormControl>
             </div>
+            <LocalAlert />
             <Fragment>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
@@ -553,14 +574,23 @@ Plan.propTypes = {
   currentTotalUnits: PropTypes.number,
   planTotalUnits: PropTypes.func.isRequired,
   updatePlan: PropTypes.func.isRequired,
+  newPlanAlert: PropTypes.func.isRequired,
+  alert: PropTypes.array,
+  deleteAlert: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
   planData: state.planReducer.planData,
   currentTotalUnits: state.planReducer.currentTotalUnits,
   token: state.authReducer.token,
+  alert: state.planReducer.alert,
 });
 
 export default React.memo(
-  connect(mapStateToProps, { planTotalUnits, updatePlan })(Plan)
+  connect(mapStateToProps, {
+    planTotalUnits,
+    updatePlan,
+    newPlanAlert,
+    deleteAlert,
+  })(Plan)
 );

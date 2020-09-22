@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MaterialTable from "material-table";
 import axios from "axios";
-import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
+import {
+  updatePlan,
+  planTotalUnits,
+  newPlanAlert,
+  deleteAlert,
+} from "../../Redux/actions/plan";
 import moment from "moment";
 
 const QuarterTable = ({
@@ -15,50 +20,109 @@ const QuarterTable = ({
   year,
   quarterNum,
   planTotalUnits,
+  newPlanAlert,
+  deleteAlert,
 }) => {
   const [data, setData] = useState({
     columns: [
-      { title: "Courses", field: "course" },
+      { title: "Courses", field: "course", align: "left" },
       { title: "Units", field: "units", type: "numeric", align: "left" },
     ],
     planIndex: null,
     title: "",
     totalUnits: 0,
+    formattedYear: "",
   });
 
   useEffect(() => {
     initialState();
-  }, [planIndex, planData]);
+    return () => {
+      deleteAlert(quarterNum, year);
+    };
+  }, [planIndex, planData, quarterNum, year]);
 
   const initialState = () => {
     var title;
+    var formattedYear;
     if (year === "firstYear") {
       title = planData[planIndex].firstYear.quarters[quarterNum].season;
+      formattedYear = "First Year";
     } else if (year === "secondYear") {
       title = planData[planIndex].secondYear.quarters[quarterNum].season;
+      formattedYear = "Second Year";
     } else if (year === "thirdYear") {
       title = planData[planIndex].thirdYear.quarters[quarterNum].season;
+      formattedYear = "Third Year";
     } else if (year === "fourthYear") {
       title = planData[planIndex].fourthYear.quarters[quarterNum].season;
+      formattedYear = "Fourth Year";
     } else if (year === "fifthYear") {
       title = planData[planIndex].fifthYear.quarters[quarterNum].season;
+      formattedYear = "Fifth Year";
     }
-    const totalUnits = calculateUnits(planIndex, "init");
+    const totalUnits = calculateUnits(planIndex, "init", formattedYear, title);
     planTotalUnits(0, totalUnits);
     setData({
       ...data,
       planIndex,
       title,
       totalUnits,
+      formattedYear,
     });
   };
 
-  const calculateUnits = (planIndex, type) => {
+  const calculateUnits = (planIndex, type, formattedYear, title) => {
     var currentPlanData = checkYear(year, planIndex);
     var totalUnits = 0;
     currentPlanData.quarters[quarterNum].courses.forEach((courseObject) => {
       totalUnits = totalUnits + parseInt(courseObject.units);
     });
+
+    if (type !== "init") {
+      deleteAlert(quarterNum, year);
+    }
+
+    if (totalUnits > 20) {
+      newPlanAlert(
+        "error",
+        "You have more than 20 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear,
+        year,
+        quarterNum
+      );
+    } else if (totalUnits > 18) {
+      newPlanAlert(
+        "warning",
+        "You have more than 18 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear,
+        year,
+        quarterNum
+      );
+    } else if (totalUnits < 12 && quarterNum !== 3) {
+      newPlanAlert(
+        "warning",
+        "You have less than 12 units in the " +
+          title +
+          " quarter in the " +
+          formattedYear +
+          ". A full time student has at least 12 units in a quarter.",
+        year,
+        quarterNum
+      );
+    } else if (quarterNum === 3 && totalUnits > 8) {
+      newPlanAlert(
+        "warning",
+        "Taking more than 8 units in the " +
+          formattedYear +
+          " summer session is not advised.",
+        year,
+        quarterNum
+      );
+    }
 
     if (type === "init") {
       return totalUnits;
@@ -123,43 +187,23 @@ const QuarterTable = ({
     return body;
   };
 
-  const updateTableCellEdit = async (
-    newValue,
-    rowData,
-    columnDef,
-    year,
-    quarterNum
-  ) => {
-    const courseNum = rowData.tableData.id;
+  const bulkEdit = async (changes, year, quarterNum) => {
+    var currentPlanData = checkYear(year, data.planIndex);
 
+    for (var i = 0; i < 15; i++) {
+      if (changes[i] !== undefined) {
+        currentPlanData.quarters[quarterNum].courses[i].course =
+          changes[i].newData.course;
+        currentPlanData.quarters[quarterNum].courses[i].units =
+          changes[i].newData.units;
+      }
+    }
     const config = {
       headers: {
         "x-auth-token": token,
         "Content-Type": "application/json",
       },
     };
-    var currentPlanData = checkYear(year, data.planIndex);
-
-    if (columnDef.field === "course") {
-      if (newValue === "") {
-        currentPlanData.quarters[quarterNum].courses[courseNum].course = "-";
-      } else {
-        currentPlanData.quarters[quarterNum].courses[
-          courseNum
-        ].course = newValue;
-      }
-    }
-
-    if (columnDef.field === "units") {
-      if (newValue === "" || Number.isNaN(parseInt(newValue))) {
-        currentPlanData.quarters[quarterNum].courses[courseNum].units = "4";
-      } else {
-        currentPlanData.quarters[quarterNum].courses[
-          courseNum
-        ].units = newValue;
-      }
-    }
-
     const currentTime = moment().toISOString();
     const body = generateBody(year, currentPlanData, currentTime);
     const url = "/api/coursePlan/updatePlan/" + planID;
@@ -185,11 +229,7 @@ const QuarterTable = ({
 
     currentPlanData.quarters[quarterNum].courses = currentPlanData.quarters[
       quarterNum
-    ].courses.filter((value, index, array) => {
-      if (index !== courseNum) {
-        return value;
-      }
-    });
+    ].courses.filter((value, index) => index !== courseNum);
 
     const currentTime = moment().toISOString();
     const body = generateBody(year, currentPlanData, currentTime);
@@ -212,9 +252,6 @@ const QuarterTable = ({
     };
     var currentPlanData = checkYear(year, data.planIndex);
 
-    if (newData.course === undefined) {
-      newData.course = "-";
-    }
     if (newData.units === undefined) {
       newData.units = "4";
     }
@@ -266,39 +303,26 @@ const QuarterTable = ({
           })
         }
         tableRef={tableRef}
-        cellEditable={{
-          onCellEditApproved: (newValue, oldValue, rowData, columnDef) =>
-            new Promise((resolve, reject) => {
-              updateTableCellEdit(
-                newValue,
-                rowData,
-                columnDef,
-                year,
-                quarterNum
-              );
-              tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
-              resolve();
-            }),
-        }}
-        actions={[
-          {
-            icon: "add",
-            tooltip: "Add Course",
-            isFreeAction: true,
-            onClick: () => {
-              addCourse({}, year, quarterNum);
-              tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
-            },
-          },
-        ]}
         editable={{
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
               deleteCourse(oldData, year, quarterNum);
               tableRef.current && tableRef.current.onQueryChange();
-              calculateUnits(planIndex);
+              calculateUnits(planIndex, "", data.formattedYear, data.title);
+              resolve();
+            }),
+          onBulkUpdate: (changes) =>
+            new Promise((resolve, reject) => {
+              bulkEdit(changes, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+              calculateUnits(planIndex, "", data.formattedYear, data.title);
+              resolve();
+            }),
+          onRowAdd: (newData) =>
+            new Promise((resolve, reject) => {
+              addCourse(newData, year, quarterNum);
+              tableRef.current && tableRef.current.onQueryChange();
+              calculateUnits(planIndex, "", data.formattedYear, data.title);
               resolve();
             }),
         }}
@@ -339,6 +363,8 @@ QuarterTable.propTypes = {
   token: PropTypes.string,
   updatePlan: PropTypes.func.isRequired,
   planTotalUnits: PropTypes.func.isRequired,
+  newPlanAlert: PropTypes.func.isRequired,
+  deleteAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -347,5 +373,10 @@ const mapStateToProps = (state) => ({
 });
 
 export default React.memo(
-  connect(mapStateToProps, { updatePlan, planTotalUnits })(QuarterTable)
+  connect(mapStateToProps, {
+    updatePlan,
+    planTotalUnits,
+    newPlanAlert,
+    deleteAlert,
+  })(QuarterTable)
 );
