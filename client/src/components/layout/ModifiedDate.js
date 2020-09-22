@@ -8,23 +8,24 @@ const ModifiedDate = ({ planIndex, planData }) => {
   });
 
   useEffect(() => {
-    const initialState = () => {
-      setData({
-        ...data,
-        lastModified: moment(planData[planIndex].modifiedDate).format(
-          "MMMM Do, h:mm a"
-        ),
-      });
-    };
     initialState();
     var interval = setInterval(() => {
       initialState();
-    }, 1000);
+    }, 500);
 
     return () => {
       clearInterval(interval);
     };
-  }, [planData, data, planIndex]);
+  }, [planData]);
+
+  const initialState = () => {
+    setData({
+      ...data,
+      lastModified: moment(planData[planIndex].modifiedDate).format(
+        "MMMM Do, h:mm a"
+      ),
+    });
+  };
 
   return <h3>Modified On: {data.lastModified}</h3>;
 };
