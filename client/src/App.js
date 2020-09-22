@@ -13,7 +13,6 @@ import rootReducer from "./Redux/reducers";
 import Dashboard from "./components/pages/dashboard";
 import Landing from "./components/pages/landing";
 import { checkAuth } from "./Redux/actions/checkAuth";
-import initSubscriber from "redux-subscriber";
 
 const originalState = {};
 
@@ -29,8 +28,6 @@ const App = () => {
   useEffect(() => {
     if (localStorage.token) {
       store.dispatch(checkAuth());
-      const subscribe = initSubscriber(store);
-      subscribe("planReducer", (state) => {});
     }
   });
   return (

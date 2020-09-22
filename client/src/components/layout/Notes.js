@@ -19,10 +19,10 @@ const Notes = ({ token, planData, updatePlan, planIndex, planID }) => {
   useEffect(() => {
     initialState();
     closeFailedNotesAlert();
-	return function cleanup() {
-	  for (var i = 0; i < timeouts.length; i++) {
-	    window.clearTimeout(timeouts[i]);
-      }   
+    return function cleanup() {
+      for (var i = 0; i < timeouts.length; i++) {
+        window.clearTimeout(timeouts[i]);
+      }
     };
   }, [planData]);
 

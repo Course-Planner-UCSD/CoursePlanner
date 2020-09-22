@@ -56,11 +56,8 @@ const Plan = ({
 
     return () => {
       mount = true;
-      /*alert.map((currentAlert) => {
-        deleteAlert(currentAlert.quarterNum, currentAlert.year);
-      });*/
     };
-  }, []);
+  }, [userAuth]);
 
   const initialState = () => {
     //DO NOT try to get anything from planData here since the app will crash

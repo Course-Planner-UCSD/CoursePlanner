@@ -21,7 +21,6 @@
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-subscriber": "^1.1.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {

@@ -39,7 +39,7 @@ const QuarterTable = ({
     return () => {
       deleteAlert(quarterNum, year);
     };
-  }, [planIndex, planData]);
+  }, [planIndex, planData, quarterNum, year]);
 
   const initialState = () => {
     var title;
@@ -113,7 +113,7 @@ const QuarterTable = ({
         year,
         quarterNum
       );
-    } else if (quarterNum == 3 && totalUnits > 8) {
+    } else if (quarterNum === 3 && totalUnits > 8) {
       newPlanAlert(
         "warning",
         "Taking more than 8 units in the " +
@@ -229,11 +229,7 @@ const QuarterTable = ({
 
     currentPlanData.quarters[quarterNum].courses = currentPlanData.quarters[
       quarterNum
-    ].courses.filter((value, index, array) => {
-      if (index !== courseNum) {
-        return value;
-      }
-    });
+    ].courses.filter((value, index) => index !== courseNum);
 
     const currentTime = moment().toISOString();
     const body = generateBody(year, currentPlanData, currentTime);

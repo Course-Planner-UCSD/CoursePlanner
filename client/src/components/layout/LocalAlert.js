@@ -16,7 +16,7 @@ const LocalAlert = ({ alert, deleteAlert }) => {
     return () => {
       clearInterval(updateStateInterval);
     };
-  }, []);
+  }, [updateStateInterval]);
 
   if (alert.length > 0) {
     if (state.firstRender) {
@@ -24,9 +24,8 @@ const LocalAlert = ({ alert, deleteAlert }) => {
         setState({ ...state, rerenderCount: Date.UTC, firstRender: false });
       }, 1000);
     }
-    var returnAlerts = [];
-    alert.map((currentAlert, index) => {
-      returnAlerts.push(
+    var returnAlerts = alert.map((currentAlert, index) => {
+      return (
         <Alert
           onClose={() => {
             document.getElementById(index).style.display = "none";

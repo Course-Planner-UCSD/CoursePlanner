@@ -53,19 +53,11 @@ function planReducer(state = originalState, action) {
         alert: newAlertArray,
       };
     case REMOVE_ALERT:
-      var newAlert = [];
-      state.alert.map((value) => {
-        if (
+      var newAlert = state.alert.filter(
+        (value) =>
           value.quarterNum !== action.payload.quarterNum ||
           value.year !== action.payload.year
-        ) {
-          /*console.log("current year" + value.year);
-          console.log("delete year " + action.payload.year);
-          console.log("current quarter " + value.quarterNum);
-          console.log("delete quarter " + action.payload.quarterNum);*/
-          newAlert.push(value);
-        }
-      });
+      );
       return {
         ...state,
         alert: newAlert,
