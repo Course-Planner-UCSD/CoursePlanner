@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Alert from "@material-ui/lab/Alert";
 import { deleteAlert } from "../../Redux/actions/plan";
 
 const LocalAlert = ({ alert, deleteAlert }) => {
-  const [state, setState] = useState({
-    rerenderCount: 0,
-    firstRender: true,
-  });
-
-  var updateStateInterval;
-
-  useEffect(() => {
-    return () => {
-      clearInterval(updateStateInterval);
-    };
-  }, [updateStateInterval]);
-
   if (alert.length > 0) {
-    if (state.firstRender) {
-      updateStateInterval = setInterval(() => {
-        setState({ ...state, rerenderCount: Date.UTC, firstRender: false });
-      }, 1000);
-    }
     var returnAlerts = alert.map((currentAlert, index) => {
       return (
         <Alert
@@ -42,12 +24,7 @@ const LocalAlert = ({ alert, deleteAlert }) => {
     });
     return returnAlerts;
   } else {
-    if (state.firstRender) {
-      updateStateInterval = setInterval(() => {
-        setState({ ...state, rerenderCount: Date.UTC, firstRender: false });
-      }, 1000);
-    }
-    return <div></div>;
+    return <Fragment></Fragment>;
   }
 };
 LocalAlert.propTypes = {

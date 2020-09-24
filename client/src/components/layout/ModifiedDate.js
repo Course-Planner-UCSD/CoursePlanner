@@ -8,17 +8,13 @@ const ModifiedDate = ({ planIndex, planData }) => {
   });
 
   useEffect(() => {
-    var mount = false;
-
     initialState();
-    setInterval(() => {
-      if (!mount) {
-        initialState();
-      }
+    var interval = setInterval(() => {
+      initialState();
     }, 500);
 
     return () => {
-      mount = true;
+      clearInterval(interval);
     };
   }, [planData]);
 

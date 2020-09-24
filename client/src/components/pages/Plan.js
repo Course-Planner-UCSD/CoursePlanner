@@ -11,12 +11,7 @@ import ModifiedDate from "../layout/ModifiedDate";
 import Card from "@material-ui/core/Card";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import {
-  updatePlan,
-  planTotalUnits,
-  newPlanAlert,
-  deleteAlert,
-} from "../../Redux/actions/plan";
+import { updatePlan, planTotalUnits } from "../../Redux/actions/plan";
 import Axios from "axios";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControl from "@material-ui/core/FormControl";
@@ -32,9 +27,7 @@ const Plan = ({
   planTotalUnits,
   updatePlan,
   token,
-  newPlanAlert,
   alert,
-  deleteAlert,
 }) => {
   let { planID } = useParams();
 
@@ -263,7 +256,7 @@ const Plan = ({
                 </NativeSelect>
               </FormControl>
             </div>
-            <LocalAlert />
+            {alert.length > 0 && <LocalAlert />}
             <Fragment>
               <Card className="yearCard">
                 <h1 className="text yearHeaderText">
@@ -574,9 +567,7 @@ Plan.propTypes = {
   currentTotalUnits: PropTypes.number,
   planTotalUnits: PropTypes.func.isRequired,
   updatePlan: PropTypes.func.isRequired,
-  newPlanAlert: PropTypes.func.isRequired,
   alert: PropTypes.array,
-  deleteAlert: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   userAuth: state.authReducer.userAuth,
@@ -590,7 +581,5 @@ export default React.memo(
   connect(mapStateToProps, {
     planTotalUnits,
     updatePlan,
-    newPlanAlert,
-    deleteAlert,
   })(Plan)
 );
