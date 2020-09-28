@@ -52,7 +52,7 @@ Viewing a plan. From here the, the user can edit the name, start year, and numbe
 ![A year of courses](images/edit_plan_screenshot_year.png "Editing course lists")
 The user can enter as many courses as they would like for each quarter. Each class has a course code and number of units. Quarterly unit totals display below each quarter.
 
-![The user is viewing the notes for this plan.](images/edit_plan_screenshot.png "Notes")
+![The user is viewing the notes for this plan.](images/edit_plan_screenshot_notes.png "Notes")
 The user can enter notes related to the plan.
 
 ## Tech/framework used
