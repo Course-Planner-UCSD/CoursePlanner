@@ -51,4 +51,4 @@ Run this project by: downloading the code, creating a new MongoDB atlas server, 
 
 ## License
 
-MIT © [Course Planner](github.com/Course-Planner-UCSD)
+MIT © [Course Planner](https://github.com/Course-Planner-UCSD/CoursePlanner/)
