@@ -1,35 +1,3 @@
-# CoursePlanner
-
-To work on this project run npm install in both main and /client folders to install all dependencies
-
-## Commands to run the project:
-
-npm run server (runs server)
-
-npm run client (runs front end)
-
-npm run dev (runs both client and server)
-
-## What needs to be done after coding:
-
-- [ ] deploy to heroku @everyone
-
-- [ ] talk to acm people about hosting website with user data @everyone
-
-## Known Issues and things that need to be coded:
-Look at issues tab
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
 ## Course Planner
 This website is a tool for students to create and save long-term plans. It features an account system with encrypted passwords for security, and an interface for creating, modifying, and deleting four and five year plans. Each plan can be customized, with options to select start year, number of years, and whether to include summer courses. Users can add courses to the fall, winter, spring, and (optionally) summer quarters of each year. Along with the course code, users can enter the number of units in each course. The plan will display quarterly and overall unit totals based on this data.
 
@@ -59,11 +27,13 @@ The user can enter notes related to the plan.
 
 **Built with**
 - [MongoDB](https://www.mongodb.com/) used to store account and plan data
-- [Express](https://expressjs.com/) used for ?
+- [Express](https://expressjs.com/) used for routing
 - [React](https://reactjs.org/) used for the frontend
-- [Node.js](https://nodejs.org/en/) used for ?
+- [Node.js](https://nodejs.org/en/) used for backend
+- [Redux](https://redux.js.org/) used for the managing the state in the frontend
 - [Material-UI](https://material-ui.com/) used for the frontend (form inputs, headers, alerts, etc)
 - [material-table](https://material-table.com/#/) used for the frontend (tables in dashboard and plan view)
+- For the rest of the packages, refer to package.json in the main and client folders
 
 ## Features
 - Create, edit, and delete plans
@@ -76,26 +46,8 @@ The user can enter notes related to the plan.
 - Plan name, start year, number of years can all be edited, as well as the courses in each quarter
 - Editable notes associated with each plan
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
-## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
-
-## Tests
-Describe and show how to run the tests with code examples.
-
-## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
-
-## Contribute
-
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
-
-## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
-
-#### Anything else that seems useful
+## Installing and Running
+Run this project by: downloading the code, creating a new MongoDB atlas server, copy pasting the MongoURI into config/default.json, and running "npm run dev". 
 
 ## License
 
