@@ -1,4 +1,4 @@
 {
   "mongoURI": "",
-  "jwt": "tsecrettoken"
+  "jwt": "secrettoken"
 }
