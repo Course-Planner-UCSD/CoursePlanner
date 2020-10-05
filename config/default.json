@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://courseplanner:31PLpMGXZrV0lWH5@courseplanner.zdjdu.mongodb.net/coursePlannerDB?retryWrites=true&w=majority",
-  "jwt": "tsecrettoken"
+  "mongoURI": "",
+  "jwt": "secrettoken"
 }
